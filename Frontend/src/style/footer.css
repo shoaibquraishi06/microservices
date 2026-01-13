@@ -1,0 +1,157 @@
+/* Footer Base Styles */
+.footer {
+	background: #000;
+	color: #fff;
+	padding: 32px 0 0 0;
+	font-family: 'Inter', Arial, sans-serif;
+	width: 100%;
+}
+
+.footer-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 24px 24px 24px;
+}
+
+.footer-logo-section {
+	margin-bottom: 32px;
+}
+
+.footer-logo {
+	width: 70px;
+	margin-bottom: 16px;
+}
+
+.footer-logo img {
+    mix-blend-mode: darken;
+}
+
+.footer-copyright {
+    font-family: 'regular-text';
+	color: #9f9d9d94;
+	font-size: 12px;
+	margin-top: 8px;
+}
+
+.footer-links-section {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	width: 100%;
+	margin-bottom: 32px;
+}
+
+.footer-links-group h4 {
+	color: #d9d7d7;
+    font-family: 'regular-text';
+	font-size: 10px;
+	margin-bottom: 10px;
+	font-weight: 600;
+}
+
+.footer-links-group ul {
+	list-style: none;
+
+	padding: 0;
+	margin: 0;
+}
+
+.footer-links-group li {
+	color: #5e5959;
+    font-family: 'regular-text';
+	font-size: 10px;
+	margin-bottom: 6px;
+	cursor: pointer;
+	transition: color 0.2s;
+}
+.footer-links-group li:hover {
+	color: #fff;
+}
+
+.footer-social-section {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 100%;
+}
+
+.footer-social-icons {
+	display: flex;
+	gap: 18px;
+	margin-bottom: 16px;
+}
+
+.footer-social-icon {
+	color: #fff;
+	font-size: 20px;
+	transition: color 0.2s;
+}
+.footer-social-icon:hover {
+	color: #b3b3b3;
+}
+
+.footer-policy {
+	color: #5e5959;
+       font-family: 'regular-text';
+       font-weight: 500;
+	font-size: 12px;
+}
+.footer-policy a {
+    color: #5e5959;
+	text-decoration: none;
+	transition: color 0.2s;
+}
+.footer-policy a:hover {
+	color: #fff;
+}
+
+/* Tablet Styles */
+@media (min-width: 600px) {
+	.footer-container {
+		flex-direction: row;
+		align-items: flex-start;
+		justify-content: space-between;
+		padding: 0 40px 24px 40px;
+	}
+	.footer-logo-section {
+		flex: 1 1 180px;
+		margin-bottom: 0;
+	}
+	.footer-links-section {
+		flex-direction: row;
+		gap: 90px;
+		flex: 2 1 400px;
+		margin-bottom: 0;
+	}
+	.footer-social-section {
+		align-items: flex-end;
+		flex: 1 1 180px;
+		text-align: right;
+	}
+}
+
+/* Laptop/Desktop Styles */
+@media (min-width: 900px) {
+	.footer-container {
+		padding: 0 80px 24px 80px;
+	}
+	.footer-logo {
+		width: 90px;
+	}
+	.footer-links-group h4 {
+		font-size: 15px;
+	}
+	.footer-links-group li {
+		font-size: 12px;
+       
+	}
+	.footer-policy {
+		font-size: 15px;
+	}
+}
+
+/* Social Icons (Font Awesome) */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');

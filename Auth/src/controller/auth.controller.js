@@ -4,12 +4,12 @@ const jwt = require('jsonwebtoken');
 const redis = require('../db/redis');
 const { publishToQueue } = require("../broker/broker")
 
-const JWT_SECRET = process.env.JWT_SECRET || '2837f17cf1fc783b6d88bf1c3cdd577894b3712e88fa34476aad7df2eea555bf88d6b24b';
+
 
 
 async function registerUser(req, res) {
 
-  const { username, email, password , fullName:{ firstName, lastName }, role} = req.body;
+  const { username, email, password , role} = req.body;
  
 
   const isUserAlreadyExists = await userModel.findOne({
@@ -29,8 +29,6 @@ async function registerUser(req, res) {
     username,
     email,
     password: hashedPassword,
-    fullName: firstName,
-    lastName: lastName,
     role
   });
 
@@ -60,7 +58,7 @@ async function registerUser(req, res) {
         username: newUser.username,
         email: newUser.email,
         role: newUser.role
-     }, JWT_SECRET, {expiresIn:'1d'})
+     }, process.env.JWT_SECRET, {expiresIn:'1d'})
 
   res.cookie("token", token,{
     httpOnly:true,
@@ -103,7 +101,7 @@ if (!isMatch) {
 
     const token = jwt.sign(
       { id: user._id, username: user.username, email: user.email, role: user.role },
-      JWT_SECRET,
+      process.env.JWT_SECRET,
       { expiresIn: '1d' }
     );
 

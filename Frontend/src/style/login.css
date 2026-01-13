@@ -1,0 +1,148 @@
+
+
+.login-container {
+  padding: 4.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #dadada37;
+}
+
+.login-box {
+  background: #ffffff;
+  padding: 30px;
+  width: 350px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.logo img {
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    position: absolute;
+    left: 13%;
+    top: 7%;
+   
+
+}
+
+.login-box h2 {
+  margin-bottom: 4px;
+  font-family: 'regular-text';
+  text-align: center;
+}
+
+.login-box p{
+    color: #a6a0a0;
+    font-size: 15px;
+    
+}
+
+.login-box input {
+  padding: 15px 20px;
+  width: 85%;
+  margin-bottom: 12px;
+  font-family: 'regular-text';
+   font-weight: 600;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.register-box input:focus{
+    border:0.5px solid  #f7f7f750;
+   
+}
+
+.login-box button {
+ padding: 12px;
+  background: #000000;
+  color: rgb(234, 228, 228);
+   font-family: 'regular-text';
+   border: none;
+  border-radius: 6px;
+  cursor: pointer;
+
+}
+
+.login-box p {
+  text-align: center;
+  margin-top: 10px;
+    font-family: 'regular-text';
+
+}
+
+
+.register{
+  color: #000000;
+  font-family: 'regular-text';
+ text-decoration: none;;
+}
+
+.cloud-login img {
+    height: 20px;
+    width: 20px;
+    object-fit: cover;
+}
+
+.cloud-login {
+    margin-top: 15px;
+}
+
+.google-login{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+    background-color: #000000;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+.google-login p{
+    color: #cdd4d8;
+}
+.apple-login p{
+    color: #2f2e2e;
+    font-weight: 600;
+}
+
+
+.apple-login{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    justify-content: center;
+    margin-top: 0.5rem;
+     border: 1px solid #000000;
+         border-radius: 5px;
+}
+
+
+
+@media (max-width:768px) {
+
+
+    .login-box{
+        width: 310px;
+    }
+
+    .login-box h2{
+        font-size: 20px;
+    }
+
+   .login-container .logo img {
+    height: 35px;
+    width: 37px;
+    object-fit: cover;
+    position: absolute;
+    left: 15%;
+    top: 8%;
+   
+
+}
+
+
+}

@@ -1,0 +1,52 @@
+.product-card {
+  position: relative;
+  background: #f7f7f7;
+  padding: 20px;
+  height: 150px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.product-card img {
+     width: 80%;
+    object-fit: cover;
+    height: 50%;
+  margin-bottom: 15px;
+}
+
+.product-card h4 {
+  font-family: "regular-text";
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+.product-card p {
+  color: #777;
+  font-family: 'regular-text';
+}
+
+.badge {
+   font-family: 'bold-text';
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #000;
+  color: #fff;
+  font-size: 12px;
+  padding: 4px 8px;
+}
+
+
+@media (min-width:1080px) {
+
+     .product-card {
+      height: 150px;
+     }
+
+   .product-card img{
+
+    height: 90%;
+   }
+  
+}

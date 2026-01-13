@@ -1,0 +1,22 @@
+:root {
+  --gap: 24px;
+  --muted: #777;
+  --bg: #fff;
+  --accent: #111;
+}
+
+* { box-sizing: border-box; }
+body { font-family: Inter, system-ui, sans-serif; margin:0; background:#fafafa; color:#111; }
+.site-header { display:flex; justify-content:space-between; align-items:center; padding:16px 32px; background:#fff; border-bottom:1px solid #eee; position:sticky; top:0; z-index:10; }
+.logo { font-weight:700; }
+.site-footer { text-align:center; padding:30px 0; color:var(--muted); margin-top:40px; }
+
+/* Import component-specific CSS files (ensure you create them as referenced):
+ - src/components/filterSidebar.css
+ - src/components/productList.css
+ - src/components/productCard.css
+ - src/components/cart.css
+
+The code above references them via relative imports in the components.
+You can copy/paste or add your own styling to match your design.
+*/

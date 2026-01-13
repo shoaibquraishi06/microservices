@@ -19,7 +19,7 @@ const addresseSchema = new mongoose.Schema({
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
-        required: true,
+        // required: true,
         unique: true
     },
     email: {
@@ -32,13 +32,13 @@ const userSchema = new mongoose.Schema({
         select: false,
     },
     
-    fullName:{
+    firstName:{
         type: String,
-        required: true
+        // required: true
     },
     lastName:{
         type: String,
-        required: true
+        // required: true
     },
    
     role:{
