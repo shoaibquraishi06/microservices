@@ -1,0 +1,51 @@
+
+.sidebar {
+  width: 260px;
+  background: #fff;
+  padding: 1.5rem;
+}
+
+.profile-box {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.profile-box h3{
+  font-family: "semi-bold-text";
+  padding-bottom: 0;
+}
+.profile-box p{
+  font-family: "semi-bold-text";
+}
+
+.avatar {
+  width: 60px;
+  height: 60px;
+  background: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.5rem;
+  font-size: 1.4rem;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+}
+
+.menu li {
+  padding: 0.75rem;
+  cursor: pointer;
+  font-family: "semi-bold-text";
+}
+
+.menu li.active {
+  background: #f2f2f2;
+  font-weight: 600;
+}
+
+.menu .logout {
+  color: red;
+}

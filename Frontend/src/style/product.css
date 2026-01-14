@@ -1,6 +1,6 @@
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 2fr));
   gap: 1.5rem;
   
 }
@@ -20,12 +20,13 @@
   margin-top: 1rem;
 }
 
-.product-grid{
+/* .product-grid{
   display: flex;
   justify-content: center;
   background-color: rgb(255, 255, 255);
   flex-wrap: wrap;
-}
+  flex-shrink: 1;
+} */
 
 
 .product-img img {

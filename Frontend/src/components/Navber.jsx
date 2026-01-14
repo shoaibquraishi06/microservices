@@ -5,13 +5,15 @@ import { CgMenu } from "react-icons/cg";
 import { IoLocationOutline } from "react-icons/io5";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { IoIosLogOut } from "react-icons/io";
-import { Link } from "react-router-dom";
+
 import logo from '../assets/logo.jpg';
 import CartDrawer from "../components/Cart";
+import { Link, useNavigate } from "react-router-dom";
 import profilePic from '../assets/heroSection.avif'; // Use your own profile image if available
 
 import "../style/Navber.css";
 import "../style/profileCard.css";
+import Account from "../pages/Account";
 // import Wishlist from "../components/Whishlist";
 
 const Navber = () => {
@@ -20,11 +22,14 @@ const Navber = () => {
   const [open, setOpen] = useState(false);
  
 
+   const navigate = useNavigate();
+
   const handleMenuToggle = () => setMenuOpen(!menuOpen);
 
   const handleProfileClick = (e) => {
     e.stopPropagation();
-    setShowProfile((prev) => !prev);
+     navigate("/account");
+    // setShowProfile((prev) => !prev);
   };
 
  const WishlistCards = (e) => {
@@ -76,42 +81,10 @@ const Navber = () => {
           <div className="Profile" onClick={handleProfileClick} style={{ position: 'relative', cursor: 'pointer' }}>
             <VscAccount />
             {showProfile && (
-              <div className="profile-card-ui" onClick={e => e.stopPropagation()}>
-                <div className="profile-card-avatar">
-                  <img src={profilePic} alt="Profile" />
-                </div>
-                <div className="profile-card-info">
-                  <h2>Shoaib Ahmed Quraishi</h2>
-                  <p className="profile-email">dxshoaib51@email.com</p>
-                  <p className="profile-phone">+91 8420680130</p>
-                  <p className="profile-address">UP Lucknow, Raebareli 229307</p>
-
-                </div>
-                <div className="profile-card-actions">
-                  <div className="profile-card-stats">
-                    <div>
-                      <span className="icon"><AiOutlineShoppingCart /></span>
-                      <span className="icon-text">Orders</span>
-                      <div className="stat">12</div>
-                    </div>
-                    <div>
-                      <span className="icon" onClick={WishlistCards}> <IoBagHandleOutline /></span>
-                      <span className="icon-text">Wishlist</span>
-                      <div className="stat">8</div>
-                    </div>
-                    {/* <div>
-                      <span className="icon">< IoLocationOutline/></span>
-                      <span className="icon-text">Address</span>
-                      <div className="stat"><button className="address-btn">View</button></div>
-                    </div> */}
-                  </div>
-                  <div className="profile-card-buttons">
-                    {/* <button className="edit-btn">Edit Profile</button> */}
-                    <button className="logout-btn">Log Out <span className="log-icon"> <IoIosLogOut /></span></button>
-                  </div>
-                </div>
-                <button className="close-profile" onClick={() => setShowProfile(false)}>&times;</button>
-              </div>
+              
+               
+         <button className="close-profile" onClick={() =>setShowProfile(false)}></button>
+             
             )}
           </div>
           <div className="navbar-menu" onClick={handleMenuToggle}>

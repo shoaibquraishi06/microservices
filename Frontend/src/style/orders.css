@@ -1,0 +1,45 @@
+.card {
+  background: #fff;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: -0.9rem;
+  
+}
+
+.view-all{
+ 
+  text-align: center;
+  margin-top: 2rem;
+  font-weight: 500;
+  font-size: 1rem;
+  font-family: "regular-text";
+
+
+}
+
+.card-header h2{
+  font-family: "bold-text";
+  font-size: 1.5rem;
+  color: rgb(19, 19, 19);
+}
+
+
+.empty-orders {
+  text-align: center;
+  padding: 3rem 0;
+  font-family: "semi-bold-text";
+}
+
+.empty-orders button {
+  background: #000;
+  color: #fff;
+  padding: 0.6rem 1.5rem;
+  font-family: "semi-bold-text";
+  border: none;
+  margin-top: 1rem;
+}

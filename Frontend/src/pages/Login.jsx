@@ -47,7 +47,7 @@ const navigate = useNavigate();
      console.log(res);
       setError("");
       alert("login successfully!");
-      navigate("/npm run dwev");
+      navigate("/");
     } catch (err) { 
       console.error(err);
      

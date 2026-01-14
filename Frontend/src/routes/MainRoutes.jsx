@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HeroSection from '../components/heroSection';
+import Account from '../pages/Account';
 import Products from '../pages/Products';
 import Contact from '../components/Contact';
 import Footer from "../components/Footer";
@@ -12,6 +13,7 @@ const MainRoutes = () => {
   return (
     <>
       <HeroSection />
+      {/* <Account/> */}
       <Products />
       <Contact />
       <Footer />

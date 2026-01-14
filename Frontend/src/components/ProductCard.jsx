@@ -9,7 +9,7 @@ export default function ProductCard({ product }) {
 
   return (
 
-    <div className="product-container">
+   
     <div className="product-card">
      
      <div className="product-img">
@@ -31,7 +31,7 @@ export default function ProductCard({ product }) {
      </button>
      </div>
     </div>
-    </div>
+   
 
   );
 }

@@ -1,4 +1,4 @@
-.profile-card-ui {
+/* .profile-card-ui {
   position: absolute;
   top: 60px;
   right: 0;
@@ -146,4 +146,66 @@
     
    
   }
+} */
+
+
+.profile-card {
+  width: 260px;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.profile-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  background: #000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.profile-name {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.profile-email {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.profile-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.profile-menu button {
+  background: none;
+  border: none;
+  padding: 0.6rem;
+  text-align: left;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.profile-menu button:hover {
+  background: #f3f3f3;
+}
+
+.profile-menu .active {
+  background: #f3f3f3;
+  font-weight: 600;
+}
+
+.profile-menu .logout {
+  color: red;
 }

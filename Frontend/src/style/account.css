@@ -1,0 +1,20 @@
+.page-title{
+  font-family: "bold-text";
+  text-transform: uppercase;
+   margin-bottom: 1rem;
+
+}
+.account-page {
+  display: flex;
+  gap: 2rem;
+  background: #eae8e8;
+  /* position: absolute; */
+  padding: 2rem;
+  z-index: 999;
+}
+
+.account-content {
+  flex: 1;
+}
+
+

@@ -22,6 +22,9 @@ import ProductDetails from './components/ProductDetail';
 import { CartProvider } from "./context/CartContext";
 import Cart from "./components/Cart";
 import CartDrawer from "./components/Cart";
+import Account from "./pages/Account";
+
+
 
 // -----routing
 
@@ -33,20 +36,25 @@ import './App.css';
 function App() {
   // const [open, setOpen] = useState(false);
   
+  
+
 
 
   return (
     <>
-{/*   
-      <button onClick={() => setOpen(true)}>
-        Open Cart
-      </button> */}
+
+  
+
+  
+  
+
+
 
     
-    <ProductGrid/>
+    {/* <ProductGrid/> */}
 
            <CartProvider>
-      <Products />
+      {/* <Products /> */}
        {/* <CartDrawer
         isOpen={open}
         onClose={() => setOpen(false)}
@@ -59,6 +67,7 @@ function App() {
         <Route path="/" element={<MainRoutes />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/account" element={<Account />} />
          <Route path="/" element={<Home />} />
         <Route path="/product" element={<Products />} />
         
