@@ -1,6 +1,16 @@
 import "../style/orders.css";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function RecentOrders() {
+
+    const navigate = useNavigate();
+
+    const backToShopping = async (e) => {
+    
+       navigate("/product")
+       
+     }
+
   return (
     <div className="card">
       <div className="card-header">
@@ -10,7 +20,7 @@ export default function RecentOrders() {
 
       <div className="empty-orders">
         <p>No orders yet</p>
-        <button>Start Shopping</button>
+        <button onClick={backToShopping}>Start Shopping</button>
       </div>
     </div>
   );

@@ -1,57 +1,36 @@
-import { useCart } from "../context/CartContext";
-import '../style/product.css'
+
+import { useDispatch } from "react-redux";
+import { addToCart } from "../feature/cartThunk";
+import "../style/product.css";
 
 export default function ProductCard({ product }) {
- const { addToCart } = useCart();
-
+  const dispatch = useDispatch();
 
   if (!product) return null;
 
+  const handleAddToCart = () => {
+     console.log("ADD TO CART:", product._id, product.title, product.price);
+  dispatch(addToCart({ productId: product._id }));
+  };
+
   return (
-
-   
     <div className="product-card">
-     
-     <div className="product-img">
+      <div className="product-img">
+        <img
+          src={product.images?.[0]?.url}
+          alt={product.title}
+        />
+      </div>
 
-      <img src={product.images?.[0]?.url} alt={product.title} />
- 
-         </div>
-  
-       <div className="product-details">
+      <div className="product-details">
+        <h3>{product.title}</h3>
+        <p>{product.description}</p>
+        <p className="price">₹{product.price.amount}</p>
 
-      <h3 >{product.title}</h3>
-      <p>{product.description}</p>
-      <p className="price">₹{product.price.amount}</p>
-  
-       
-
-      <button className="addToCart"  onClick={() => (addToCart(product))}>
-         Add to Cart
-     </button>
-     </div>
+        <button className="addToCart" onClick={handleAddToCart}>
+          Add to Cart
+        </button>
+      </div>
     </div>
-   
-
   );
 }
-
-
-// import { useCart } from "../context/CartContext";
-
-// export default function ProductCard({ product }) {
-//   const { addToCart } = useCart();
-
-//   return (
-//     <div className="product-card">
-//       <img src={product.images?.[0]?.url} alt={product.title} />
-//       <h3>{product.title}</h3>
-//       <p>₹{product.price.amount}</p>
-
-//       <button onClick={() => addToCart(product)}>
-//         Add to Cart
-//       </button>
-//     </div>
-//   );
-// }
-

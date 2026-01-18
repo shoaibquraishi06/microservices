@@ -1,9 +1,17 @@
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 2fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 4fr));
   gap: 1.5rem;
   
 }
+
+.product-container{
+
+  display: flex;
+  align-items: center;
+
+}
+
 
 .product-card {
   border: 1px solid #eee;
@@ -20,13 +28,14 @@
   margin-top: 1rem;
 }
 
-/* .product-grid{
+
+.product-grid{
   display: flex;
-  justify-content: center;
+  justify-content:flex-start;
   background-color: rgb(255, 255, 255);
   flex-wrap: wrap;
-  flex-shrink: 1;
-} */
+  /* flex-shrink: 1; */
+}
 
 
 .product-img img {

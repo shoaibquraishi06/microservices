@@ -18,8 +18,8 @@ export default function Account() {
 
       <div className="account-content">
         <h1 className="page-title">My Account</h1>
-       <RecentOrders />
-        <AccountDetails />
+         <AccountDetails /> 
+         <RecentOrders />
       </div>
     </div>
   );

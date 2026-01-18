@@ -1,71 +1,39 @@
-import { useCart } from "../context/CartContext";
-import "../style/cart.css";
+import { useSelector } from "react-redux";
 
-export default function CartDrawer({ isOpen, onClose }) {
-  const { cartItems, removeFromCart } = useCart();
+export default function CartDrawer() {
+  const { items, loading } = useSelector((state) => state.cart.items);
 
-  const total = cartItems.reduce(
-    (sum, item) => sum + item.price.amount * item.quantity,
-    0
-  );
+  if (loading) {
+    return <aside className="cart-drawer">Loading...</aside>;
+  }
+
+  if (!items || items.length === 0) {
+    return (
+      <aside className="cart-drawer">
+        <h3>Your Cart</h3>
+        <p>Cart is empty</p>
+      </aside>
+    );
+  }
 
   return (
-    <>
-      {/* Overlay */}
-      {isOpen && <div className="cart-overlay" onClick={onClose} />}
+    <aside className="cart-drawer">
+      <h3>Your Cart</h3>
 
-      {/* Drawer */}
-      <aside className={`cart-drawer ${isOpen ? "open" : ""}`}>
-        <header className="cart-header">
-          <h3>Your Cart</h3>
-          <button className="close"  onClick={onClose}>✕</button>
-        </header>
+      {items.map((item) => (
+        <div key={item.product._id} className="cart-item">
+          <img
+            // src={item.product.images?.[0]?.url}
+            alt={item.product.title}
+          />
 
-        {cartItems.length === 0 ? (
-          <p className="empty-cart">Cart is empty</p>
-        ) : (
-          <>
-            <div className="cart-items">
-              {cartItems.map((item) => (
-                <div key={item._id} className="cart-item">
-                  <div>
-                    <p className="title">{item.title}</p>
-                    <img src={item.images} alt={item.title}  />
-                    <p className="qty">
-                      Qty: {item.quantity}
-                    </p>
-                  </div>
-
-                  <div>
-                    <p className="price">
-                      ₹{item.price.amount * item.quantity}
-                    </p>
-                    <button
-                      className="remove"
-                      onClick={() =>
-                        removeFromCart(item._id)
-                      }
-                    >
-                      Remove
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="cart-footer">
-              <div className="total">
-                <span>Total</span>
-                <span>₹{total}</span>
-              </div>
-
-              <button className="checkout-btn">
-                Checkout
-              </button>
-            </div>
-          </>
-        )}
-      </aside>
-    </>
+          <div>
+            <h4>{cart.item.product.title}</h4>
+            <p>₹{item.product.price.amount}</p>
+            <p>Qty: {item.quantity}</p>
+          </div>
+        </div>
+      ))}
+    </aside>
   );
 }

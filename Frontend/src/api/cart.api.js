@@ -1,8 +1,12 @@
-export const addToCart = async (productId, quantity = 1) => {
-  return await API.post("http://localhost:3002/api/cart/items/", { productId, quantity });
-};
+import axios from "axios";
 
-export const getCart = async () => {
-  const { data } = await API.get("/cart");
-  return data;
-};
+const API = axios.create({
+  baseURL: "http://localhost:3002/api/cart/",
+  withCredentials: true // 🔥 important (cookie/JWT)
+});
+
+export const addToCartAPI = (data) =>
+  API.post("/items", data);
+
+export const getCartAPI = () =>
+  API.get("/");
