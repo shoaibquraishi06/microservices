@@ -7,7 +7,8 @@ async function getCart(req, res) {
   
       const user = req.user;
 
-    let cart = await CartModel.findOne({ user: user.id });
+    let cart = await CartModel.findOne({ user: user.id })
+        // .populate("items.productId"); // 🔥 IMPORTANT
 
     if (!cart) {
         cart = new CartModel({ user: user.id, items: [] });
@@ -28,36 +29,41 @@ async function getCart(req, res) {
 
 
 
+
 async function addItemToCart(req, res) {
+  const { productId, qty = 1 } = req.body;
+  const user = req.user;
 
-      const { productId, qty } = req.body;
+  let cart = await CartModel.findOne({ user: user.id });
 
-    const user = req.user
+  if (!cart) {
+    cart = new CartModel({ user: user.id, items: [] });
+  }
 
-    let cart = await CartModel.findOne({ user: user.id });
+  const index = cart.items.findIndex(
+    (item) => item.productId.toString() === productId
+  );
 
-    if (!cart) {
-        cart = new CartModel({ user: user.id, items: [] });
-    }
+  if (index > -1) {
+    cart.items[index].quantity += qty;
+  } else {
+    cart.items.push({ productId, quantity: qty });
+  }
 
-    const existingItemIndex = cart.items.findIndex(item => item.productId.toString() === productId);
+  await cart.save();
 
-    if (existingItemIndex >= 0) {
-        cart.items[ existingItemIndex ].quantity += qty;
-    } else {
-        cart.items.push({ productId, quantity: qty });
-    }
+  // 🔥 populate before sending response
+//   await cart.populate("items.productId");
 
-    await cart.save();
-
-    res.status(200).json({
-        message: 'Item added to cart',
-        cart,
-    });
-
-
-
+  res.status(200).json({
+    message: "Item added to cart",
+    cart
+  });
 }
+
+
+
+
 
 
 

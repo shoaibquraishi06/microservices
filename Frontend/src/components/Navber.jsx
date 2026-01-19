@@ -72,6 +72,7 @@ const Navber = () => {
   
           <button  className="whistlist-btn"  onClick={() => setOpen(true)}>
       <IoBagHandleOutline />
+      
       </button>
 
         

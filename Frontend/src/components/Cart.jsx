@@ -23,12 +23,12 @@ export default function CartDrawer() {
       {items.map((item) => (
         <div key={item.product._id} className="cart-item">
           <img
-            // src={item.product.images?.[0]?.url}
+            src={item.images?.[0]?.url}
             alt={item.product.title}
           />
 
           <div>
-            <h4>{cart.item.product.title}</h4>
+            <h4>{item.product.title}</h4>
             <p>₹{item.product.price.amount}</p>
             <p>Qty: {item.quantity}</p>
           </div>
