@@ -8,7 +8,7 @@ async function getCart(req, res) {
       const user = req.user;
 
     let cart = await CartModel.findOne({ user: user.id })
-        // .populate("items.productId"); // 🔥 IMPORTANT
+        .populate("items.productId"); // 🔥 IMPORTANT
 
     if (!cart) {
         cart = new CartModel({ user: user.id, items: [] });
