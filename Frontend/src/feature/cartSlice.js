@@ -15,14 +15,13 @@ const cartSlice = createSlice({
         state.loading = true;
       })
 
-      .addCase(addToCart.fulfilled, (state, action) => {
-  console.log("REDUX CART:", action.payload);
-
-  // 🔥 EXACT FIX (payload ke structure ke according)
-  state.items = action.payload.cart.items || [];
-
+    .addCase(addToCart.fulfilled, (state, action) => {
+     console.log("cart-data:", action.payload);
+     
+      state.items = action.payload.cart.items; // ✅ populated
   state.loading = false;
 })
+
 
 
       .addCase(addToCart.rejected, (state, action) => {

@@ -9,11 +9,12 @@ export default function ProductCard({ product }) {
   if (!product) return null;
 
   const handleAddToCart = () => {
-     console.log("ADD TO CART:", product._id, product.title, product.price);
+     console.log("ADD TO CART:", product._id, product.title, product.price, product.images);
   dispatch(addToCart({ productId: product._id }));
   };
 
   return (
+    // <ProductCard product={product} />;
     <div className="product-card">
       <div className="product-img">
         <img

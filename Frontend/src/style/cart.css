@@ -6,11 +6,21 @@
   height: 100vh;
   background: #fff;
   box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
-  z-index: 1000;
+  padding: 0.5rem 1rem;
+  z-index: 200;
   display: flex;
   flex-direction: column;
+  
 }
+
+/* .whistlist-btn{
+  background: red;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 100;
+   left: 0%;
+} */
 
 .cart-header {
   display: flex;
@@ -64,4 +74,26 @@
   background: transparent;
   font-size: 18px;
   cursor: pointer;
+}
+
+.check-out-btn {
+  width:80%;
+  padding: 0.5rem 2rem;
+  background: #000;
+  font-family: 'semi-bold-text';
+  color: #ffffff;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 15px;
+  margin-top: 1rem;
+  left: 10%;
+  position: absolute;
+  bottom: 5%;
+
+}
+
+.check-out-btn:active {
+  background: #333333;
+  scale: 0.95;
 }

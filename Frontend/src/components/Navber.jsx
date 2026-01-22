@@ -34,7 +34,7 @@ const Navber = () => {
 
  const WishlistCards = (e) => {
 
-  e
+    e
 
  }
 
@@ -70,8 +70,9 @@ const Navber = () => {
           onClose={() => setOpen(false)}
         />
   
-          <button  className="whistlist-btn"  onClick={() => setOpen(true)}>
+          <button  className="whistlist-btn"  onClick={() => setOpen(false)}>
       <IoBagHandleOutline />
+      {/* <CartDrawer/> */}
       
       </button>
 

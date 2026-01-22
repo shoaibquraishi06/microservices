@@ -47,13 +47,19 @@ async function addItemToCart(req, res) {
   if (index > -1) {
     cart.items[index].quantity += qty;
   } else {
-    cart.items.push({ productId, quantity: qty });
+    cart.items.push({productId:{
+      _id: productId,
+      title: "Nike shoes",
+      price: { amount: 1000 },
+      images: ["image1.jpg", "image2.jpg"]
+    }, quantity: qty });
+   
   }
 
   await cart.save();
 
   // 🔥 populate before sending response
-//   await cart.populate("items.productId");
+  await cart.populate("items.productId");
 
   res.status(200).json({
     message: "Item added to cart",
