@@ -1,7 +1,7 @@
 require('dotenv').config();
-const app = require('./src/app');
+require("../Product/src/models/product.model"); 
 const connectDB = require('./src/db/db');
-
+const app = require('./src/app');
 
 
 connectDB();

@@ -13,10 +13,6 @@ const addresseSchema = new mongoose.Schema({
 
 });
 
-
-
-
-
 const orderSchema = new mongoose.Schema({
    
     user: {

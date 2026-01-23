@@ -23,6 +23,7 @@ import { CartProvider } from "./context/CartContext";
 import Cart from "./components/Cart";
 import CartDrawer from "./components/Cart";
 import Account from "./pages/Account";
+import Checkout from './components/Checkout';
 
 
 
@@ -70,6 +71,7 @@ function App() {
         <Route path="/account" element={<Account />} />
          <Route path="/" element={<Home />} />
         <Route path="/product" element={<Products />} />
+        <Route path="/checkout" element={<Checkout />} />
         
       <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/contact" element={<Contact />} />

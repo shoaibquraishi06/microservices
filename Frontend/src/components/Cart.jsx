@@ -1,7 +1,10 @@
 import { useSelector } from "react-redux";
+import  {useNavigate } from "react-router-dom";
 import product from "./ProfileCard"
 
 export default function CartDrawer() {
+  
+   const navigate = useNavigate();
    const { items, loading } = useSelector(state => state.cart);
 
   if (loading) {
@@ -30,18 +33,23 @@ export default function CartDrawer() {
           <div key={product._id} className="cart-item">
             <img
               src={product.images?.[0]?.url}
-              alt={product.title}
+              alt={item.productId.title}
               width="80"
             />
 
             <div>
-              <h4>{product.title}</h4>
-              {/* <p>₹{product.price.amount}</p> */}
+              <h4>{item.productId}</h4>
+              <h4>{item._id}</h4>
+              <h4>{item.productId.title}</h4>
+              <p>₹{product.price?.amoun}</p>
               <p>Qty: {item.quantity}</p>
             </div>
           </div>
         );
       })}
+
+     <button className="check-out-btn" onClick={() => navigate("/")}>Check Out</button>
+
     </aside>
   );
 
