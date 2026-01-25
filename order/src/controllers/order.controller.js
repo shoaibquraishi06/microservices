@@ -10,22 +10,21 @@ async function createOrder(req, res) {
     
     const token = req.cookies?.token || req.headers?.authorization?.split(' ')[ 1 ];
     // console.log(token);
-    
-
-    try{
-
-           //fetch user from cart service
-         const cartResponse = await axios.get(`http://localhost:3002/api/cart`, {
+       try{ 
+          //fetch user from cart service
+   const cartResponse = await axios.get(`http://localhost:3002/api/cart`, {
        
             headers: {
         Authorization: `Bearer ${token}`,
       },
        })
     
-    
-       const products = await Promise.all(cartResponse.data.cart.items.map(async (item) => {
+    //    console.log("cart-dat:", cartResponse.data.cart.items);
+       
+        
+       const products = await Promise.all(cartResponse.data.cart.items.map(async (items) => {
 
-            return (await axios.get(`http://localhost:3001/api/products/${item.productId}`, {
+            return (await axios.get(`http://localhost:3001/api/products/${items.productId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -34,7 +33,7 @@ async function createOrder(req, res) {
         }))
 
    
-        //  console.log("Products fetched for order creation:", products);
+         console.log("Products fetched for order creation:", products);
       
         let priceAmount = 0;
 
@@ -62,8 +61,8 @@ async function createOrder(req, res) {
             }
         })
 
-       console.log("Total price amount calculated:", priceAmount);
-       console.log(orderItems);
+    //    console.log("Total price amount calculated:", priceAmount);
+    //    console.log(orderItems);
        
 
         const order = await orderModel.create({

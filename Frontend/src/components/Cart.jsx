@@ -38,8 +38,8 @@ export default function CartDrawer() {
             />
 
             <div>
-              <h4>{item.productId}</h4>
-              <h4>{item._id}</h4>
+              <h4 className="product-Id" > <span className="product-span"> productId :-</span> {item.productId}</h4>
+              <h4 className="product-id">  <span className="product-span">orderId :-</span> {item._id}</h4>
               <h4>{item.productId.title}</h4>
               <p>₹{product.price?.amoun}</p>
               <p>Qty: {item.quantity}</p>
@@ -48,7 +48,7 @@ export default function CartDrawer() {
         );
       })}
 
-     <button className="check-out-btn" onClick={() => navigate("/")}>Check Out</button>
+     <button className="check-out-btn" onClick={() => navigate("/checkout")}>Check Out</button>
 
     </aside>
   );

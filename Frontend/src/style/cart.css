@@ -97,3 +97,22 @@
   background: #333333;
   scale: 0.95;
 }
+
+
+.product-Id{
+  font-size: 12px;
+  color: rgb(34, 33, 33);
+  font-family: "semi-bold-text";
+}
+
+
+.product-span{
+  color: #000;
+  font-size: 14px;
+    font-family: "bold-text";
+}
+.product-id{
+  font-size: 12px;
+  color: rgb(34, 33, 33);
+  font-family: "semi-bold-text";
+}

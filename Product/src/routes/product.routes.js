@@ -25,6 +25,6 @@ router.delete('/:id', createAuthMiddleware(['seller']), productController.delete
 
 router.get('/seller', createAuthMiddleware(['seller']), productController.getProductsBySeller);
 
-router.get('/:id', productController.getProductById);
+router.get('/:id', createAuthMiddleware(['seller']), productController.getProductById);
 
 module.exports = router;
