@@ -9,7 +9,6 @@ const razorpay = new Razorpay({
   key_secret: process.env.TEST_SECRET_KEY,
 });
 
-
 async function createPayment(req, res) {
    
     //  const token = req.cookies?.token || req.headers?.authorization?.split(' ')[ 1 ];
