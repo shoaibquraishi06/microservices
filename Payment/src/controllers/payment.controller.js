@@ -11,58 +11,63 @@ const razorpay = new Razorpay({
 
 async function createPayment(req, res) {
    
-    //  const token = req.cookies?.token || req.headers?.authorization?.split(' ')[ 1 ];
+     try {
+    const token = req.token; // ✅ ALWAYS AVAILABLE
+    const orderId = req.params.orderId;
 
+    const orderResponse = await axios.get(
+      `http://localhost:3003/api/orders/${orderId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
-      try {
+    const price = orderResponse.data.order.totalPrice;
+    console.log("price:", price);
 
-        const orderId = req.params.orderId;
-        console.log(orderId);
+    return res.status(200).json({ success: true, price });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
         
-
-        const orderResponse = await axios.get("http://localhost:3003/api/orders/" + orderId, {
-            // headers: {
-            //     Authorization: `Bearer ${token}`
-            // }
-        });
-
-          
-        const price = orderResponse.data.price.totalPrice;
-
-        const order = await razorpay.orders.create(price);
-
-        const payment = await paymentModel.create({
-  
-             order:orderId,
-             orderId: order.id,
-             price: {
-                amount:order.amount,
-                currency: order.currency
-             }
-        })
-
-
-            await publishToQueue("PAYMENT_SELLER_DASHBOARD.PAYMENT_CREATED", payment)
-        await publishToQueue("PAYMENT_NOTIFICATION.PAYMENT_INITIATED", {
-            email: req.user.email,
-            orderId: orderId,
-            amount: price.amount / 100,
-            currency: price.currency,
-            username: req.user.username,
-        })
-
-
-             return res.status(201).json({message: 'Payment Created Successfully', payment});
-
-    }catch(err){
-        // console.log(err);
-        
-        return res.status(500).json({message: 'Internal Server Error'});
-    }
-
-
-
 }
+        // const order = await razorpay.orders.create(price);
+
+        // const payment = await paymentModel.create({
+  
+        //      order:orderId,
+        //      orderId: order.id,
+        //      price: {
+        //         amount:order.amount,
+        //         currency: order.currency
+        //      }
+        // })
+
+
+        //     await publishToQueue("PAYMENT_SELLER_DASHBOARD.PAYMENT_CREATED", payment)
+        // await publishToQueue("PAYMENT_NOTIFICATION.PAYMENT_INITIATED", {
+        //     email: req.user.email,
+        //     orderId: orderId,
+        //     amount: price.amount / 100,
+        //     currency: price.currency,
+        //     username: req.user.username,
+        // })
+
+
+        //      return res.status(201).json({message: 'Payment Created Successfully', payment});
+
+//     }catch(err){
+//         console.log(err);
+        
+//         return res.status(500).json({message: 'Internal Server Error'});
+//     }
+
+
+
+// }
 
 async function verifyPayment(req, res) {
 

@@ -5,99 +5,94 @@ const axios = require('axios')
 
 async function createOrder(req, res) {
 
+    try {
     const user = req.user;
-    // console.log(user);
-    
-    const token = req.cookies?.token || req.headers?.authorization?.split(' ')[ 1 ];
-    // console.log(token);
-       try{ 
-          //fetch user from cart service
-   const cartResponse = await axios.get(`http://localhost:3002/api/cart`, {
-       
-            headers: {
-        Authorization: `Bearer ${token}`,
-      },
-       })
-    
-    //    console.log("cart-dat:", cartResponse.data.cart.items);
-       
-        
-       const products = await Promise.all(cartResponse.data.cart.items.map(async (items) => {
 
-            return (await axios.get(`http://localhost:3001/api/products/${items.productId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })).data.data;
+    const token =
+      req.cookies?.token ||
+      req.headers.authorization?.split(" ")[1];
 
-        }))
-
-   
-         console.log("Products fetched for order creation:", products);
-      
-        let priceAmount = 0;
-
-        const orderItems = cartResponse.data.cart.items.map((item, index) => {
-
-
-            const product = products.find(p => p._id === item.productId)
-
-            // if not in stock, does not allow order creation
-
-            // if (product.stock < item.quantity) {
-            //     throw new Error(`Product ${product.title} is out of stock or insufficient stock`)
-            // }
-
-            const itemTotal = product.price.amount * item.quantity;
-            priceAmount += itemTotal;
-
-            return {
-                product: item.productId,
-                quantity: item.quantity,
-                price: {
-                    amount: itemTotal,
-                    currency: product.price.currency
-                }
-            }
-        })
-
-    //    console.log("Total price amount calculated:", priceAmount);
-    //    console.log(orderItems);
-       
-
-        const order = await orderModel.create({
-            user: user.id,
-            items: orderItems,
-            status: "PENDING",
-            totalPrice: {
-                amount: priceAmount,
-                currency: "INR" // assuming all products are in USD for simplicity
-            },
-            shippingAddress: {
-                street: req.body.shippingAddress.street,
-                city: req.body.shippingAddress.city,
-                state: req.body.shippingAddress.state,
-                zip: req.body.shippingAddress.pincode,
-                country: req.body.shippingAddress.country,
-            }
-        })
-       
-           return res.status(200).json({
-            message: 'order created successfully',
-            data: order,
-        });
-    }catch(err){
-        console.log("Error fetching cart:", err);
-        
-     res.status(500).json({ message: "Interbal server error", error: err.message})
+    if (!token) {
+      return res.status(401).json({ message: "Token missing" });
     }
 
+    // 1️⃣ Fetch cart
+    const cartResponse = await axios.get(
+      "http://localhost:3002/api/cart",
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
-   
-    
+    const cartItems = cartResponse.data.cart.items;
+
+    if (!cartItems.length) {
+      return res.status(400).json({ message: "Cart is empty" });
+    }
+
+    // 2️⃣ Fetch products
+    const products = await Promise.all(
+      cartItems.map(async (item) => {
+        const res = await axios.get(
+          `http://localhost:3001/api/products/${item.productId}`
+        );
+        return res.data.data; // product
+      })
+    );
+
+    let priceAmount = 0;
+
+    // 3️⃣ Build order items
+    const orderItems = cartItems.map((item) => {
+      const product = products.find(
+        (p) => p._id.toString() === item.productId.toString()
+      );
+
+      if (!product) {
+        throw new Error("Product not found");
+      }
+
+      const itemTotal = product.price.amount * item.quantity;
+      priceAmount += itemTotal;
+
+      return {
+        product: item.productId,
+        quantity: item.quantity,
+        price: {
+          amount: itemTotal,
+          currency: product.price.currency,
+        },
+      };
+    });
+
+    // 4️⃣ Create order
+    const order = await orderModel.create({
+      user: user.id,
+      items: orderItems,
+      status: "PENDING",
+      totalPrice: {
+        amount: priceAmount,
+        currency: "INR",
+      },
+      shippingAddress: req.body.shippingAddress,
+    });
+
+    return res.status(200).json({
+      message: "Order created successfully",
+      data: order,
+    });
+
+  } catch (err) {
+    console.error("Order error:", err.message);
+    return res.status(500).json({
+      message: "Internal server error",
+      error: err.message,
+    });
+  }
 
 
-    
 }
 
 
@@ -139,9 +134,9 @@ async function getOrderById(req, res) {
             return res.status(404).json({ message: "Order not found" });
         }
 
-        if (order.user.toString() !== user.id) {
-            return res.status(403).json({ message: "Forbidden: You do not have access to this order" });
-        }
+        // if (order.user.toString() !== user.id) {
+        //     return res.status(403).json({ message: "Forbidden: You do not have access to this order" });
+        // }
 
         res.status(200).json({ order })
     } catch (err) {

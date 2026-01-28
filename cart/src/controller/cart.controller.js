@@ -6,8 +6,10 @@ const CartModel = require('../models/cart.model');
 async function getCart(req, res) {
   
       const user = req.user;
+      console.log(user);
+      
 
-    let cart = await CartModel.findOne({ user: user.id }).populate("items.productId"); // 🔥 IMPORTANT
+    let cart = await CartModel.findOne({ user: user.id }) // 🔥 IMPORTANT
    console.log("-cart:", cart);
 
     if (!cart) {

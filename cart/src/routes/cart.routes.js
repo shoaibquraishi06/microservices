@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 router.get('/',
-    authMiddleware([ 'user' ]),
+    // authMiddleware([ 'user' ]),
     CartController.getCart
 );
 

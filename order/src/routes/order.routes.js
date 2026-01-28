@@ -16,7 +16,7 @@ router.post("/:id/cancel", createAuthMiddleware([ "user" ]), orderController.can
 
 router.patch("/:id/address", createAuthMiddleware([ "user" ]), validation.updateAddressValidation, orderController.updateOrderAddress)
 
-router.get("/:id", createAuthMiddleware([ "user", "admin" ]), orderController.getOrderById)
+router.get("/:id",createAuthMiddleware([ "user" ]), orderController.getOrderById)
 
 
 
