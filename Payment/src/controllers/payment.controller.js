@@ -1,39 +1,44 @@
 const paymentModel = require('../models/payment.model');
 const axios = require('axios');
-require('dotenv').config();
+
 const Razorpay = require('razorpay');
 const { publishToQueue } = require("../broker/broker.js");
 
+require('dotenv').config();
 const razorpay = new Razorpay({
   key_id: process.env.TEST_API_KEY,
   key_secret: process.env.TEST_SECRET_KEY,
 });
 
+
+
 async function createPayment(req, res) {
    
-     try {
-    const token = req.token; // ✅ ALWAYS AVAILABLE
-    const orderId = req.params.orderId;
+      const token = req.cookies?.token || req.headers?.authorization?.split(' ')[ 1 ];
+     console.log("token3:", token);
+    
+    try {
 
-    const orderResponse = await axios.get(
-      `http://localhost:3003/api/orders/${orderId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        const orderId = req.params.orderId;
+
+        const orderResponse = await axios.get("http://localhost:3003/api/orders/" + orderId, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+  
+                  const price = orderResponse.data.order.totalPrice;
+
+         console.log(price);
+
+
+
+      }catch(err){
+        console.log(err);
       }
-    );
+    }
 
-    const price = orderResponse.data.order.totalPrice;
-    console.log("price:", price);
 
-    return res.status(200).json({ success: true, price });
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ message: "Internal Server Error" });
-  }
-        
-}
         // const order = await razorpay.orders.create(price);
 
         // const payment = await paymentModel.create({

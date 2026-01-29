@@ -5,12 +5,9 @@ const CartModel = require('../models/cart.model');
 
 async function getCart(req, res) {
   
-      const user = req.user;
-      console.log(user);
-      
+       const user = req.user;
 
-    let cart = await CartModel.findOne({ user: user.id }) // 🔥 IMPORTANT
-   console.log("-cart:", cart);
+    let cart = await CartModel.findOne({ user: user.id });
 
     if (!cart) {
         cart = new CartModel({ user: user.id, items: [] });
