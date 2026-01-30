@@ -1,0 +1,177 @@
+.checkout-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+  padding: 40px;
+  background: #fff;
+}
+
+/* Steps */
+.checkout-steps {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.step {
+  font-weight: 500;
+  color: #aaa;
+  font-family: "regular-text";
+}
+
+.step.active {
+  color: #000;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background: #ddd;
+  margin: 0 15px;
+}
+
+/* Left */
+.section-title {
+  font-size: 22px;
+  margin-bottom: 20px;
+    font-family: "regular-text";
+}
+
+.checkout-form label {
+  display: block;
+  margin: 15px 0 6px;
+  font-weight: 500;
+}
+
+.checkout-form input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
+.row {
+  display: flex;
+  gap: 50px;
+}
+
+.pay-btn {
+    font-family: "regular-text";
+  width: 100%;
+  margin-top: 30px;
+  padding: 15px;
+  background: #000;
+  color: #edeaea;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+}
+.pay-btn:active{
+    scale: 0.95;
+    background: #1a1919;
+    transition: all 0.09s ease-in-out;
+
+}
+
+/* Right */
+.checkout-right {
+  background: #f7f7f7;
+  padding: 25px;
+}
+.checkout-right h3{
+    font-family: "regular-text";
+    font-size: 15px;
+}
+
+.summary-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.summary-item img {
+  width: 70px;
+}
+
+.product-name {
+  font-weight: 600;
+}
+
+.product-size {
+  font-size: 13px;
+  color: #777;
+}
+
+.summary-row,
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.free {
+  color: green;
+  font-weight: 600;
+}
+
+.summary-total {
+  border-top: 1px solid #ddd;
+  padding-top: 15px;
+  font-size: 18px;
+}
+
+
+/* ===============================
+   📱 MOBILE RESPONSIVE (≤768px)
+================================ */
+@media (max-width: 768px) {
+  .checkout-container {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  /* Steps */
+  .checkout-steps {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  /* Form */
+  .checkout-form input {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .pay-btn {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+
+  /* Order Summary */
+  .checkout-right {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 4px;
+  }
+
+  .summary-item {
+    align-items: flex-start;
+  }
+
+  .summary-item img {
+    width: 60px;
+  }
+
+  .product-name {
+    font-size: 14px;
+  }
+
+  .summary-total {
+    font-size: 16px;
+  }
+}

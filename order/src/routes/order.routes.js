@@ -6,7 +6,7 @@ const validation = require('../middleware/validator.middleware')
 const router = express.Router();
 
 // Example route handler (replace with actual controller)
-router.post("/", createAuthMiddleware([ "user" ]), orderController.createOrder );
+router.post("/", createAuthMiddleware([ "user" ]), validation.createOrderValidation, orderController.createOrder );
 
 
 router.get("/me", createAuthMiddleware([ "user" ]), orderController.getOrder );

@@ -7,7 +7,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { IoIosLogOut } from "react-icons/io";
 
 import logo from '../assets/logo.jpg';
-import CartDrawer from "../components/Cart";
+// import CartDrawer from "../components/Cart";
 import { Link, useNavigate } from "react-router-dom";
 import profilePic from '../assets/heroSection.avif'; // Use your own profile image if available
 
@@ -65,10 +65,10 @@ const Navber = () => {
         <div className="nav-end">
           <div className="whistlist">
 
-          <CartDrawer
+          {/* <CartDrawer
           isOpen={open}
           onClose={() => setOpen(false)}
-        />
+        /> */}
   
           <button  className="whistlist-btn"  onClick={() => setOpen(false)}>
       <IoBagHandleOutline />

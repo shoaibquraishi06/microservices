@@ -2,8 +2,8 @@ const mongoose = require('mongoose')
 
 
 const addresseSchema = new mongoose.Schema({
-
-  
+            fullname:{type:String},
+            phone:{type:String},
             street:{type:String},
             city:{type:String},
             state:{type:String},
