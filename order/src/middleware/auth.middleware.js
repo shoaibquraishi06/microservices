@@ -7,7 +7,8 @@ function createAuthMiddleware(roles = [ "user" ]) {
     return function authMiddleware(req, res, next) {
       
         const token = req.cookies?.token || req.headers?.authorization?.split(' ')[ 1 ];
-
+        console.log("order-token:",token);
+   
  
         if (!token) {
             return res.status(401).json({

@@ -4,14 +4,14 @@ const axios = require('axios')
 
 
 async function createOrder(req, res) {
-   
+       console.log("🔥 CREATE ORDER API HIT"); 
   
     const user = req.user;
     const token = req.cookies?.token || req.headers?.authorization?.split(' ')[ 1 ];
- 
+    console.log("ordee-con:",token);
     
-
-    try {
+ 
+       try {
 
         // fetch user cart from cart service
         const cartResponse = await axios.get(`http://localhost:3002/api/cart`, {
@@ -26,11 +26,62 @@ async function createOrder(req, res) {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
-            })).data
+            })).data.data
 
         }))
 
-         console.log("order:", cartResponse.data);
+
+        let priceAmount = 0;
+
+        const orderItems = cartResponse.data.cart.items.map((item, index) => {
+
+
+            const product = products.find(p => p._id === item.productId)
+
+            // if not in stock, does not allow order creation
+
+            // if (product.stock < item.quantity) {
+            //     throw new Error(`Product ${product.title} is out of stock or insufficient stock`)
+            // }
+
+            const itemTotal = product.price.amount * item.quantity;
+            priceAmount += itemTotal;
+
+            return {
+                product: item.productId,
+                quantity: item.quantity,
+                price: {
+                    amount: itemTotal,
+                    currency: product.price.currency
+                }
+            }
+        })
+
+        const order = await orderModel.create({
+            user: user.id,
+            items: orderItems,
+            status: "PENDING",
+            totalPrice: {
+                amount: priceAmount,
+                currency: "INR" // assuming all products are in USD for simplicity
+            },
+            shippingAddress: {
+                fullname: req.body.shippingAddress.fullname,
+                phone: req.body.shippingAddress.phone,
+                street: req.body.shippingAddress.street,
+                city: req.body.shippingAddress.city,
+                state: req.body.shippingAddress.state,
+                zip: req.body.shippingAddress.pincode,
+                country: req.body.shippingAddress.country,
+            }
+        })
+
+
+        // await publishToQueue("ORDER_SELLER_DASHBOARD.ORDER_CREATED", order)
+
+        res.status(201).json({ order })
+        
+        //  console.log("order:", cartResponse.data.cart.items);
 
            } catch (err) {
             console.log("error:", err);
@@ -40,54 +91,6 @@ async function createOrder(req, res) {
 
 
 }
-
-        // let priceAmount = 0;
-
-        // const orderItems = cartResponse.data.cart.items.map((item, index) => {
-
-
-        //     const product = products.find(p => p._id === item.productId)
-
-        //     // if not in stock, does not allow order creation
-
-        //     if (product.stock < item.quantity) {
-        //         throw new Error(`Product ${product.title} is out of stock or insufficient stock`)
-        //     }
-
-        //     const itemTotal = product.price.amount * item.quantity;
-        //     priceAmount += itemTotal;
-
-        //     return {
-        //         product: item.productId,
-        //         quantity: item.quantity,
-        //         price: {
-        //             amount: itemTotal,
-        //             currency: product.price.currency
-        //         }
-        //     }
-        // })
-
-        // const order = await orderModel.create({
-        //     user: user.id,
-        //     items: orderItems,
-        //     status: "PENDING",
-        //     totalPrice: {
-        //         amount: priceAmount,
-        //         currency: "INR" // assuming all products are in USD for simplicity
-        //     },
-        //     shippingAddress: {
-        //         street: req.body.shippingAddress.street,
-        //         city: req.body.shippingAddress.city,
-        //         state: req.body.shippingAddress.state,
-        //         zip: req.body.shippingAddress.pincode,
-        //         country: req.body.shippingAddress.country,
-        //     }
-        // })
-
-
-        // await publishToQueue("ORDER_SELLER_DASHBOARD.ORDER_CREATED", order)
-
-        // res.status(201).json({ order })
 
   
 

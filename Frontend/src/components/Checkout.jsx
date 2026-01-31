@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { createOrder } from "..//feature/order/order.Thunk"
+import { createOrder } from "../feature/order/order.Thunk"
 import "../style/checkout.css";
 
 export default function Checkout() {
@@ -26,8 +26,7 @@ export default function Checkout() {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    dispatch(
-      createOrder({
+    dispatch(createOrder({
         shippingAddress: form, // 🔥 BACKEND EXPECTS THIS
       })
     );
@@ -49,6 +48,7 @@ export default function Checkout() {
         <h2 className="section-title">SHIPPING ADDRESS</h2>
  
         <form className="checkout-form" onSubmit={submitHandler}>
+         
           <label>Full Name</label>
           <input name="fullname" placeholder="Full Name" onChange={handleChange} />
         
@@ -74,7 +74,7 @@ export default function Checkout() {
           </div>
 
           <label>Pincode</label>
-          <input name="zip" placeholder="Pincode" onChange={handleChange} />
+          <input name="zip" placeholder="zip" onChange={handleChange} />
           <button type="submit" disabled={loading} className="pay-btn">
           {loading ? "Placing Order..." : "Proceed to Payment"}
         </button>
@@ -83,7 +83,7 @@ export default function Checkout() {
       </div>
 
       {/* Right Section */}
-      <div className="checkout-right">
+      {/* <div className="checkout-right">
         <h3>ORDER SUMMARY</h3>
 
         <div className="summary-item">
@@ -112,7 +112,7 @@ export default function Checkout() {
           <span>Total</span>
           <strong>₹47,980</strong>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
