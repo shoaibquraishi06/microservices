@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createOrder } from "./orderThunk";
+import { createOrder } from ".//order.Thunk";
 
 const orderSlice = createSlice({
   name: "order",

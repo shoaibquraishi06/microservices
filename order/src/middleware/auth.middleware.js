@@ -2,44 +2,33 @@ const jwt = require('jsonwebtoken');
 
 
 
-function createAuthMiddleware(roles = [ "user" ]) {
+function createAuthMiddleware(roles = ["user"]) {
+  return function (req, res, next) {
+    const token =
+      req.cookies?.token ||
+      req.headers.authorization?.split(" ")[1];
 
-    return function authMiddleware(req, res, next) {
-      
-        const token = req.cookies?.token || req.headers?.authorization?.split(' ')[ 1 ];
-        console.log("order-token:",token);
-   
- 
-        if (!token) {
-            return res.status(401).json({
-                message: 'Unauthorized: No token provided',
-            });
-        }
+    // console.log("auth token:", token);
 
-        try {
-            const decoded = jwt.verify(token, process.env.JWT_SECRET)
-
-            if (!roles.includes(decoded.role)) {
-                return res.status(403).json({
-                    message: 'Forbidden: Insufficient permissions',
-                });
-            }
-
-            req.user = decoded;
-            console.log(req.token);
-            
-            
-            next();
-        }
-        catch (err) {
-            return res.status(401).json({
-                message: 'Unauthorized: Invalid token',
-            });
-        }
-
+    if (!token) {
+      return res.status(401).json({ message: "No token" });
     }
 
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+      if (!roles.includes(decoded.role)) {
+        return res.status(403).json({ message: "Forbidden" });
+      }
+
+      req.user = decoded;
+      next();
+    } catch (err) {
+      return res.status(401).json({ message: "Invalid token" });
+    }
+  };
 }
+
 
 
 module.exports = createAuthMiddleware;

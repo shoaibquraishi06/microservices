@@ -39,8 +39,12 @@ export default function Login() {
   try {
   const res = await axios.post(
     "http://localhost:3000/api/auth/login",
+ 
     { email, password },
-    { withCredentials: true }
+    { withCredentials: true },
+      //  localStorage.setItem("token", res.data.token),
+      //  console.log("token:", res.data.token)
+       
   );
 
   // 👇 BACKEND SE USER NIKALO

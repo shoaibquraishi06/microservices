@@ -9,7 +9,9 @@ import { IoIosLogOut } from "react-icons/io";
 import logo from '../assets/logo.jpg';
 import CartDrawer from "../components/Cart";
 import { Link, useNavigate } from "react-router-dom";
-import profilePic from '../assets/heroSection.avif'; // Use your own profile image if available
+import profilePic from '../assets/heroSection.avif'; 
+
+// Use your own profile image if available
 
 import "../style/Navber.css";
 import "../style/profileCard.css";
@@ -27,16 +29,17 @@ const Navber = () => {
   const handleMenuToggle = () => setMenuOpen(!menuOpen);
 
   const handleProfileClick = (e) => {
-    e.stopPropagation();
+    // e.stopPropagation();
      navigate("/account");
     // setShowProfile((prev) => !prev);
   };
+  const handlecartClick = (e) => {
+    // e.stopPropagation();
+     navigate("/cart");
+    // setShowProfile((prev) => !prev);
+  };
 
- const WishlistCards = (e) => {
 
-    e
-
- }
 
 
   React.useEffect(() => {
@@ -65,12 +68,15 @@ const Navber = () => {
         <div className="nav-end">
           <div className="whistlist">
 
-          <CartDrawer
+          {/* <CartDrawer
           isOpen={open}
           onClose={() => setOpen(false)}
         />
-  
-          <button  className="whistlist-btn"  onClick={() => setOpen(false)}>
+   */}
+          <button  className="whistlist-btn"  onClick={handlecartClick}>
+       
+         
+         
       <IoBagHandleOutline />
       
       

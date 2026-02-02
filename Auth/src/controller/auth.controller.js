@@ -45,12 +45,6 @@ async function registerUser(req, res) {
         ]);
 
 
-
-
-
-
-
-
   await newUser.save();
 
     const token = jwt.sign({
@@ -105,9 +99,12 @@ if (!isMatch) {
       { expiresIn: '1d' }
     );
 
+    console.log("auth-token",token);
+    
+
     res.cookie('token', token, {
       httpOnly: true,
-      secure: true,
+      secure: false,
       maxAge: 24 * 60 * 60 * 1000,
     });
 

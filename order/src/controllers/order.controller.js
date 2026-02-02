@@ -8,7 +8,11 @@ async function createOrder(req, res) {
   
     const user = req.user;
     const token = req.cookies?.token || req.headers?.authorization?.split(' ')[ 1 ];
-    console.log("ordee-con:",token);
+     
+    // console.log("useer:",user);
+    
+    // console.log("ordee-con:",token);
+
     
  
        try {
