@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { createOrder } from "../feature/order/order.Thunk"
+import nikeshoe from "../assets/nikeshoes3.avif";
 import "../style/checkout.css";
 
 export default function Checkout() {
@@ -83,12 +84,12 @@ export default function Checkout() {
       </div>
 
       {/* Right Section */}
-      {/* <div className="checkout-right">
+    <div className="checkout-right">
         <h3>ORDER SUMMARY</h3>
 
         <div className="summary-item">
           <img
-            src="https://via.placeholder.com/80"
+            src={nikeshoe}
             alt="product"
           />
           <div>
@@ -112,7 +113,7 @@ export default function Checkout() {
           <span>Total</span>
           <strong>₹47,980</strong>
         </div>
-      </div> */}
+      </div> 
     </div>
   );
 }

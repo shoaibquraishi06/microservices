@@ -4,7 +4,7 @@ const axios = require('axios')
 
 
 async function createOrder(req, res) {
-       console.log("🔥 CREATE ORDER API HIT"); 
+    //    console.log("🔥 CREATE ORDER API HIT"); 
   
     const user = req.user;
     const token = req.cookies?.token || req.headers?.authorization?.split(' ')[ 1 ];
