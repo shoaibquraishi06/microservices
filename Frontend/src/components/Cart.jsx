@@ -1,5 +1,8 @@
 import { useSelector } from "react-redux";
 import  {useNavigate } from "react-router-dom";
+import { FiShoppingBag } from "react-icons/fi";
+import { FaArrowRightLong } from "react-icons/fa6";
+import "../style/cart.css";
 import product from "./ProfileCard"
 
 export default function CartDrawer() {
@@ -28,11 +31,12 @@ export default function CartDrawer() {
       <aside className="cart-drawer-conditional">
          
        <div className="bottom">
-        <p>Cart is empty</p>
+        <FiShoppingBag size={40} color="#8a8888" />
+        <p>Your Cart is empty</p>
         </div>
      
        <button className="cart-btn" onClick={productPageHandler} >
-               Shoping now
+         <span>    Start Shoping </span> 
       </button>
 
 

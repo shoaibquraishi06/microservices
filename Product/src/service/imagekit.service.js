@@ -17,9 +17,6 @@ const imagekit = new ImageKit({
 });
 
 
-console.log('public:', process.env.IMAGEKIT_PUBLIC_KEY);
-console.log('private:', process.env.IMAGEKIT_PRIVATE_KEY);
-console.log('urlEndpoint:', process.env.IMAGEKIT_URL_ENDPOINT);
 
 
 async function uploadImage({ buffer, folder = '/products' }) {

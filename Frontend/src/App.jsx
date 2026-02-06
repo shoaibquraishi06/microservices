@@ -9,6 +9,7 @@ import Contact from './components/Contact';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ProductGrid from './components/ProductGrid';
+import ProductctDetails from './components/ProductDetail';
 
 
 
@@ -50,7 +51,6 @@ function App() {
   
 
 
-
     
     {/* <ProductGrid/> */}
 
@@ -73,6 +73,10 @@ function App() {
 
          <Route path="/" element={<Home />} />
         <Route path="/product" element={<Products />} />
+         <Route path="/products/:id" element={<ProductDetails />} />
+      
+
+
         <Route path="/checkout" element={<Checkout />} />
         
       <Route path="/product/:id" element={<ProductDetails />} />

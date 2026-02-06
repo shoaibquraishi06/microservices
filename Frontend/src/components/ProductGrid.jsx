@@ -6,7 +6,9 @@ export default function ProductGrid({ product = [] }) {
 
   return (
   
-       <div className="product-container">
+       <div className="product-container"
+        onClick={() => navigate(`/products/${product._id}`)}
+       >
  
      <FilterSidebar />
     <div className="product-grid">

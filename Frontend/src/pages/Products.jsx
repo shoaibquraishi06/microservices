@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../feature/productThunk";
 import ProductGrid from "../components/ProductGrid";
+import ProductCard from "../components/ProductCard"
 import FilterSidebar from "../components/FilterSlidebar";
 
 export default function Products() {
