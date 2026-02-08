@@ -9,3 +9,7 @@ export const fetchProductsAPI = async () => {
   return data;
 };
 
+
+export const fetchProductByIdAPI = (id) => {
+  return axios.get(`http://localhost:3001/api/products/${id}`);
+};

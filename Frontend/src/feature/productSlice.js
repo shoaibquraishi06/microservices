@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchProducts } from "./productThunk";
+import { fetchProducts  } from "./productThunk";
 
 const initialState = {
   items: [],
@@ -30,3 +30,5 @@ const productSlice = createSlice({
 });
 
 export default productSlice.reducer;
+
+

@@ -8,6 +8,7 @@ import axios from "axios";
 
 export default function ProductDetails() {
    const { id } = useParams();
+   console.log("ROUTE ID:", id);
   const dispatch = useDispatch();
 
   const { product, loading } = useSelector((state) => state.product);
