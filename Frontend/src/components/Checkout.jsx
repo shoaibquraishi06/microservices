@@ -101,7 +101,7 @@ export default function Checkout() {
 
         <div className="summary-row">
           <span>Subtotal</span>
-          <span>₹47,980</span>
+          <span></span>
         </div>
 
         <div className="summary-row">

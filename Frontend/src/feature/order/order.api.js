@@ -6,5 +6,7 @@ const API = axios.create({
 });
 
 export const createOrderAPI = (orderData) => {
+  console.log("Sending order data:", orderData);
   return API.post("/", orderData);
+ 
 };

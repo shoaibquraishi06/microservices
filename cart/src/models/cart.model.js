@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+console.log("Models:", mongoose.modelNames());
 const cartSchema = new mongoose.Schema({
 
    user:{
@@ -12,7 +12,7 @@ const cartSchema = new mongoose.Schema({
             productId: {
                 type: mongoose.Schema.Types.ObjectId,
                 required: true,
-                // ref: 'Product',
+                ref: 'Product',
                 
             },
             quantity: {

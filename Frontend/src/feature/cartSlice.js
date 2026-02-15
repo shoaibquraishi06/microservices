@@ -16,10 +16,11 @@ const cartSlice = createSlice({
       })
 
     .addCase(addToCart.fulfilled, (state, action) => {
-     console.log("cart-data:", action.payload);
+    //  console.log("cart-data:", action.payload);
      
       state.items = action.payload.cart.items; // ✅ populated
-  state.loading = false;
+     
+      state.loading = false;
 })
 
 

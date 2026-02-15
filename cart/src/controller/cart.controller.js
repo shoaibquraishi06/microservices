@@ -20,21 +20,20 @@ async function getCart(req, res) {
             itemCount: cart.items.length,
             totalQuantity: cart.items.reduce((sum, item) => sum + item.quantity, 0)
         }
+       
     });
 
     
 }
-
-
-
-
-
 async function addItemToCart(req, res) {
-  const { productId, qty = 1 } = req.body;
+  const { productId, qty = 1,  } = req.body;
   const user = req.user;
+
 
   let cart = await CartModel.findOne({ user: user.id }).populate("items.productId");
 
+  
+console.log(JSON.stringify(cart, null, 2));
 
   if (!cart) {
     cart = new CartModel({ user: user.id, items: [] });
@@ -47,23 +46,20 @@ async function addItemToCart(req, res) {
     item.productId._id.toString() === productId
 );
  
-console.log("ITEM:", cart.items);
+// console.log("ITEM:", cart.items);
 
   if (index > -1) {
     cart.items[index].quantity += qty;
   } else {
     cart.items.push({productId, quantity: qty });
-   
-    console.log(cart.items);
-    
   }
 
-  console.log("des:",cart.items);
+  // console.log("des:",cart.items);
   await cart.save();
 
   // 🔥 populate before sending response
   await cart.populate("items.productId");
-  console.log("item-cart:", cart);
+  // console.log("item-cart:", cart);
   
 
   res.status(200).json({

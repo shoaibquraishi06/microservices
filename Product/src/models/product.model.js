@@ -3,16 +3,16 @@ const mongoose = require('mongoose');
 const productSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true
+        // required: true
     },
     description: {
         type: String,
-        required: true
+        // required: true
     },
     price: {
         amount: {
             type: Number,
-            required: true
+            // required: true
         },
         currency: {
             type: String,
@@ -22,7 +22,7 @@ const productSchema = new mongoose.Schema({
     },
     seller: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true
+        // required: true
     },
     images: [{
         url: String,
@@ -35,4 +35,6 @@ const productSchema = new mongoose.Schema({
     }
 });
 // productSchema.index({ title: 'text', description: 'text' });
-module.exports = mongoose.model('Product', productSchema);
+const ProductModel = mongoose.model('Product', productSchema);
+
+module.exports = ProductModel;

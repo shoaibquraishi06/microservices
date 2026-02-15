@@ -11,7 +11,7 @@ export default function ProductGrid({ product = [] }) {
   return (
   
        <div className="product-container"
-        onClick={() =>console.log("CLICKED PRODUCT:", product)}
+        // onClick={() =>console.log("CLICKED PRODUCT:", product)}
        >
  
      <FilterSidebar />
