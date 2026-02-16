@@ -99,7 +99,7 @@ if (!isMatch) {
       { expiresIn: '1d' }
     );
 
-    console.log("auth-token",token);
+    // console.log("auth-token",token);
     
 
     res.cookie('token', token, {

@@ -5,6 +5,7 @@ const cartSlice = createSlice({
   name: "cart",
   initialState: {
     items: [],
+ 
     loading: false,
     error: null
   },
@@ -18,17 +19,16 @@ const cartSlice = createSlice({
     .addCase(addToCart.fulfilled, (state, action) => {
     //  console.log("cart-data:", action.payload);
      
-      state.items = action.payload.cart.items; // ✅ populated
-     
+      state.items = action.payload.items; // ✅ populated
+      console.log("cart-data:", action.payload);
       state.loading = false;
 })
-
-
-
-      .addCase(addToCart.rejected, (state, action) => {
+    .addCase(addToCart.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      });
+      })
+
+  
   }
 });
 

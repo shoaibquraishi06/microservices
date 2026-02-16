@@ -1,3 +1,4 @@
+const axios = require('axios');
 const CartModel = require('../models/cart.model');
 
 
@@ -5,7 +6,7 @@ const CartModel = require('../models/cart.model');
 
 async function getCart(req, res) {
   
-       const user = req.user;
+    const user = req.user;
 
     let cart = await CartModel.findOne({ user: user.id });
 
@@ -20,52 +21,47 @@ async function getCart(req, res) {
             itemCount: cart.items.length,
             totalQuantity: cart.items.reduce((sum, item) => sum + item.quantity, 0)
         }
-       
     });
 
     
 }
 async function addItemToCart(req, res) {
-  const { productId, qty = 1,  } = req.body;
-  const user = req.user;
+   const { productId, qty } = req.body;
+
+    const user = req.user
+
+    let cart = await CartModel.findOne({ user: user.id });
+
+    if (!cart) {
+        cart = new CartModel({ user: user.id, items: [] });
+    }
+
+       const productResponse = await axios.get(`http://localhost:3001/api/products/${productId}`); 
+
+      let productData = productResponse.data.data;
+      console.log(productData);
+      
 
 
-  let cart = await CartModel.findOne({ user: user.id }).populate("items.productId");
+    const existingItemIndex = cart.items.findIndex(item => item.productId.toString() === productId);
 
-  
-console.log(JSON.stringify(cart, null, 2));
+    if (existingItemIndex >= 0) {
+        cart.items[ existingItemIndex ].quantity += qty;
+    } else {
+        cart.items.push({  productId: productId,
+        title: productData.title,
+        description: productData.description,
+        image: productData.images?.[0]?.url,
+        price: productData.price,
+        quantity: Number(qty) });
+    }
 
-  if (!cart) {
-    cart = new CartModel({ user: user.id, items: [] });
-  }
+    await cart.save();
 
-  const index = cart.items.findIndex(
-   (item) =>
-    item.productId &&
-    item.productId._id &&
-    item.productId._id.toString() === productId
-);
- 
-// console.log("ITEM:", cart.items);
-
-  if (index > -1) {
-    cart.items[index].quantity += qty;
-  } else {
-    cart.items.push({productId, quantity: qty });
-  }
-
-  // console.log("des:",cart.items);
-  await cart.save();
-
-  // 🔥 populate before sending response
-  await cart.populate("items.productId");
-  // console.log("item-cart:", cart);
-  
-
-  res.status(200).json({
-    message: "Item added to cart",
-    cart
-  });
+    res.status(200).json({
+        message: 'Item added to cart',
+        items: cart,
+    });
 }
 
 

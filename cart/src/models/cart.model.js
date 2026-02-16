@@ -1,31 +1,45 @@
 const mongoose = require('mongoose');
-console.log("Models:", mongoose.modelNames());
+
 const cartSchema = new mongoose.Schema({
 
-   user:{
+    user: {
     type: mongoose.Schema.Types.ObjectId,
-    required: true,
-   },
+    required: true
+  },
 
-    items: [
-        {
-            productId: {
-                type: mongoose.Schema.Types.ObjectId,
-                required: true,
-                ref: 'Product',
-                
-            },
-            quantity: {
-                type: Number,
-                required: true,
-                min: 1,
-            },
-        },
-    ],
+  items: [
+    {
+      productId: {
+        type: String,   // 🔥 string for microservice snapshot
+        required: true
+      },
 
+      title: {
+        type: String
+      },
 
+      description: {
+        type: String
+      },
 
-},{timestamps:true});
+      image: {
+        type: String
+      },
+
+      price: {
+        amount: Number,
+        currency: String
+      },
+
+      quantity: {
+        type: Number,
+        required: true,
+        min: 1
+      }
+    }
+  ]
+
+}, { timestamps: true });
 
 
 const CartModel = mongoose.model('Cart', cartSchema);
