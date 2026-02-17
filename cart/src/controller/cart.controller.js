@@ -39,7 +39,7 @@ async function addItemToCart(req, res) {
        const productResponse = await axios.get(`http://localhost:3001/api/products/${productId}`); 
 
       let productData = productResponse.data.data;
-      console.log(productData);
+    //   console.log(productData);
       
 
 

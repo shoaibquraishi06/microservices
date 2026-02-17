@@ -15,7 +15,12 @@ export default function CartDrawer() {
    
   };
 
-   const { items, loading } = useSelector(state => state.cart);
+   const { items, loading } = useSelector(state => state.cart.items);
+
+  const total = items.reduce(
+    (sum, item) => sum + (item.price?.amount || 0) * item.quantity,
+    0
+  );
 
   if (loading) {
     return <aside className="cart-drawer">Loading...</aside>;
@@ -24,7 +29,7 @@ export default function CartDrawer() {
   if (!items || items.length === 0) {
 
    
-
+   
 
 
     return (
@@ -46,39 +51,89 @@ export default function CartDrawer() {
   }
 
   return (
-    <aside className="cart-drawer">
-      <h3>Your Cart</h3>
+   <div className="cart-container">
 
-      {items.map(item => {
-        const product = item.productId;
+      {/* LEFT SIDE - BAG */}
+      <div className="bag-section">
+        <h2>Your Cart</h2>
 
-        if (!product) return null; // 🔐 safety
+        {items.map((item) => (
+          <div key={item.productId} className="cart-item">
 
-        return (
-          <div key={product._id} className="cart-item">
             <img
-              src={product.images?.[0]?.url}
-              alt={item.productId.title}
-              width="80"
+              src={item.image}
+              alt={item.title}
+              className="product-img"
             />
 
-            <div>
-              <h4 className="product-Id" > <span className="product-span"> productId :-</span> {item.productId}</h4>
-              <h4 className="product-id">  <span className="product-span">orderId :-</span> {item._id}</h4>
-              <h4>{product.title}</h4>
-              <p>₹{product.price?.amount}</p>
-              <p>Qty: {item.quantity}</p>
+            <div className="item-details">
+              <h3>{item.title}</h3>
+
+              <p>{item.description}</p>
+
+              {/* <p>14 Day Return</p> */}
+
+              {/* <span className="size">Size UK 10</span> */}
+
+              <div className="quantity-box">
+                <button>-</button>
+                <span>{item.quantity}</span>
+                <button>+</button>
+              </div>
             </div>
-       
+
+            <div className="price">
+              ₹ {item.price?.amount * item.quantity}
+            </div>
+
           </div>
-        );
-      })}
-              ₹{(items.productId?.price?.amount || 0) * items.quantity}
+        ))}
+      </div>
 
-     <button className="check-out-btn" onClick={() => navigate("/checkout")}>Check Out</button>
+      {/* RIGHT SIDE - SUMMARY */}
+      <div className="summary-section">
+        <h2>Summary</h2>
 
-    </aside>
+        <div className="summary-row">
+          <span>Bag Total</span>
+          <span>₹ {total}</span>
+        </div>
+
+        <div className="summary-row">
+          <span>Sub Total</span>
+          <span>₹ {total}</span>
+        </div>
+
+        <div className="summary-row">
+          <span>Shipping Charges</span>
+          <span className="free">Free</span>
+        </div>
+
+        <div className="summary-row total">
+          <span>You Pay</span>
+          <span>₹ {total}</span>
+        </div>
+
+        <button
+          className="checkout-btn"
+          onClick={() => navigate("/checkout")}
+        >
+          Proceed to Buy
+        </button>
+      </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
   );
 
 }
 
+   

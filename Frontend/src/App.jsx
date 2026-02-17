@@ -25,6 +25,7 @@ import Cart from "./components/Cart";
 import CartDrawer from "./components/Cart";
 import Account from "./pages/Account";
 import Checkout from './components/Checkout';
+import Payment from './components/Payment';
 
 
 
@@ -78,6 +79,7 @@ function App() {
 
 
         <Route path="/checkout" element={<Checkout />} />
+        {/* <Route path="/payment" element={<Payment />} /> */}
         
       <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/contact" element={<Contact />} />
