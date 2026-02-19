@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import  {useNavigate } from "react-router-dom";
 import { FiShoppingBag } from "react-icons/fi";
-import { FaArrowRightLong } from "react-icons/fa6";
+import { FaArrowLeftLong } from "react-icons/fa6";
 import "../style/cart.css";
 import product from "./ProfileCard"
 
@@ -50,9 +50,18 @@ export default function CartDrawer() {
     );
   }
 
-  return (
-   <div className="cart-container">
+    const backHandler = () => {
+    navigate("/product");
+    }
 
+
+  return (
+     
+   <div className="cart-container">
+  
+    <div className="back-link" onClick={backHandler}>
+                <span className="back-arrow">    <FaArrowLeftLong /> </span> 
+            </div>
       {/* LEFT SIDE - BAG */}
       <div className="bag-section">
         <h2>Your Cart</h2>

@@ -25,7 +25,15 @@ const orderSlice = createSlice({
       .addCase(createOrder.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
-        state.order = action.payload;
+       if (action.payload && action.payload.order) {
+      state.order = action.payload.order;
+   } else {
+      state.order = null;
+   }
+
+   console.log(action.payload)
+   console.log("Redux stored order:", state.order);
+        
       })
       .addCase(createOrder.rejected, (state, action) => {
         state.loading = false;

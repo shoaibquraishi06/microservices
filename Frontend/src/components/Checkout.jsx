@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { createOrder } from "../feature/order/order.Thunk"
 import { useNavigate } from "react-router-dom";
+import { FaArrowLeftLong } from "react-icons/fa6";
 // import { getCart } from "../feature/cart/cartThunk";
 import nikeshoe from "../assets/nikeshoes3.avif";
 import "../style/checkout.css";
@@ -12,11 +13,13 @@ export default function Checkout() {
      const dispatch = useDispatch();
      const navigate = useNavigate();
   
+     
+      const backHandler = () => {
+    navigate("/cart");
+   }
      const paymentPageHandler = (e) => {
-    
-     navigate("/payment");
-   
-  };
+       navigate("/payment");
+        };
 
   const { loading, success } = useSelector((state) => state.order);
  
@@ -66,6 +69,10 @@ export default function Checkout() {
           <span className="line"></span>
           <span className="step">2 Payment</span>
         </div> */}
+       <div className="back-link" onClick={backHandler}>
+            <span className="back-arrow">    <FaArrowLeftLong /> </span> <span className="back-btn">Back</span>
+        </div>
+          
 
         <h2 className="section-title">SHIPPING ADDRESS</h2>
  

@@ -1,18 +1,35 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { FaArrowLeftLong } from "react-icons/fa6";
 import "../style/payment.css";
 
 export default function Payment() {
 
-  // 🟢 Get order + cart from Redux
-  const { shippingAddress } = useSelector(state => state.order);
-  const { items = [] } = useSelector(state => state.cart);
+   const navigate = useNavigate();
+ 
 
-  // 🟢 Calculate total
+  // ✅ All hooks first
+  const { loading, order } = useSelector(state => state.order);
+  const { items = [] } = useSelector(state => state.cart.items);
+
+  // ✅ Then conditions
+  if (loading) return <h3>Loading...</h3>;
+  if (!order) return <h3>Please complete shipping first</h3>;
+
+  const shippingAddress = order.shippingAddress;
+
   const total = items.reduce(
     (sum, item) => sum + (item.price?.amount || 0) * item.quantity,
     0
   );
+
+  
+   const backHandler = () => {
+    navigate("/checkout");
+   }
+
+
 
   return (
     <div className="payment-container">
@@ -20,29 +37,36 @@ export default function Payment() {
       {/* LEFT SECTION */}
       <div className="payment-left">
 
-        <div className="back-link">
-          ← Back to Shipping
+        <div className="back-link" onClick={backHandler}>
+      <span className="back-arrow">    <FaArrowLeftLong /> </span> <span className="back-btn">Back</span>
         </div>
 
-        <h2 className="payment-title">PAYMENT</h2>
+        <h2 className="payment-title">PAYMENT Method</h2>
 
         {/* Shipping Address */}
-        <div className="shipping-box">
-          <h4>Shipping To:</h4>
+ 
+ 
 
-          {shippingAddress ? (
-            <>
-              <p>{shippingAddress.fullname}</p>
-              <p>{shippingAddress.street}</p>
-              <p>
-                {shippingAddress.city}, {shippingAddress.state}
-              </p>
-              <p>Phone: {shippingAddress.phone}</p>
-            </>
-          ) : (
-            <p>No shipping address found.</p>
-          )}
-        </div>
+       <div className="shipping-box">
+  <h4>Shipping Address:</h4>
+
+  {shippingAddress ? (
+    <>
+      <p>Name :- <span>{shippingAddress.fullname} </span> </p>
+      <p>Phone:- <span> {shippingAddress.phone}</span></p>
+      <p>
+        state:- <span>{shippingAddress.state}</span>
+      </p>
+      <p>
+        city :- <span>{shippingAddress.city}</span>
+      </p>
+           <p>Address :- <span>{shippingAddress.street}</span></p> 
+           <p>Pincode :- <span>{shippingAddress.zip}</span></p> 
+    </>
+  ) : (
+    <p>No shipping address found.</p>
+  )}
+</div>
 
         {/* Razorpay Option */}
         <div className="payment-method">
@@ -77,7 +101,7 @@ export default function Payment() {
               <span>Qty: {item.quantity}</span>
             </div>
 
-            <strong>
+            <strong className="product-price">
               ₹ {(item.price?.amount * item.quantity).toLocaleString()}
             </strong>
 
