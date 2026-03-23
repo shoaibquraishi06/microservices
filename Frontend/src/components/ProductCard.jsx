@@ -2,9 +2,10 @@
 import { useDispatch } from "react-redux";
 import { addToCart } from "../feature/cartThunk";
 import "../style/product.css";
+// import "../style/productCard.css"
 
 export default function ProductCard({ product }) {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); 
 
   if (!product) return null;
 

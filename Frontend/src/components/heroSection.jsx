@@ -1,9 +1,17 @@
 import React from 'react'
-import Herologo from '../assets/heroSection.avif'
+import Herologo from '../assets/heroSection.avif';
+import  {useNavigate } from "react-router-dom";
 import '../style/heroSection.css'
 
 const heroSection = () => {
 
+  const navigate = useNavigate()
+
+   const productPageHandler = (e) => {
+    
+     navigate("/product");
+   
+  };
 
   
   return (
@@ -21,7 +29,7 @@ const heroSection = () => {
           classic design lines and detailing for streamlined hoops style.
         </p>
 
-        <button className="cta">Go to collection</button>
+        <button className="cta" onClick={productPageHandler}>Go to collection</button>
       </div>
 
         <img src={Herologo } className="hero-bg" alt="background" />

@@ -1,4 +1,5 @@
 import "../style/sidebar.css";
+import { IoIosLogOut } from "react-icons/io";
 import { useSelector } from "react-redux";
 
 export default function AccountSidebar() {
@@ -22,7 +23,7 @@ export default function AccountSidebar() {
         <li>My Orders</li>
         <li>Wishlist</li>
         <li>Cart</li>
-        <li className="logout">Logout</li>
+        <li className="logout"> <IoIosLogOut /><span>Logout</span></li>
       </ul>
     </aside>
   );

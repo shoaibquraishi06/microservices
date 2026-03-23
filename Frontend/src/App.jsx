@@ -4,6 +4,7 @@ import Home from './components/heroSection';
 import Products from './pages/Products';
 import Footer from './components/Footer';
 import Contact from './components/Contact';
+// import ChatAssistant from './components/ChatAssistant';
 
 //  -----auth pages
 import Login from './pages/Login';
@@ -51,7 +52,7 @@ function App() {
   
   
 
-
+{/* <ChatAssistant/> */}
     
     {/* <ProductGrid/> */}
 

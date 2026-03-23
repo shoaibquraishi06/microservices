@@ -7,15 +7,19 @@
 
 .profile-box {
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .profile-box h3{
   font-family: "semi-bold-text";
-  padding-bottom: 0;
+  font-size: 1rem;
+  line-height:5px
+ 
 }
 .profile-box p{
   font-family: "semi-bold-text";
+  font-size: 0.9rem;
+  
 }
 
 .avatar {
@@ -26,8 +30,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 0.5rem;
+  margin: 0 auto 1.7rem;
   font-size: 1.4rem;
+  line-height: -4rem;
 }
 
 .menu {
@@ -41,6 +46,13 @@
   font-family: "semi-bold-text";
 }
 
+.menu li:hover{
+   transition:all ease-in-out  20ms;
+    background: #f2f2f2;
+   font-weight: 600;
+  
+}
+
 .menu li.active {
   background: #f2f2f2;
   font-weight: 600;
@@ -48,4 +60,17 @@
 
 .menu .logout {
   color: red;
+}
+.logout{
+ display: flex;
+  gap: 5px;
+}
+
+
+
+.menu .logout span {
+  color: #000;
+  font-family: "regular-text";
+  font-weight: 500;
+   
 }

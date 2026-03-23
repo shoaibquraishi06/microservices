@@ -126,11 +126,19 @@
     padding-top: 1.2rem;
 }
 .contact-success {
-	color: #1a7f37;
+	color: #191919;
 	font-weight: 600;
+	font-family: "regular-text";
+	font-size: 1rem;
 	margin-top: 10px;
 	text-align: center;
 }
+
+.contact-success span{
+	margin-right: 0.4rem;
+}
+
+
 .contact-info {
 	flex: 1 1 260px;
 	min-width: 240px;
