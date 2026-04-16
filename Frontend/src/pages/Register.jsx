@@ -186,12 +186,12 @@ export default function Register() {
                   <p>Sigh up with Google</p> 
 
              </div>
-             <div className="apple-login">
+             {/* <div className="apple-login">
               
                   <img src={apple} alt="apple" />
                   <p>Sigh up with Apple</p> 
 
-                </div>
+                </div> */}
               </div>
       </form>
     </div>

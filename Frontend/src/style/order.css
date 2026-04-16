@@ -1,0 +1,115 @@
+.orders-container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+.order-card {
+  border: 1px solid #ddd;
+  padding: 10px 20px;
+  /* margin-bottom: 10px; */
+
+}
+.orders-title{
+  font-family: "bold-text";
+  font-size: 2rem;
+  color: #868484;
+}
+
+#cardId{
+    font-family: "regular-text";
+    font-size: 0.7rem;
+    color: #4f4d4d;
+    line-height: 1.1;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-header p{
+    font-family: "regular-text";
+    font-size: 0.8rem;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 7px;
+}
+
+.order-item img {
+  width: 72px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.item-info {
+  /* flex: 1;
+  margin-left: 15px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.item-info h4{
+    font-family: "regular-text";
+    font-size: 0.8rem;
+    color: #211f1f;
+}
+.item-info p{
+    font-family: "regular-text";
+    font-size: 0.8rem;
+    color: #211f1f;
+}
+
+.order-right{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.status {
+  background: #eeb013b3;
+  padding: 5px 12px;
+  font-family: "regular-text";
+  font-size: 0.75rem;
+  border-radius: 2px;
+}
+
+.price {
+  font-weight: bold;
+  font-family: "regular-text";
+  font-size: 0.9rem;
+}
+
+.shipping-title{
+  font-family: "regular-text";
+  font-size: 1.2rem;
+  color: #595858;
+  margin-bottom: 0.9rem;
+}
+.shipping-details{
+  display: flex;
+  flex-wrap: wrap;
+  width: 60%;
+  height:100%;
+  column-gap: 15px;
+  row-gap: -10px;
+}
+
+.shipping-details p{
+  font-family: "regular-text";
+  font-size: 0.8rem;
+   color: rgb(60, 60, 61);
+  
+}
+.shipping-details span{
+  color: rgb(26, 26, 27);
+}

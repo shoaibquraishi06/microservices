@@ -48,7 +48,7 @@ export default function Payment() {
  
 
        <div className="shipping-box">
-  <h4>Shipping Address:</h4>
+  <h4>Shipping Address:</h4>=
 
   {shippingAddress ? (
     <>

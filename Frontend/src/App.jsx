@@ -1,9 +1,13 @@
 //  -----pages
+import { useEffect, useState } from "react";
+import Loader from "./components/Loader"
 import Navber from './components/Navber';
 import Home from './components/heroSection';
+import Orders from './pages/Order';
 import Products from './pages/Products';
 import Footer from './components/Footer';
 import Contact from './components/Contact';
+import ShowPhoto from "./components/BottomPgoto"
 // import ChatAssistant from './components/ChatAssistant';
 
 //  -----auth pages
@@ -12,13 +16,9 @@ import Register from './pages/Register';
 import ProductGrid from './components/ProductGrid';
 import ProductctDetails from './components/ProductDetail';
 
-
-
-
 //  -----components and context
 
-// import { CartProvider } from "./context/CartContext";
-// import { WishlistProvider } from "./context/WishlistContext";
+
 // import Wishlist  from './components/Whishlist';
 import ProductDetails from './components/ProductDetail';
 import { CartProvider } from "./context/CartContext";
@@ -39,57 +39,53 @@ import './App.css';
 
 function App() {
   // const [open, setOpen] = useState(false);
+   const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2500); // total loader duration
+
+    return () => clearTimeout(timer);
+  }, []);
   
-  
-
-
-
-  return (
+ return (
     <>
-
-  
-
-  
-  
-
-{/* <ChatAssistant/> */}
     
-    {/* <ProductGrid/> */}
-
-           <CartProvider>
-      {/* <Products /> */}
-       {/* <CartDrawer
-        isOpen={open}
-        onClose={() => setOpen(false)}
-      /> */}
-    </CartProvider>
     
-        
-      <Navber />
-      <Routes>
-        <Route path="/" element={<MainRoutes />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/account" element={<Account />} />
-        <Route path="/cart" element={<CartDrawer />} />
+ 
+      <>
+    {loading && <Loader />}
 
-         <Route path="/" element={<Home />} />
-        <Route path="/product" element={<Products />} />
-         <Route path="/products/:id" element={<ProductDetails />} />
-      
-
-
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/payment" element={<Payment />} />
-        
-      <Route path="/product/:id" element={<ProductDetails />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/footer" element={<Footer />} />
-      
-        
-        {/* Add more routes as needed */}
+    {!loading && (
+      <>
+        <Navber />
+        <Routes>
+          <Route path="/" element={<MainRoutes />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/account" element={<Account />} />
+          <Route path="/cart" element={<CartDrawer />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/footer" element={<Footer />} />
+           {/* Add more routes as needed */}
         <Route path="*" element={<div style={{padding: '2rem', textAlign: 'center'}}><h2>404 - Page Not Found</h2></div>} />
-      </Routes>
+        </Routes>
+      </>
+    )}
+  </>
+
+   
+
+      
+        
+
+      
     </>
   );
 }

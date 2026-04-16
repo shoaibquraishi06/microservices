@@ -10,6 +10,7 @@ router.post("/", createAuthMiddleware([ "user" ]), validation.createOrderValidat
 
 
 router.get("/me", createAuthMiddleware([ "user" ]), orderController.getOrder );
+router.get("/myorders", createAuthMiddleware([ "user" ]), orderController.myOrders );
 
 
 router.post("/:id/cancel", createAuthMiddleware([ "user" ]), orderController.cancelOrderById)

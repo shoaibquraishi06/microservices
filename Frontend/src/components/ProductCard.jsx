@@ -1,6 +1,8 @@
 
 import { useDispatch } from "react-redux";
 import { addToCart } from "../feature/cartThunk";
+import Logo from "../assets/logo.jpg";
+import { FiShoppingBag } from "react-icons/fi";
 import "../style/product.css";
 // import "../style/productCard.css"
 
@@ -17,6 +19,9 @@ export default function ProductCard({ product }) {
   return (
     // <ProductCard product={product} />;
     <div className="product-card">
+      <div className="logo">
+        <img src={Logo} alt="Nike" />
+      </div>
       <div className="product-img">
         <img
           src={product.images?.[0]?.url}
@@ -26,13 +31,15 @@ export default function ProductCard({ product }) {
 
       <div className="product-details">
         <h3>{product.title}</h3>
-        <p>{product.description}</p>
+         {/* <p>{product.description}</p> */}
         <p className="price">₹{product.price.amount}</p>
+ </div>
 
+ <p>{product.description}</p>
         <button className="addToCart" onClick={handleAddToCart}>
-          Add to Cart
+        <span><FiShoppingBag /></span> <span> Add to Cart</span>
         </button>
-      </div>
+     
     </div>
   );
 }

@@ -125,6 +125,31 @@ async function getOrder(req, res) {
 }
 
 
+
+async function myOrders(req, res) {
+
+try {
+
+    const userId = req.user.id;
+
+    const orders = await OrderModel.find({ user: userId })
+      .sort({ createdAt: -1 });
+
+    res.json({
+      success: true,
+      orders
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
+
+}
+
+
 async function getOrderById(req, res) {
     const user = req.user;
     const orderId = req.params.id;
@@ -219,6 +244,7 @@ module.exports = {
      createOrder,
      getOrder,
      getOrderById,
+     myOrders,
      cancelOrderById,
      updateOrderAddress
 }

@@ -10,18 +10,21 @@ export default function ProductGrid({ product = [] }) {
 
   return (
   
-       <div className="product-container"
-       
-       >
+       <div className="product-container">
  
      <FilterSidebar />
     <div className="product-grid">
     
 
-      {product.map((p) => (
+      {product.slice(0, 5).map((p) => (
         <ProductCard key={p._id} product={p} />
       ))}
     </div>
+      
+      <button className="view-btn" onClick={() => navigate("/product")}>
+       View All
+      </button>
+
     </div>
   );
 }

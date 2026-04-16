@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import HeroSection from '../components/heroSection';
 import Account from '../pages/Account';
 import Products from '../pages/Products';
+import ShowPhot from "../components/BottomPgoto"
 import Contact from '../components/Contact';
 import Footer from "../components/Footer";
 // Placeholder Order component
@@ -15,6 +16,7 @@ const MainRoutes = () => {
       <HeroSection />
       {/* <Account/> */}
       <Products />
+      {/* <ShowPhot/> */}
       <Contact />
       <Footer />
     </>

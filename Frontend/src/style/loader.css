@@ -1,0 +1,96 @@
+.intro-loader {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: grid;
+    place-items: center;
+    z-index: 99999;
+    overflow: hidden;
+    animation: screenOut .8s ease forwards 3.2s
+}
+
+
+.nike-svg {
+    width: min(52vw, 520px);
+    position: relative;
+    z-index: 2
+}
+
+.nike-path {
+    fill: transparent;
+    stroke: #fff;
+    stroke-width: 4;
+    stroke-linejoin: round;
+    stroke-dasharray: 1800;
+    stroke-dashoffset: 1800;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, .45));
+    animation: draw 1.5s ease forwards,
+        fill .45s ease forwards 1.35s,
+        float .9s ease forwards 2s,
+        zoom .9s cubic-bezier(.2, .8, .2, 1) forwards 2.55s
+}
+
+.progress {
+    position: absolute;
+    bottom: 18%;
+    width: min(240px, 45vw);
+    height: 3px;
+    background: rgba(255, 255, 255, .15);
+    border-radius: 999px;
+    overflow: hidden
+}
+
+.progress span {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: #fff;
+    box-shadow: 0 0 12px #fff;
+    animation: load 2.1s ease forwards .2s
+}
+
+@keyframes draw {
+    to {
+        stroke-dashoffset: 0
+    }
+}
+
+@keyframes fill {
+    to {
+        fill: #fff
+    }
+}
+
+@keyframes load {
+    to {
+        width: 100%
+    }
+}
+
+@keyframes pulse {
+    50% {
+        transform: scale(1.15);
+        opacity: .8
+    }
+}
+
+@keyframes float {
+    50% {
+        transform: translateY(-8px) scale(1.02)
+    }
+}
+
+@keyframes zoom {
+    to {
+        transform: scale(7);
+        opacity: 0;
+        filter: blur(8px)
+    }
+}
+
+@keyframes screenOut {
+    to {
+        opacity: 0;
+        visibility: hidden
+    }
+}

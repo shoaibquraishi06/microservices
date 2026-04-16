@@ -23,5 +23,8 @@ export default function Products() {
 
   if (loading) return <p>Loading products...</p>;
 
-  return <ProductGrid product={products} />;
+  return   <ProductGrid product={products} />
+ 
+  
+
 }

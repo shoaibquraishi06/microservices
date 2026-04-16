@@ -16,7 +16,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
-  const [role, setRole] = useState("user"); // 'user' or 'seller'
+  const [role, setRole] = useState(""); // 'user' or 'seller'
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -155,10 +155,10 @@ export default function Login() {
             <img src={google} alt="google" />
             <p>Sigh up with Google</p>
           </div>
-          <div className="apple-login">
+          {/* <div className="apple-login">
             <img src={apple} alt="apple" />
             <p>Sigh up with Apple</p>
-          </div>
+          </div> */}
         </div>
       </form>
     </div>

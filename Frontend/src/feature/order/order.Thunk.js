@@ -12,3 +12,20 @@ export const createOrder = createAsyncThunk(
     }
   }
 );
+
+
+// ✅ GET Orders
+export const getMyOrders = createAsyncThunk(
+  "order/getMyOrders",
+  async (_, { rejectWithValue }) => {
+    try {
+      const res = await API.get("/my-orders");
+
+      // 👉 Backend se { orders: [] } aana chahiye
+      return res.data.orders;
+
+    } catch (err) {
+      return rejectWithValue(err.response?.data || "Error");
+    }
+  }
+);
