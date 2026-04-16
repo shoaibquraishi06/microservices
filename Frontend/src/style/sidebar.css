@@ -74,3 +74,25 @@
   font-weight: 500;
    
 }
+
+
+@media (max-width: 768px) {
+.sidebar {
+  width: 91%;
+  padding: 1rem;
+
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+}
+ 
+.profile-box h3{
+  font-size: 0.8rem;
+}
+.profile-box p{
+  font-size: 0.7rem;
+}
+
+}

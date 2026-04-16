@@ -17,4 +17,10 @@
   flex: 1;
 }
 
+@media (max-width: 768px) {
+  .account-page {
+    flex-direction: column;
+    padding: 1rem;
+  }
+}
 
