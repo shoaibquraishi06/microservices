@@ -1,12 +1,13 @@
 import "../style/details.css";
 import { useSelector } from "react-redux";
+import NotUser from "../components/NotAcountUser";
 
 export default function AccountDetails() {
 
     const user = useSelector((state) => state.auth.user);
 
   if (!user) {
-    return <p>Please login first</p>;
+    return <NotUser />;
   }
 
   return (

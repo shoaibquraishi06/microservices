@@ -1,9 +1,10 @@
-.page-title{
+.page-title {
   font-family: "bold-text";
   text-transform: uppercase;
-   margin-bottom: 1rem;
+  margin-bottom: 1rem;
 
 }
+
 .account-page {
   display: flex;
   gap: 2rem;
@@ -11,6 +12,7 @@
   /* position: absolute; */
   padding: 2rem;
   z-index: 999;
+    padding-top: 5rem;
 }
 
 .account-content {
@@ -21,6 +23,6 @@
   .account-page {
     flex-direction: column;
     padding: 1rem;
+    padding-top: 5rem;
   }
 }
-

@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../feature/authSlice";
 import { resetCart } from "../feature/cartSlice";
+import NotUser from "../components/NotAcountUser";
 
 export default function AccountSidebar() {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ export default function AccountSidebar() {
   const navigate = useNavigate();
 
   if (!user) {
-    return <p>Please login first</p>;
+    return <NotUser/>;
   }
 
     const handleLogout = async () => {

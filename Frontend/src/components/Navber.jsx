@@ -6,10 +6,10 @@ import { IoLocationOutline } from "react-icons/io5";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { IoIosLogOut } from "react-icons/io";
 
-import logo from '../assets/logo.jpg';
+import logo from "../assets/newLogo.png";
 import CartDrawer from "../components/Cart";
 import { Link, useNavigate } from "react-router-dom";
-import profilePic from '../assets/heroSection.avif'; 
+import profilePic from "../assets/heroSection.avif";
 
 // Use your own profile image if available
 
@@ -22,35 +22,29 @@ const Navber = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [open, setOpen] = useState(false);
- 
 
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleMenuToggle = () => setMenuOpen(!menuOpen);
 
   const handleProfileClick = (e) => {
     // e.stopPropagation();
-     navigate("/account");
+    navigate("/account");
     // setShowProfile((prev) => !prev);
   };
   const handlecartClick = (e) => {
     // e.stopPropagation();
-     navigate("/cart");
+    navigate("/cart");
     // setShowProfile((prev) => !prev);
   };
-
-
-
 
   React.useEffect(() => {
     const handleClickOutside = () => setShowProfile(false);
     if (showProfile) {
-      window.addEventListener('click', handleClickOutside);
+      window.addEventListener("click", handleClickOutside);
     }
-    return () => window.removeEventListener('click', handleClickOutside);
+    return () => window.removeEventListener("click", handleClickOutside);
   }, [showProfile]);
-
-
 
   return (
     <div className="header">
@@ -67,32 +61,26 @@ const Navber = () => {
         </div>
         <div className="nav-end">
           <div className="whistlist">
-
-          {/* <CartDrawer
+            {/* <CartDrawer
           isOpen={open}
           onClose={() => setOpen(false)}
         />
    */}
-          <button  className="whistlist-btn"  onClick={handlecartClick}>
-       
-         
-         
-      <IoBagHandleOutline />
-      
-      
-      </button>
-
-        
-
-
+            <button className="whistlist-btn" onClick={handlecartClick}>
+              <IoBagHandleOutline />
+            </button>
           </div>
-          <div className="Profile" onClick={handleProfileClick} style={{ position: 'relative', cursor: 'pointer' }}>
+          <div
+            className="Profile"
+            onClick={handleProfileClick}
+            style={{ position: "relative", cursor: "pointer" }}
+          >
             <VscAccount />
             {showProfile && (
-              
-               
-         <button className="close-profile" onClick={() =>setShowProfile(false)}></button>
-             
+              <button
+                className="close-profile"
+                onClick={() => setShowProfile(false)}
+              ></button>
             )}
           </div>
           <div className="navbar-menu" onClick={handleMenuToggle}>

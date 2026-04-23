@@ -54,6 +54,7 @@
   background: #f4f4f4;
   font-family: Arial, sans-serif;
   width: 90%;
+  padding-top: 5rem;
 }
 
 /* LEFT SIDE */
@@ -197,8 +198,9 @@
 /* mobile responsive */
 @media (max-width: 430px) {
     .cart-container{
-      width: 100%;
+      width: 86%;
       padding: 30px;
+       padding-top: 5rem;
     }
 
   .cart-item  .product-img {
@@ -219,6 +221,7 @@
 @media (max-width: 900px) {
   .cart-container {
     flex-direction: column;
+     padding-top: 5rem;
   }
 
   .bag-section,
