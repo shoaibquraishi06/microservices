@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMyOrders } from "../feature/order/order.Thunk";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import Skalaton from "../components/OrderSkaleton";
 import "../style/order.css";
 
 export default function Order() {
@@ -12,13 +13,16 @@ export default function Order() {
 
   // ✅ Redux se data le rahe hain
   const { orders, loading } = useSelector((state) => state.order);
+  const { items } = useSelector((state) => state.cart);
+  console.log(orders);
+  console.log(items);
 
   // ✅ Component load hote hi API call
   useEffect(() => {
     dispatch(getMyOrders());
   }, [dispatch]);
 
-  if (loading) return <h3>Loading...</h3>;
+  if (loading) return <Skalaton />;
 
   return (
     <div className="orders-container">
@@ -48,13 +52,13 @@ export default function Order() {
           </div>
 
           {/* ITEMS */}
-          {order.items.map((item, i) => (
+          {order.items.map((items, i) => (
             <div className="order-item" key={i}>
-              <img src={Product} alt="product" />
+              <img src={items.image} alt="product" />
 
               <div className="item-info">
-                <h4>{item.title || "Product"}</h4>
-                <p>Size: UK 6 × {item.quantity}</p>
+                <h4>{items.title || "Product"}</h4>
+                <p>Size: UK 6 × {items.quantity}</p>
               </div>
 
               {/* <div className="item-price">
@@ -63,22 +67,12 @@ export default function Order() {
             </div>
           ))}
 
-          {/* <hr /> */}
+        
 
-          {/* SHIPPING */}
-          {/* <div className="shipping">
-            <p className="shipping-title">Shipping Address</p>
-            <div className="shipping-details"> */}
-              {/* <h4>Name:- {order.shippingAddress.fullname}</h4> */}
+       
 
-              {/* <p> Name:- <span> {order.shippingAddress.fullname}</span> </p>
-              <p> Address:- <span>{order.shippingAddress.street} </span></p>
-              <p> City :- <span>{order.shippingAddress.city} </span> </p>
-              <p> State :- <span>{order.shippingAddress.state}</span></p>
-              <p> Phone Phone: -<span>{order.shippingAddress.phone}</span></p>
-              <p> Phone Phone: -<span>{order.shippingAddress.pincode}</span></p>
-            </div>
-          </div> */}
+            
+         
         </div>
       ))}
     </div>

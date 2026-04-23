@@ -48,20 +48,20 @@ export default function Payment() {
  
 
        <div className="shipping-box">
-  <h4>Shipping Address:</h4>=
+  <h4>Shipping Address:</h4>
 
   {shippingAddress ? (
     <>
-      <p>Name :- <span>{shippingAddress.fullname} </span> </p>
-      <p>Phone:- <span> {shippingAddress.phone}</span></p>
+      <p>Name <span>{shippingAddress.fullname} </span> </p>
+      <p>Phone <span> {shippingAddress.phone}</span></p>
       <p>
-        state:- <span>{shippingAddress.state}</span>
+        state <span>{shippingAddress.state}</span>
       </p>
       <p>
-        city :- <span>{shippingAddress.city}</span>
+        city  <span>{shippingAddress.city}</span>
       </p>
-           <p>Address :- <span>{shippingAddress.street}</span></p> 
-           <p>Pincode :- <span>{shippingAddress.zip}</span></p> 
+           <p>Address  <span>{shippingAddress.street}</span></p> 
+           <p>Pincode  <span>{shippingAddress.zip}</span></p> 
     </>
   ) : (
     <p>No shipping address found.</p>

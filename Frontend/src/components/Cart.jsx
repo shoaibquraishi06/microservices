@@ -1,13 +1,17 @@
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { addToCart , fetchCart} from "../feature/cartThunk";
+import { useDispatch, useSelector } from "react-redux";
 import  {useNavigate } from "react-router-dom";
 import { FiShoppingBag } from "react-icons/fi";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import Skalaton from "./CartSkalaton"
 import "../style/cart.css";
 import product from "./ProfileCard"
 
 export default function CartDrawer() {
   
    const navigate = useNavigate();
+   const dispatch = useDispatch();
 
      const productPageHandler = (e) => {
     
@@ -15,24 +19,25 @@ export default function CartDrawer() {
    
   };
 
-   const { items, loading } = useSelector(state => state.cart.items);
 
-  const total = items.reduce(
-    (sum, item) => sum + (item.price?.amount || 0) * item.quantity,
-    0
-  );
+  const { items, loading } = useSelector(state => state.cart);
+   console.log("render items:", items);
 
+  useEffect(() => {
+  dispatch(fetchCart());
+}, [dispatch]);
+
+  const total = (items || []).reduce(
+  (sum, item) => sum + (item.price?.amount || 0) * item.quantity,
+  0
+);
   if (loading) {
-    return <aside className="cart-drawer">Loading...</aside>;
+    return <aside className="cart-drawer"> <Skalaton /> </aside>;
   }
 
   if (!items || items.length === 0) {
 
-   
-   
-
-
-    return (
+       return (
       <aside className="cart-drawer-conditional">
          
        <div className="bottom">
@@ -49,13 +54,11 @@ export default function CartDrawer() {
       </aside>
     );
   }
-
-    const backHandler = () => {
+const backHandler = () => {
     navigate("/product");
     }
 
-
-  return (
+ return (
      
    <div className="cart-container">
   

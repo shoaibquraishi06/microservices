@@ -1,6 +1,7 @@
 import AccountSidebar from "../components/AccountSidebar";
 import RecentOrders from "../components/RecentOrders";
 import AccountDetails from "../components/AccountDetails";
+
 import { useSelector } from "react-redux";
 import "../style/account.css";
 

@@ -9,4 +9,4 @@ export const addToCartAPI = (data) =>
   API.post("/items", data);
 
 export const getCartAPI = () =>
-  API.get("/");
+  API.get("/" , () => console.log("cart api called"));

@@ -25,6 +25,9 @@ const authSlice = createSlice({
       );
     },
 
+    //fetching user data from backend and updating the state
+    
+
     // LOGOUT
     logout(state) {
       state.user = null;

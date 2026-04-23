@@ -1,14 +1,46 @@
 import "../style/sidebar.css";
+import axios from "axios";
 import { IoIosLogOut } from "react-icons/io";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../feature/authSlice";
+import { resetCart } from "../feature/cartSlice";
 
 export default function AccountSidebar() {
- 
-   const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
 
   if (!user) {
     return <p>Please login first</p>;
   }
+
+    const handleLogout = async () => {
+    try {
+      await axios.post(
+        "http://localhost:3000/api/auth/logout",
+        {},
+        {
+          withCredentials: true, // important for cookies
+        }
+      );
+
+      dispatch(resetCart());
+      dispatch(logout());
+
+      localStorage.clear();
+      sessionStorage.clear();
+
+      navigate("/login", { replace: true });
+    } catch (error) {
+      console.error(
+        error.response?.data?.message || "Logout failed"
+      );
+    }
+  };
+
+
 
   return (
     <aside className="sidebar">
@@ -23,7 +55,11 @@ export default function AccountSidebar() {
         <li>My Orders</li>
         <li>Wishlist</li>
         <li>Cart</li>
-        <li className="logout"> <IoIosLogOut /><span>Logout</span></li>
+        <li className="logout" onClick={handleLogout}>
+          {" "}
+          <IoIosLogOut />
+          <span>Logout</span>
+        </li>
       </ul>
     </aside>
   );

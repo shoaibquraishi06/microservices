@@ -4,6 +4,7 @@ import { fetchProducts } from "../feature/productThunk";
 import ProductGrid from "../components/ProductGrid";
 import ProductCard from "../components/ProductCard"
 import FilterSidebar from "../components/FilterSlidebar";
+import Skalaton from "../components/ProductSkaleton";
 
 export default function Products() {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ export default function Products() {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  if (loading) return <p>Loading products...</p>;
+  if (loading) return <Skalaton />;
   if (error) return <p>Error: {error}</p>;
 
   return (

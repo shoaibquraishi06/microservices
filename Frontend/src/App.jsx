@@ -41,10 +41,18 @@ function App() {
   // const [open, setOpen] = useState(false);
    const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
+   useEffect(() => {
+    const firstVisit = sessionStorage.getItem("loaded");
+
+    if (firstVisit) {
+      setLoading(false);
+      return;
+    }
+
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2500); // total loader duration
+      sessionStorage.setItem("loaded", "true");
+    }, 2800);
 
     return () => clearTimeout(timer);
   }, []);

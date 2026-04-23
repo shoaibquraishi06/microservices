@@ -1,0 +1,120 @@
+/* ===========================
+   src/components/skalton.css
+=========================== */
+
+.sk-wrapper {
+  display: grid;
+  gap: 18px;
+  padding: 16px;
+}
+
+.sk-card {
+  display: flex;
+  gap: 14px;
+  padding: 14px;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.sk-image {
+  width: 110px;
+  height: 110px;
+  border-radius: 14px;
+  flex-shrink: 0;
+}
+
+.sk-content {
+  flex: 1;
+}
+
+.sk-line {
+  height: 14px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.sk-title {
+  width: 65%;
+  height: 18px;
+}
+
+.sk-text {
+  width: 85%;
+}
+
+.sk-price {
+  width: 35%;
+}
+
+.sk-qty {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.sk-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.sk-count {
+  width: 42px;
+  height: 20px;
+  border-radius: 8px;
+}
+
+.sk-remove {
+  width: 90px;
+  height: 14px;
+  border-radius: 10px;
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+  background: #e9e9e9;
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.85),
+    transparent
+  );
+  animation: shimmer 1.1s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .sk-card {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .sk-image {
+    width: 90px;
+    height: 90px;
+  }
+
+  .sk-title {
+    width: 75%;
+  }
+
+  .sk-text {
+    width: 95%;
+  }
+}

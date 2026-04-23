@@ -1,19 +1,25 @@
+// ===============================
+// src/feature/order/orderSlice.js
+// ===============================
 import { createSlice } from "@reduxjs/toolkit";
-import { createOrder, getMyOrders } from "../order/order.Thunk";
+import { createOrder,getMyOrders,} from "../order/order.Thunk";
+
+const initialState = {
+  loading: false,
+
+  // latest created order
+  order: null,
+
+  // history
+  orders: [],
+
+  success: false,
+  error: null,
+};
 
 const orderSlice = createSlice({
   name: "order",
-
-  initialState: {
-    loading: false,
-
-    // 🔥 IMPORTANT (2 alag states)
-    order: null,     // single order (checkout)
-    orders: [],      // order history
-
-    success: false,
-    error: null
-  },
+  initialState,
 
   reducers: {
     resetOrder: (state) => {
@@ -21,60 +27,80 @@ const orderSlice = createSlice({
       state.success = false;
       state.order = null;
       state.error = null;
-    }
+    },
+
+    clearOrders: (state) => {
+      state.orders = [];
+      state.order = null;
+      state.error = null;
+      state.loading = false;
+      state.success = false;
+    },
   },
 
   extraReducers: (builder) => {
-
-    // =============================
-    // ✅ CREATE ORDER
-    // =============================
     builder
+
+      // ===================
+      // CREATE ORDER
+      // ===================
       .addCase(createOrder.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
 
       .addCase(createOrder.fulfilled, (state, action) => {
         state.loading = false;
         state.success = true;
 
-        // 👉 backend se { order: {...} }
-        state.order = action.payload.order;
+        // backend may return {order:{...}}
+        state.order =
+          action.payload?.order ||
+          action.payload ||
+          null;
 
-        // 👉 optional: history me push bhi kar sakte ho
-        if (action.payload.order) {
-          state.orders.unshift(action.payload.order);
+        // history top insert
+        if (state.order) {
+          state.orders.unshift(state.order);
         }
       })
 
       .addCase(createOrder.rejected, (state, action) => {
         state.loading = false;
+        state.success = false;
         state.error = action.payload;
-      });
+      })
 
-
-    // =============================
-    // ✅ GET MY ORDERS
-    // =============================
-    builder
+      // ===================
+      // GET MY ORDERS
+      // ===================
       .addCase(getMyOrders.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
 
       .addCase(getMyOrders.fulfilled, (state, action) => {
         state.loading = false;
 
-        // 👉 backend se { orders: [] }
-        state.orders = action.payload;
+        // supports:
+        // {orders:[...]}
+        // or [...]
+        state.orders =
+          action.payload?.orders ||
+          action.payload ||
+          [];
       })
 
       .addCase(getMyOrders.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
-
-  }
+  },
 });
 
-export const { resetOrder } = orderSlice.actions;
+export const {
+  resetOrder,
+  clearOrders,
+} = orderSlice.actions;
+
 export default orderSlice.reducer;

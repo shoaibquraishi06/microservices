@@ -7,8 +7,7 @@ export const addToCart = createAsyncThunk(
     try {
       const { data } = await addToCartAPI({
         productId,
-      
-        qty: 1
+         qty: 1
       });
       return data; // updated cart
     } catch (err) {

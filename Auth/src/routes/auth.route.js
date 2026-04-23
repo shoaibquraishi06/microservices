@@ -14,10 +14,10 @@ router.get('/me', authMiddleware.authMiddleware, authController.getCurrentUser);
 
 router.post('/logout', authMiddleware.authMiddleware, authController.logoutUser);
 
-router.get('/getUserAddress', authMiddleware.authMiddleware, authController.getUserAddress);
+// router.get('/getUserAddress', authMiddleware.authMiddleware, authController.getUserAddress);
 
-router.post('/user/me/address', validators.addressValidation, authMiddleware.authMiddleware, authController.addUserAddress);
+// router.post('/user/me/address', validators.addressValidation, authMiddleware.authMiddleware, authController.addUserAddress);
 
-router.delete('/user/me/address/:addressId', authMiddleware.authMiddleware, authController. deleteUserAddress);
+// router.delete('/user/me/address/:addressId', authMiddleware.authMiddleware, authController. deleteUserAddress);
 
 module.exports = router;
