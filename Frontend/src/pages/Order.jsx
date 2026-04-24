@@ -13,7 +13,7 @@ export default function Order() {
 
   // ✅ Redux se data le rahe hain
   const { orders, loading } = useSelector((state) => state.order);
-  const { items } = useSelector((state) => state.cart.items);
+  const { items } = useSelector((state) => state.cart);
   console.log(orders);
   console.log(items);
 

@@ -23,8 +23,8 @@ export default function Checkout() {
 
   const { loading, success } = useSelector((state) => state.order);
  
-   const { items = [] } = useSelector(state => state.cart.items);
-  //  console.log("items", items);
+   const { items = [] } = useSelector(state => state.cart);
+   console.log("items", items);
    
   const [form, setForm] = useState({
     fullname: "",
@@ -47,10 +47,6 @@ export default function Checkout() {
         shippingAddress: form, // 🔥 BACKEND EXPECTS THIS
       })
     );
-
-  
-
-
 
   }
 

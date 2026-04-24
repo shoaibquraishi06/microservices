@@ -11,7 +11,7 @@ export default function Payment() {
 
   // ✅ All hooks first
   const { loading, order } = useSelector(state => state.order);
-  const { items = [] } = useSelector(state => state.cart.items);
+  const { items = [] } = useSelector(state => state.cart);
 
   // ✅ Then conditions
   if (loading) return <h3>Loading...</h3>;
