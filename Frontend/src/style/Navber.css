@@ -25,10 +25,6 @@
   src: url(../assets/fonts/Gilroy-Regular.ttf);
 }
 
-
-
-
-
 .header {
   display: flex;
   justify-content: center;
@@ -42,10 +38,10 @@
   background: #ffffff;
   width: 60%;
   color: #fff;
-  border-radius: 20px;
+  border-radius: 10px;
   /* border: 1px solid #dbd7d7; */
   gap: 50px;
-  padding: 0.3rem 1.8rem;
+  padding: 0.3rem 3rem;
   position: fixed;
   top: 2%;
   left: 18%;
@@ -100,8 +96,7 @@
 
 .nav-end {
   display: flex;
-
-  gap: 25px;
+  gap: 5px;
   color: #121212;
 }
 

@@ -42,16 +42,16 @@ function App() {
    const [loading, setLoading] = useState(true);
 
    useEffect(() => {
-    const firstVisit = sessionStorage.getItem("loaded");
+    // const firstVisit = sessionStorage.getItem("loaded");
 
-    if (firstVisit) {
-      setLoading(false);
-      return;
-    }
+    // if (firstVisit) {
+    //   setLoading(false);
+    //   return;
+    // }
 
     const timer = setTimeout(() => {
       setLoading(false);
-      sessionStorage.setItem("loaded", "true");
+      // sessionStorage.setItem("loaded", "true");
     }, 2800);
 
     return () => clearTimeout(timer);
