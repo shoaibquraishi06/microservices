@@ -4,7 +4,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:3003/api/orders",
+  baseURL: "https://microservices-2-o221.onrender.com/api/orders",
   withCredentials: true, // cookie auth
 });
 

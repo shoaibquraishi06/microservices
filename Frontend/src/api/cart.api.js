@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:3002/api/cart/",
+  baseURL: "https://microservices-1-wmb0.onrender.com/api/cart/",
   withCredentials: true // 🔥 important (cookie/JWT)
 });
 

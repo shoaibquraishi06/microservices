@@ -36,7 +36,7 @@ async function addItemToCart(req, res) {
         cart = new CartModel({ user: user.id, items: [] });
     }
 
-       const productResponse = await axios.get(`http://localhost:3001/api/products/${productId}`); 
+       const productResponse = await axios.get(`https://microservices-3-777q.onrender.com/api/products/${productId}`); 
 
       let productData = productResponse.data.data;
     //   console.log(productData);

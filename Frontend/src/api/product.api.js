@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:3001/api/products",
+  baseURL: "https://microservices-3-777q.onrender.com/api/products",
   withCredentials: true,
 });
 export const fetchProductsAPI = async () => {
@@ -11,5 +11,5 @@ export const fetchProductsAPI = async () => {
 
 
 export const fetchProductByIdAPI = (id) => {
-  return axios.get(`http://localhost:3001/api/products/${id}`);
+  return axios.get(`https://microservices-3-777q.onrender.com/api/products/${id}`);
 };
