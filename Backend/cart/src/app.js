@@ -8,8 +8,11 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-    origin: "https://microservices-1-wmb0.onrender.com",
-    credentials: true
+  origin: [
+    "http://localhost:5173",
+    "https://nike-liter.netlify.app"
+  ],
+  credentials: true
 }));
 
 
