@@ -9,8 +9,11 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: "https://microservices-3-777q.onrender.com/",
-    credentials: true
+  origin: [
+    "http://localhost:5173",
+    "https://nike-liter.netlify.app"
+  ],
+  credentials: true
 }));
 app.get('/', (req, res) => {
     res.status(200).json({
