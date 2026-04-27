@@ -20,7 +20,7 @@ export default function AccountSidebar() {
     const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:3000/api/auth/logout",
+        "https://microservices-u9us.onrender.com/api/auth/logout",
         {},
         {
           withCredentials: true, // important for cookies
