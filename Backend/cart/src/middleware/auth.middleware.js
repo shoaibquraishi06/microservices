@@ -1,7 +1,5 @@
 const jwt = require('jsonwebtoken');
 
-
-
 function createAuthMiddleware(roles = [ "user" ]) {
 
     return function authMiddleware(req, res, next) {
@@ -30,10 +28,6 @@ function createAuthMiddleware(roles = [ "user" ]) {
                 message: 'Unauthorized: Invalid token',
             });
         }
-
     }
-
 }
-
-
 module.exports = createAuthMiddleware;

@@ -42,9 +42,7 @@ export default function Login() {
  
     { email, password },
     { withCredentials: true },
-      //  localStorage.setItem("token", res.data.token),
-      //  console.log("token:", res.data.token)
-       
+    localStorage.setItem("token", res.data.token)
   );
 
   // 👇 BACKEND SE USER NIKALO

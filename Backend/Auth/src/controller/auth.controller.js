@@ -139,10 +139,9 @@ async function logoutUser(req, res) {
 
    try {
     res.cookie("token", "", {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-      expires: new Date(0),
+    httpOnly: true,
+  secure: true,
+  sameSite: "none",
     });
 
     return res.status(200).json({
