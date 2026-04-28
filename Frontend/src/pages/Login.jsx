@@ -18,53 +18,32 @@ export default function Login() {
   const [error, setError] = useState("");
   const [role, setRole] = useState(""); // 'user' or 'seller'
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
 
-    if (!email && !password) {
-      setError("All fields required!");
-      return;
-    }
 
-    if (!email) {
-      setError("email required!");
-      return;
-    }
-    if (!password) {
-      setError("password required!");
-      return;
-    }
-    setSubmitting(true);
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
   try {
-  const res = await axios.post(
-    "https://microservices-u9us.onrender.com/api/auth/login",
- 
-    { email, password },
-    { withCredentials: true },
-    localStorage.setItem("token", res.data.token)
-  );
+    const res = await axios.post(
+      "https://microservices-u9us.onrender.com/api/auth/login",
+      { email, password },
+      { withCredentials: true }
+    );
 
-  // 👇 BACKEND SE USER NIKALO
-  const user = res.data.user;
+    localStorage.setItem("token", res.data.token);
 
-  // 👇 REDUX ME USER BHEJO
-  dispatch(loginSuccess(user));
+    const user = res.data.user;
 
-  setError("");
-  alert("Login successfully!");
+    dispatch(loginSuccess(user));
 
-  navigate("/account"); // ya "/"
-} catch (err) {
-  console.error(err);
-  setError(
-    err.response?.data?.message || "Wrong credentials"
-  );
-} finally {
-  setSubmitting(false);
-}
-
-  };
+    setError("");
+    navigate("/account");
+  } catch (err) {
+    setError(err.response?.data?.message || "Wrong credentials");
+  } finally {
+    setSubmitting(false);
+  }
+};
 
   return (
     <div className="login-container">
