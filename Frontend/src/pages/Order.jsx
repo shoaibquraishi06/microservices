@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Product from "../assets/nikeshoes2.avif"
+// import Product from "../assets/nikeshoes2.avif"
 import { useDispatch, useSelector } from "react-redux";
 import { getMyOrders } from "../feature/order/order.Thunk";
 import { useNavigate } from "react-router-dom";
