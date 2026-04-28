@@ -7,7 +7,7 @@ import Orders from './pages/Order';
 import Products from './pages/Products';
 import Footer from './components/Footer';
 import Contact from './components/Contact';
-import ShowPhoto from "./components/BottomPgoto"
+
 // import ChatAssistant from './components/ChatAssistant';
 
 //  -----auth pages
