@@ -10,7 +10,7 @@ app.use(express.json())
 app.use(cors({
     origin: [
     "http://localhost:5173",
-    "https://nike-jordan-shoe.netlify.app/"
+    "https://nike-jordan-shoe.netlify.app"
   ],
     
     
