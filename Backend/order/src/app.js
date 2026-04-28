@@ -11,7 +11,7 @@ app.use(cookieParser());
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://nike-liter.netlify.app"
+    "https://nike-jordan-shoe.netlify.app/"
   ],
   credentials: true
 }));
