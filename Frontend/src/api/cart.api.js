@@ -5,6 +5,7 @@ const API = axios.create({
   withCredentials: true,
 });
 
+// token auto attach
 API.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
 
@@ -18,3 +19,7 @@ API.interceptors.request.use((config) => {
 export const addToCartAPI = (data) => API.post("/items", data);
 
 export const getCartAPI = () => API.get("/");
+
+export const removeFromCartAPI = (id) => API.delete(`/items/${id}`);
+
+export default API;

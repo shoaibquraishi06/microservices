@@ -112,6 +112,7 @@ if (!isMatch) {
 
     return res.status(200).json({
       message: 'login successful',
+      token,
       user: {
         id: user._id,
         username: user.username,

@@ -25,10 +25,12 @@ const handleSubmit = async (e) => {
 
   try {
     const res = await axios.post(
-      "https://microservices-u9us.onrender.com/api/auth/login",
+      "https://microservices-u9us.onrender.com/api/auth/login", 
+     
       { email, password },
       { withCredentials: true }
     );
+    console.log("LOGIN RESPONSE:", res.data),
 
     localStorage.setItem("token", res.data.token);
 
