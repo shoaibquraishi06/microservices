@@ -5,21 +5,8 @@ const API = axios.create({
   withCredentials: true,
 });
 
-// token auto attach
-API.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
+export const createOrderAPI = (data) => API.post("/", data);
 
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
+export const getMyOrdersAPI = () => API.get("/myorders");
 
-  return config;
-});
-
-export const createOrderAPI = (orderData) =>
-  API.post("/", orderData);
-
-export const getMyOrdersAPI = () =>
-  API.get("/me");
-
-export default API;
+export const getOrderAPI = () => API.get("/me");
