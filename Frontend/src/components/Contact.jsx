@@ -31,7 +31,7 @@ export default function Contact() {
 
   try {
 
-    await axios.post("http://localhost:3008/api/contact", {
+    await axios.post("https://microservices-4-j5pd.onrender.com/api/contact", {
     
       headers: {
         "Content-Type": "application/json"
