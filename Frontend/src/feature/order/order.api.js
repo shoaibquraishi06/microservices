@@ -16,5 +16,5 @@ API.interceptors.request.use((config) => {
 });
 
 export const createOrderAPI = (data) => API.post("/", data);
-export const getMyOrdersAPI = () => API.get("/myorders");
+export const getMyOrdersAPI = () => API.get("/me");
 export const getOrderAPI = () => API.get("/me");

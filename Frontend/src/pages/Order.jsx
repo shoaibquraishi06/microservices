@@ -14,8 +14,11 @@ export default function Order() {
   // ✅ Redux se data le rahe hain
   const { orders, loading } = useSelector((state) => state.order);
   const { items } = useSelector((state) => state.cart);
-  console.log(orders);
-  console.log(items);
+
+  
+  console.log("Items:", items);
+  console.log("Orders:", orders);
+
 
   // ✅ Component load hote hi API call
   useEffect(() => {
@@ -52,20 +55,20 @@ export default function Order() {
           </div>
 
           {/* ITEMS */}
-          {order.items.map((items, i) => (
-            <div className="order-item" key={i}>
-              <img src={items.image} alt="product" />
+         {order.items?.map((item, index) => (
+      <div key={index} className="order-product">
+       <img
+      src={item.image}
+        alt={item.title}
+      className="order-product-img"
+    />
 
-              <div className="item-info">
-                <h4>{items.title || "Product"}</h4>
-                <p>Size: UK 6 × {items.quantity}</p>
-              </div>
-
-              {/* <div className="item-price">
-                ₹ {item.price.amount.toLocaleString()}
-              </div> */}
-            </div>
-          ))}
+    <div className="order-product-info">
+      <p>Product: {item.title}</p>
+      <p>Size: UK 6 × {item.quantity}</p>
+    </div>
+  </div>
+))}
 
         
 

@@ -128,22 +128,31 @@ async function getOrder(req, res) {
 
 async function myOrders(req, res) {
 
-try {
+  try {
+    const userId = req.user.id || req.user._id;
+    log("USERID:", userId);
 
-    const userId = req.user.id;
+    if (!userId) {
+      return res.status(401).json({
+        success: false,
+        message: "User ID not found",
+      });
+    }
 
     const orders = await OrderModel.find({ user: userId })
       .sort({ createdAt: -1 });
 
-    res.json({
+    res.status(200).json({
       success: true,
-      orders
+      orders,
     });
 
   } catch (error) {
+    console.log("MYORDERS ERROR:", error);
+
     res.status(500).json({
       success: false,
-      message: error.message
+      message: error.message,
     });
   }
 
