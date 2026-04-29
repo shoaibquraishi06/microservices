@@ -11,6 +11,19 @@
   width: 60%;
 }
 
+.condtional-header{
+  font-weight: 600;
+  color: #282727;
+  font-size: 1.3rem;
+  font-family:"regular-text";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 35%;
+  left: 40%;
+}
+
 .back-link {
   margin-bottom: 25px;
   cursor: pointer;
@@ -191,7 +204,14 @@ margin: 14px 12px;
 @media (max-width: 900px) {
   .payment-container {
     flex-direction: column;
+    padding: 20px;
+    width: 88%;
   }
+
+  .condtional-header{
+    font-size: 1.2rem;
+     top: 35%;
+  left: 15%;}
 
   .payment-left,
   .payment-right {

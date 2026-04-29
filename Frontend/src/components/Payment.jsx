@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import SkaletonLoader from "./PayemtnSkaleton"
 import "../style/payment.css";
 
 export default function Payment() {
@@ -14,8 +15,8 @@ export default function Payment() {
   const { items = [] } = useSelector(state => state.cart);
 
   // ✅ Then conditions
-  if (loading) return <h3>Loading...</h3>;
-  if (!order) return <h3>Please complete shipping first</h3>;
+  if (loading) return <h3><SkaletonLoader /></h3>;
+  if (!order) return <h3 className="condtional-header">Please complete Shipping Address</h3>;
 
   const shippingAddress = order.shippingAddress;
 

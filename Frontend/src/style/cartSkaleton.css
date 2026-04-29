@@ -103,6 +103,10 @@
   .sk-card {
     padding: 12px;
     gap: 12px;
+    display:flex;
+    flex-direction: column;
+    /* justify-content: center;
+    align-items: center; */
   }
 
   .sk-image {
