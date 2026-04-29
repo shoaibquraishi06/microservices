@@ -25,6 +25,11 @@ export default function Checkout() {
  
    const { items = [] } = useSelector(state => state.cart);
    console.log("items", items);
+
+   if (!items || items.length === 0) {
+  alert("Cart is empty");
+  return;
+}
    
   const [form, setForm] = useState({
     fullname: "",
@@ -44,7 +49,8 @@ export default function Checkout() {
     e.preventDefault();
 
     dispatch(createOrder({
-        shippingAddress: form, // 🔥 BACKEND EXPECTS THIS
+        shippingAddress: form,
+        items // 🔥 BACKEND EXPECTS THIS
       })
     );
 
