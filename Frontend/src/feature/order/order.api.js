@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://microservices-2-0221.onrender.com/api/orders",
+  baseURL: "https://microservices-2-o221.onrender.com/api/orders",
   withCredentials: true,
 });
 
