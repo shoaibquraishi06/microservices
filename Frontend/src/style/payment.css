@@ -26,9 +26,13 @@
 
 .back-link {
   margin-bottom: 25px;
+  display: block;
   cursor: pointer;
   font-weight: 500;
   color: #262626;
+  gap: 5px;
+  /* background-color: #959292; */
+  width: fit-content;
   font-size: 0.9rem;
    padding: 0.45rem 0.8rem;
   font-family:"regular-text";
@@ -43,6 +47,10 @@
   padding: 0.45rem 0.8rem;
 }
 
+#back-text{
+  margin-left: 5px;
+ 
+}
 
 .back-btn{
   margin-left: 5px;

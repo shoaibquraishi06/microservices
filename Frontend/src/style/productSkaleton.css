@@ -4,6 +4,7 @@
   padding: 30px;
   background: #f5f5f5;
   min-height: 100vh;
+  margin-top: 5rem;
 }
 
 /* shimmer effect */
@@ -44,7 +45,7 @@
 /* Grid */
 .sk-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 2fr);
   gap: 24px;
 }
 
@@ -53,6 +54,7 @@
   border: 1px solid #ececec;
   border-radius: 10px;
   padding: 14px;
+  width: 350px;
 }
 
 .sk-image {
@@ -73,6 +75,7 @@
   width: 45%;
   height: 16px;
   border-radius: 8px;
+  margin-left: 3rem;
 }
 
 .sk-price {
@@ -105,8 +108,14 @@
 /* Tablet */
 @media (max-width: 1200px) {
   .sk-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 2fr);
+    
   }
+
+  .sk-card{
+    width: 330px;
+  }
+
 }
 
 /* Mobile */
@@ -115,6 +124,9 @@
     padding: 18px;
   }
 
+  .sk-card{
+    width: 300px;
+  }
   .sk-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
@@ -136,6 +148,13 @@
 
 @media (max-width: 480px) {
   .sk-grid {
-    grid-template-columns: 1fr;
+   grid-template-columns: repeat(2, 1fr);
+   gap: 5px;
   }
+
+   .sk-card{
+    width: 150px;
+    height: 160px;
+  }
+
 }

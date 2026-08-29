@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function ProductGrid({ product = [] }) {
-  if (!product.length) return <p>No products found.</p>;
+  if (!product.length) return <p>No products found..</p>;
 
   const navigate = useNavigate();
 

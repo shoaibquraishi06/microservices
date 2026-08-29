@@ -20,6 +20,11 @@
   padding: 0 1rem;
 }
 
+.error{
+  position: absolute;
+  top: 10%;
+  left: 5%;
+}
 
 
 
@@ -40,9 +45,20 @@
 }
 
 
+.product-heading{
+  color: #000;
+  font-family: 'regular-text';
+  margin: 5rem 0 0 7rem;
+}
+.product-heading-grid{
+  color: #000;
+  font-family: 'regular-text';
+  margin: 3rem 0 2rem 17rem;
+}
+
 .product-grid{
   display: flex;
-  justify-content:flex-start;
+  justify-content:center;
   background-color: rgb(255, 255, 255);
   flex-wrap: wrap;
   /* flex-shrink: 1; */

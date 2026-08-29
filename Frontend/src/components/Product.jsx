@@ -1,30 +1,23 @@
-import { useEffect, useState } from "react";
-import { fetchProducts } from "../api/product.api";
-import ProductGrid from "../components/ProductGrid";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "../feature/productThunk";
+import ProductSection from "../components/ProductSection";
+import Skaleton from "../components/ProductSkaleton";
 
 export default function Products() {
-  const [products, setProducts] = useState([]); // ✅ array
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const { items, loading, error } = useSelector((state) => state.products);
 
   useEffect(() => {
-    async function loadProducts() {
-      try {
-        const data = await fetchProducts();
-        setProducts(data);
-      } catch (error) {
-        console.error("Failed to fetch products", error);
-      } finally {
-        setLoading(false);
-      }
-    }
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
-    loadProducts();
-  }, []);
+  if (loading) return <Skaleton />;
+  if (error) return <p className="error" >Error: {error}</p>;
 
-  if (loading) return <p>Loading products...</p>;
-
-  return   <ProductGrid product={products} />
- 
-  
-
+  return (
+    <div>
+      <ProductSection product={Array.isArray(items) ? items : []} />
+    </div>
+  );
 }

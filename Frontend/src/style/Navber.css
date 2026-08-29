@@ -83,7 +83,7 @@
   color: #252424;
   backdrop-filter: blur(10px);
   /* border-bottom: 1px solid #121212; */
- /* background: #bbb8b8a8; */
+ /* background: #a09e9ea8; */
 }
 
 .navbar-menu {
@@ -121,12 +121,14 @@
 
 .nav-end .whistlist:hover {
      border-radius: 5px;
-    background: #bbb8b8a8;
+    background: #83808004;
+    backdrop-filter:blur(10px);
 }
 
 .nav-end .Profile:hover {
   border-radius: 5px;
-    background: #bbb8b8a8;
+    background: #ffffff44;
+    backdrop-filter:blur(10px);
 }
 
 

@@ -9,7 +9,7 @@ const heroSection = () => {
 
    const productPageHandler = (e) => {
     
-     navigate("/product");
+     navigate("/products");
    
   };
 

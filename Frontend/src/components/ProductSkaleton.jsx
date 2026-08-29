@@ -10,18 +10,18 @@ export default function Skalaton() {
 
       {/* Product Grid */}
       <div className="sk-grid">
-        {Array.from({ length: 5 }).map((_, index) => (
+        {Array.from({ length: 8 }).map((_, index) => (
           <div className="sk-card" key={index}>
             <div className="sk-image shimmer"></div>
 
             <div className="sk-row">
-              <div className="sk-title shimmer"></div>
-              <div className="sk-price shimmer"></div>
+              {/* <div className="sk-title shimmer"></div> */}
+              {/* <div className="sk-price shimmer"></div> */}
             </div>
 
             <div className="sk-subtitle shimmer"></div>
 
-            <div className="sk-button shimmer"></div>
+          
           </div>
         ))}
       </div>

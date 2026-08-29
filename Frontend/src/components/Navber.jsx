@@ -7,6 +7,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { IoIosLogOut } from "react-icons/io";
 
 import logo from "../assets/newLogo.png";
+// import NewLogo2 from "../assets/2.jpg";
 import CartDrawer from "../components/Cart";
 import { Link, useNavigate } from "react-router-dom";
 import profilePic from "../assets/heroSection.avif";
@@ -54,7 +55,7 @@ const Navber = () => {
         </div>
         <div className={`navbar-links ${menuOpen ? "active" : ""}`}>
           <Link to="/">Home</Link>
-          <Link to="/product">Products</Link>
+          <Link to="/products">Products</Link>
           {/* <Link to="/cart">Cart</Link> */}
           <Link to="/orders">Orders</Link>
           <Link to="/contact">Contact</Link>

@@ -4,7 +4,7 @@ import Loader from "./components/Loader"
 import Navber from './components/Navber';
 import Home from './components/heroSection';
 import Orders from './pages/Order';
-import Products from './pages/Products';
+import Products from './components/Product';
 import Footer from './components/Footer';
 import Contact from './components/Contact';
 
@@ -17,8 +17,6 @@ import ProductGrid from './components/ProductGrid';
 import ProductctDetails from './components/ProductDetail';
 
 //  -----components and context
-
-
 // import Wishlist  from './components/Whishlist';
 import ProductDetails from './components/ProductDetail';
 import { CartProvider } from "./context/CartContext";
@@ -28,15 +26,10 @@ import Account from "./pages/Account";
 import Checkout from './components/Checkout';
 import Payment from './components/Payment';
 
-
-
 // -----routing
-
 import MainRoutes from './routes/MainRoutes';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
-
-
 function App() {
   // const [open, setOpen] = useState(false);
    const [loading, setLoading] = useState(true);
@@ -74,7 +67,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/account" element={<Account />} />
           <Route path="/cart" element={<CartDrawer />} />
-          <Route path="/product" element={<Products />} />
+          <Route path="/products" element={<Products />} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/payment" element={<Payment />} />
@@ -88,13 +81,7 @@ function App() {
     )}
   </>
 
-   
-
-      
-        
-
-      
-    </>
+       </>
   );
 }
 

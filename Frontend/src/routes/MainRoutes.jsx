@@ -1,25 +1,26 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import HeroSection from '../components/heroSection';
-import Account from '../pages/Account';
-import Products from '../pages/Products';
-
-import Contact from '../components/Contact';
+import HeroSection from "../components/heroSection";
+import Contact from "../components/Contact";
 import Footer from "../components/Footer";
-// Placeholder Order component
-const Order = () => <div style={{padding: '2rem', textAlign: 'center'}}><h2>Order Page</h2><p>This is the order page. Implement your order logic here.</p></div>;
-
+import ProductGrid from "../components/ProductGrid";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchProducts } from "../feature/productThunk";
 
 const MainRoutes = () => {
+  const dispatch = useDispatch();
+  const { items } = useSelector((state) => state.products);
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
   return (
-    <>
+    <div>
       <HeroSection />
-      {/* <Account/> */}
-      <Products />
-    
+      <ProductGrid product={Array.isArray(items) ? items : []} />
       <Contact />
       <Footer />
-    </>
+    </div>
   );
 };
 

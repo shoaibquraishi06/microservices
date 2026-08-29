@@ -31,7 +31,7 @@ export default function Order() {
     <div className="orders-container">
       {/* BACK */}
       <div className="back-link" onClick={() => navigate("/profile")}>
-        <FaArrowLeftLong /> Back to Profile
+        <FaArrowLeftLong /> <span id="back-text" >Back</span>
       </div>
 
       <h1 className="orders-title">MY ORDERS</h1>
@@ -69,14 +69,8 @@ export default function Order() {
     </div>
   </div>
 ))}
-
-        
-
-       
-
-            
-         
-        </div>
+ vv
+ </div>
       ))}
     </div>
   );
