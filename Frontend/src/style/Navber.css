@@ -242,3 +242,15 @@
   }
 
 }
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+.navbar{
+  width: 73%;
+  left:9%;
+  gap: 10px;
+  
+}
+
+
+}
