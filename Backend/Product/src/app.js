@@ -21,6 +21,12 @@ app.get('/', (req, res) => {
     });
 })
 
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Product service is working",
+  });
+});
 
 
 app.use('/api/auth', authRouter);
