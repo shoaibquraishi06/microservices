@@ -6,6 +6,11 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../feature/authSlice";
 import { resetCart } from "../feature/cartSlice";
+import { CiUser } from "react-icons/ci";
+import { MdFavoriteBorder } from "react-icons/md";
+import { LuShoppingCart } from "react-icons/lu";
+import { MdOutlineBorderColor } from "react-icons/md";
+import photo from "../assets/newLogo.png"
 import NotUser from "../components/NotAcountUser";
 
 export default function AccountSidebar() {
@@ -45,23 +50,39 @@ export default function AccountSidebar() {
 
   return (
     <aside className="sidebar">
+  
+     <div className="sidebar-container"></div>
       <div className="profile-box">
         <div className="avatar">S</div>
+      <div className="profile-det">
         <h3>{user.username}</h3>
         <p>{user.email}</p>
+        </div>
       </div>
 
       <ul className="menu">
-        <li className="active">My Account</li>
-        <li>My Orders</li>
-        <li>Wishlist</li>
-        <li>Cart</li>
-        <li className="logout" onClick={handleLogout}>
+        <li className="active"> <span><CiUser /></span> Personal information</li>
+        <li><span><MdOutlineBorderColor /></span> My Orders</li>
+        <li><span><MdFavoriteBorder /></span> Wishlist</li>
+        <li><span><LuShoppingCart /></span> Cart</li>
+        {/* <li className="logout" onClick={handleLogout}>
           {" "}
           <IoIosLogOut />
           <span>Logout</span>
-        </li>
+        </li> */}
+     
+     
       </ul>
+    
+        <div className="logout-btn">
+          <button>
+        <span><IoIosLogOut /></span>    Logout
+          </button>
+
+        </div>
+
     </aside>
+
+    
   );
 }

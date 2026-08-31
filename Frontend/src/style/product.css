@@ -259,7 +259,17 @@
   .product-card {
     width: 85%;
   }
+
+/* .buyNow{
+  font-size: 0.5rem;
+  padding: 0.5rem 0.5rem
+}
+
+.addToCart{
+  font-size: 0.4rem;
+  padding: 0.5rem 0.5rem
   
+} */
 }
 
 
@@ -288,7 +298,17 @@
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:20px;
-  padding: 0 1rem;
+  padding: 0 0.2rem;
+}
+.buyNow{
+  font-size: 0.7rem;
+  padding: 0.5rem 0.5rem
+}
+
+.addToCart{
+  font-size: 0.4rem;
+  padding: 0.5rem 0.5rem
+  
 }
 
 }
@@ -314,5 +334,16 @@
   gap:5px;
   /* padding: 0 1rem; */
 }
+.buyNow{
+  font-size: 0.5rem;
+  padding: 0.5rem 0.5rem
+}
+
+.addToCart{
+  font-size: 0.4rem;
+  padding: 0.5rem 0.5rem
+  
+}
+
 }
 

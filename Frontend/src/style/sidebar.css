@@ -1,36 +1,53 @@
 
 .sidebar {
   width: 260px;
+  height: 91vh;
   background: #fff;
   padding: 1.5rem;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  gap:5px
 }
 
 .profile-box {
-  text-align: center;
-  margin-bottom: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  gap: 15px;
+  margin-bottom: 0.5rem;
 }
 
 .profile-box h3{
-  font-family: "semi-bold-text";
-  font-size: 1rem;
-  line-height:5px
+  font-family: "regular-text";
+  font-size: 0.9rem;
+  line-height: 0.1rem;
+  color: #000;
  
 }
 .profile-box p{
-  font-family: "semi-bold-text";
-  font-size: 0.9rem;
+  font-family: "regular-text";
+  font-size: 0.8rem;
+  border:none;
+ padding: 0.1rem 0rem;
+   color: #3d3c3c;
   
 }
 
 .avatar {
-  width: 60px;
-  height: 60px;
-  background: #000;
-  color: #fff;
+  width: 50px;
+  height: 50px;
+  background: #eeecec;
+  color: #131313;
+  border: 0.5px solid #8b8989;
   display: flex;
   align-items: center;
+  border-radius: 50%;
   justify-content: center;
-  margin: 0 auto 1.7rem;
+  margin: 0 0 0 0.5rem;
   font-size: 1.4rem;
   line-height: -4rem;
 }
@@ -38,24 +55,34 @@
 .menu {
   list-style: none;
   padding: 0;
+  width: 100%;
+  font-size: 0.9rem;
+  gap: 3rem;
 }
 
 .menu li {
-  padding: 0.75rem;
+  
+  padding: 0.59rem 0.6rem;
   cursor: pointer;
   font-family: "semi-bold-text";
+   transition: all 0.3s ease-in-out;
 }
 
 .menu li:hover{
    transition:all ease-in-out  20ms;
     background: #f2f2f2;
    font-weight: 600;
+   border-right: 2px solid #4d4b4b;
+  border-radius: 0 5px 5px 0;
+
   
 }
 
 .menu li.active {
   background: #f2f2f2;
   font-weight: 600;
+  border-right: 2px solid #4d4b4b;
+  border-radius: 0 5px 5px 0;
 }
 
 .menu .logout {
@@ -75,11 +102,34 @@
    
 }
 
+.logout-btn{
+  background-color: transparent;
+  margin-left: -1rem;
+}
+
+.logout-btn button{
+background-color: #121212;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "regular-text";
+  font-weight: 500;
+}
+
+.logout-btn button:active{
+  background-color: #3d3c3c;
+  scale: 0.98;
+  transition: all 0.2s ease-in-out;
+} 
+
 
 @media (max-width: 768px) {
 .sidebar {
   width: 91%;
   padding: 1rem;
+  height:fit-content;
 
 }
 
