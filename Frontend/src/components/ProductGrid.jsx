@@ -11,7 +11,16 @@ export default function ProductGrid({ product = [] }) {
   return (
   
        <div className="product-container">
- 
+       
+       <h2 className="product-title">Browse All Your Needs.</h2>
+      
+         <div className="category">
+           <p>All</p>
+           <p>Latest</p>
+           <p>Men</p>
+           <p>Women</p>
+         </div>
+          
      <FilterSidebar />
     <div className="product-grid">
     
@@ -21,7 +30,7 @@ export default function ProductGrid({ product = [] }) {
       ))}
     </div>
       
-      <button className="view-btn" onClick={() => navigate("/product")}>
+      <button className="view-btn" onClick={() => navigate("/products")}>
        View All
       </button>
 
