@@ -1,6 +1,7 @@
 import React from 'react'
 import Herologo from '../assets/heroSection.avif';
 import  {useNavigate } from "react-router-dom";
+import MorphSlider from "./HerosectionClourser/MorphSlider";
 import '../style/heroSection.css'
 
 const heroSection = () => {
@@ -17,7 +18,7 @@ const heroSection = () => {
   return (
     <div>
       <section className="hero">
-      <div className="hero-left">
+      {/* <div className="hero-left">
         <p className="category">Men's Shoe</p>
 
         <h1 className="title">
@@ -30,13 +31,14 @@ const heroSection = () => {
         </p>
 
         <button className="cta" onClick={productPageHandler}>Go to collection</button>
-      </div>
+      </div> */}
 
-        <img src={Herologo } className="hero-bg" alt="background" />
+        {/* <img src={Herologo } className="hero-bg" alt="background" /> */}
         {/* <h1 className="air">AIR</h1> */}
         {/* <img src={Herologo } className="shoe" alt="Jordan shoes" /> */}
         {/* <h1 className="jordan">JORDAN</h1>
         <h2 className="rings">6 RINGS</h2> */}
+       <MorphSlider />
      
     </section>
     </div>

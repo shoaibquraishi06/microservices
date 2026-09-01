@@ -25,6 +25,7 @@ import CartDrawer from "./components/Cart";
 import Account from "./pages/Account";
 import Checkout from './components/Checkout';
 import Payment from './components/Payment';
+import Clouser from './components/HerosectionClourser/MorphSlider';
 
 // -----routing
 import MainRoutes from './routes/MainRoutes';
