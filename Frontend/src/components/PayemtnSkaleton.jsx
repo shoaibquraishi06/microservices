@@ -1,7 +1,6 @@
 // Payment.jsx
 import React from "react";
-import "../style/payementSkaleton.css";
-
+import "../style/payementSkaleton.css"
 export default function Payment() {
   return (
     <div className="payment-skeleton-page">
