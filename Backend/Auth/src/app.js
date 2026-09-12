@@ -17,6 +17,13 @@ app.use(cors({
 }));
 
 
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "Product service is working",
+  });
+});
+
 app.get('/', (req, res) => {
     res.status(200).json({
         message: "Auth service is running"
