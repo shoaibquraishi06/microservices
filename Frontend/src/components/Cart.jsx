@@ -15,7 +15,7 @@ export default function CartDrawer() {
 
      const productPageHandler = (e) => {
     
-     navigate("/product");
+     navigate(-1);
    
   };
 
@@ -55,15 +55,16 @@ export default function CartDrawer() {
     );
   }
 const backHandler = () => {
-    navigate("/product");
+    navigate(-1);
     }
 
  return (
      
    <div className="cart-container">
   
-    <div className="back-link" onClick={backHandler}>
+    <div className="back-link-cart" onClick={backHandler}>
                 <span className="back-arrow">    <FaArrowLeftLong /> </span> 
+                <span className="back-text">Back</span>
             </div>
       {/* LEFT SIDE - BAG */}
       <div className="bag-section">

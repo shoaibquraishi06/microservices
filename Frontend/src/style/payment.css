@@ -39,12 +39,12 @@
 }
 
 .back-link:hover {
-  background-color: #f2f2f2;
+ background-color: #ebe9e9;
   color: #1e1d1d;
    font-size: 0.9rem;
   width: fit-content;
   border-radius: 5px;
-  padding: 0.45rem 0.8rem;
+  padding: 0.42rem 0.8rem;
 }
 
 #back-text{
