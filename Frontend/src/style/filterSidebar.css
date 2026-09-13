@@ -172,6 +172,16 @@ label {
     transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
   }
+    
+      .product-title{
+        display: flex;
+        text-align: center;
+         margin-left: 45px;
+      }
+
+   .category {
+    margin-left: 45px;
+   }
 
   .filter-overlay .filter {
     transform: translateX(0);
@@ -179,6 +189,7 @@ label {
 
   .filter-toggle-btn {
     display: block;
+   margin: 2.5rem 0 1rem 0.9rem;
   }
 }
 

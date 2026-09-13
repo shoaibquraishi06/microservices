@@ -144,11 +144,21 @@
 
 @media (max-width:768px) {
 
+   .register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0;
+   }
 
     .register-box{
-        width: 310px;
+        width: 370px;
     }
 
+     .register-box input  {
+        width: 100%;
+    }
     .register-box h2{
         font-size: 18px;
     }

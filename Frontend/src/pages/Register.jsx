@@ -135,7 +135,7 @@ export default function Register() {
 
              <div> <p style={{ fontFamily:'regular-text', width:'fit-content', color:'#2e2d2dff'}} >You are buyer or Seller</p>  </div> 
 
-        <div style={{  display:'flex', width:'fit-content', fontFamily:'regular-text'}}>
+        <div style={{  display:'flex', width:'fit-content', fontFamily:'regular-text', gap:'5px', color:'#2e2d2dff', marginBottom:'10px'}}>
            <span className="check-user" >User</span> 
           <label>
             <input  style={{border:"none"}}
@@ -176,7 +176,7 @@ export default function Register() {
         <button type="submit" disabled={submitting}>Register</button>
 
         <p>
-          Already have an account? <Link to="/"><span> Login </span> </Link>
+          Already have an account? <Link to="/login"><span> Login </span> </Link>
         </p>
 
          <div className="cloud-login">

@@ -71,8 +71,8 @@ label {
     width: 60%;
   }
   .card {
-           width: 140%;
-        margin: 0 0 0 -4rem;
+           min-width: 194%;
+        margin: 0 0 2rem -6rem;
   }
 
   .details-grid p{

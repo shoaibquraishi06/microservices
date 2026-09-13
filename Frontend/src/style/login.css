@@ -125,8 +125,20 @@
 @media (max-width:768px) {
 
 
+  
+    .login-container{
+       display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0;
+    }
+
     .login-box{
-        width: 310px;
+        width: 370px;
+    }
+    .login-box input {
+        width: 100%;
     }
 
     .login-box h2{

@@ -159,6 +159,8 @@
   .checkout-container {
     grid-template-columns: 1fr;
     padding: 20px;
+    margin-left: 0;
+    width: 100%;
   }
 
   /* Steps */
@@ -174,7 +176,8 @@
   }
 
   .row {
-    flex-direction: column;
+     display:grid;
+  grid-template-columns:repeat(2,1fr);
   }
 
   .pay-btn {

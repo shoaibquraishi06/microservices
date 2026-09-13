@@ -127,7 +127,7 @@ background-color: #121212;
 
 @media (max-width: 768px) {
 .sidebar {
-  width: 91%;
+  width: 100%;
   padding: 1rem;
   height:fit-content;
 

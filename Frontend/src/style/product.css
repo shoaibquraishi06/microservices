@@ -331,17 +331,29 @@
   grid-template-columns:repeat(2,1fr);
   align-items: center;
   justify-content: center;
-  gap:5px;
+  gap:15px;
   /* padding: 0 1rem; */
 }
+    .product-img img{
+      width:129%;
+    }
+ .btn-section{
+  gap: 7px;
+
+  margin: 0rem 0 0 -0.6rem;
+ }
+.product-card {
+    width: 100%;
+  }
+
 .buyNow{
-  font-size: 0.5rem;
+  font-size: 0.6rem;
   padding: 0.5rem 0.5rem
 }
 
 .addToCart{
-  font-size: 0.4rem;
-  padding: 0.5rem 0.5rem
+  font-size: 0.6rem;
+  padding: 0.5rem 0.3rem
   
 }
 

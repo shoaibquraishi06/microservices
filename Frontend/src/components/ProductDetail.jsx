@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { CiDeliveryTruck } from "react-icons/ci";
+import { GiShoppingCart } from "react-icons/gi";
 import axios from "axios";
 import "../style/productDetail.css";
 
@@ -185,13 +187,13 @@ export default function ProductDetails() {
 
           {/* Add To Cart */}
           <button className="add-cart-button">
-            <span>🛍</span>
+            <span><GiShoppingCart /></span>
             Add to cart
           </button>
 
           {/* Delivery */}
           <div className="delivery-info">
-            <span>🚚</span>
+            <span><CiDeliveryTruck /></span>
             <span>Free delivery on orders over $30.00</span>
           </div>
 
