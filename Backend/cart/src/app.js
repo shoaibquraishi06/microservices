@@ -10,7 +10,7 @@ app.use(cookieParser());
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://nike-4.netlify.app/"
+    "https://nike-4.netlify.app"
   ],
   credentials: true
 }));

@@ -7,7 +7,7 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:5173",
-    "https://nike-4.netlify.app/"
+    "https://nike-4.netlify.app"
 
 ];
 
