@@ -12,7 +12,7 @@ export default function ProductGrid({ product = [] }) {
   
        <div className="product-container">
        
-       <h2 className="product-title">Browse All Your Needs.</h2>
+       <h2 className="product-title-page">Browse All Your Needs.</h2>
       
          <div className="category">
            <p>All</p>

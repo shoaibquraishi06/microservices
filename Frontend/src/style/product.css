@@ -32,7 +32,7 @@
  
 }
 
-.product-title{
+.product-title-page{
   color: #000;
   font-family: 'regular-text';
   text-align: center;
@@ -95,7 +95,7 @@
 
 .product-img img {
   height: 150px;
-  width: 192%;
+  width: 178%;
   object-fit: cover;
   margin-left: -0.3rem;
   margin-top: -0.3rem;
@@ -325,6 +325,10 @@
   align-items: start;
   flex-direction: column;
   width: 100%;
+}
+.product-title-page{
+  text-align: center;
+  margin-left:5rem;
 }
   .product-grid{
   display:grid;

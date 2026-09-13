@@ -7,7 +7,8 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://nike-jordan-shoe.netlify.app"
+    "https://nike-4.netlify.app/"
+
 ];
 
 const corsOptions = {
