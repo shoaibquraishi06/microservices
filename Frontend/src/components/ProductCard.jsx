@@ -1,5 +1,6 @@
 
 import { useDispatch } from "react-redux";
+import  {useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { addToCart } from "../feature/cartThunk";
 import Logo from "../assets/logo.jpg";
@@ -13,6 +14,7 @@ import "../style/product.css";
 
 export default function ProductCard({ product }) {
   const dispatch = useDispatch(); 
+  const navigate = useNavigate();
 
   const [ liked, setLiked ] = useState(false);
 
@@ -28,14 +30,20 @@ export default function ProductCard({ product }) {
     setLiked(!liked);
   };
 
+  const ProductDetailsHandler = () => {
+   
+    navigate(`/product/${product._id}`);
+
+  }
+
 
    
 
   return (
     // <ProductCard product={product} />;
-    <div className="product-card">
-
-
+    <div className="product-card" onClick={ProductDetailsHandler}
+ >
+         
    <div className="whistlist-products">
    <button 
       onClick={handleLikeToggle}
@@ -84,11 +92,17 @@ export default function ProductCard({ product }) {
       
       <div className="btn-section">
       
-        <button className="addToCart" onClick={handleAddToCart}>
+        <button className="addToCart"   onClick={(e) => {
+    e.stopPropagation();
+    handleAddToCart();
+  }}>
         <span><FiShoppingBag /></span> <span> Add to Cart</span>
         </button>
         
-       <button className="buyNow" >
+       <button className="buyNow"  onClick={(e) => {
+    e.stopPropagation();
+    handleBuyNow();
+  }}>
         <span><BiCartAlt /></span> <span> Buy Now</span>
 
        </button>

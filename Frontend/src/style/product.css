@@ -167,7 +167,7 @@
 .addToCart{
 
   color: #0b0b0b;
-  font-size: 0.9rem;
+  font-size: -1rem;
   font-family: "Semi-bold-text";
   padding: 0.5rem ;
   font-weight: 500;

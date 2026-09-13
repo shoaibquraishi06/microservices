@@ -68,6 +68,7 @@ const Footer = () => {
 					</div>
 				</div>
 			</div>
+				<h2 className="end-text">NIKE</h2>
 		</footer>
 	);
 };

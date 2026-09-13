@@ -7,6 +7,15 @@
 	width: 100%;
 }
 
+.end-text {
+	color:transparent;
+	font-size: 12vw;
+	font-family:Arial, Helvetica, sans-serif;
+   -webkit-text-stroke: 1px rgb(39, 38, 38);
+	font-weight: bold;
+	text-align: center;
+	margin-top: 20px;
+}
 .footer-container {
 	display: flex;
 	flex-direction: column;
