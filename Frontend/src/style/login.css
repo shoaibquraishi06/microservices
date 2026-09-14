@@ -1,11 +1,11 @@
 
 
 .login-container {
-  padding: 4.5rem 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #dadada37;
+ display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0;
 }
 
 .login-box {
@@ -44,7 +44,7 @@
 
 .login-box input {
   padding: 15px 20px;
-  width: 85%;
+  width: 100%;
   margin-bottom: 12px;
   font-family: 'regular-text';
    font-weight: 600;

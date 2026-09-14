@@ -5,6 +5,7 @@ import { CgMenu } from "react-icons/cg";
 import { IoLocationOutline } from "react-icons/io5";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { IoIosLogOut } from "react-icons/io";
+import { CiSearch } from "react-icons/ci";
 
 import logo from "../assets/newLogo.png";
 // import NewLogo2 from "../assets/2.jpg";
@@ -60,13 +61,19 @@ const Navber = () => {
           <Link to="/orders">Orders</Link>
           <Link to="/contact">Contact</Link>
         </div>
-        <div className="nav-end">
+        <div className="nav-end">  
+          <button className="search-btn"> <span className="search-icon" ><CiSearch /></span>
+          <span className="search-text"> search</span>
+           </button>
+           
           <div className="whistlist">
             {/* <CartDrawer
           isOpen={open}
           onClose={() => setOpen(false)}
         />
    */}
+
+           
             <button className="whistlist-btn" onClick={handlecartClick}>
               <IoBagHandleOutline />
             </button>

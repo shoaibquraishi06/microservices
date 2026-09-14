@@ -36,19 +36,19 @@
   align-items: center;
   justify-content: space-between;
   background: #ffffff;
-  width: 60%;
+  width: 99%;
   color: #fff;
-  border-radius: 10px;
+  border-radius: 3px;
   /* border: 1px solid #dbd7d7; */
   gap: 50px;
   padding: 0.3rem 3rem;
   position: fixed;
-  top: 2%;
-  left: 18%;
+  top: 1.5%;
+  left: 0.5%;
   right: 0;
   z-index: 1000;
-  backdrop-filter: blur(10px);
-  background: #ffffff9b;
+  backdrop-filter: blur(5px);
+  background: #ffffffe9;
 }
 
 .navbar-logo img {
@@ -60,7 +60,7 @@
 
 .navbar-links {
   display: flex;
-  gap: 3.2rem;
+  gap: 2rem;
 }
 
 .navbar-links a {
@@ -98,6 +98,36 @@
   display: flex;
   gap: 5px;
   color: #121212;
+}
+
+.search-btn{
+  display: flex;
+  align-items: center;
+  justify-content:flex-start;
+  border: none;
+  background-color: #f5f1f1;
+  gap: 5px;
+  border-radius: 20px;
+  padding: 0.1rem 2.8rem;
+  
+}
+
+.search-icon{
+  font-size: 1rem;
+  color:  #0c0c0c;
+  /* background-color: transparent; */
+  padding: -0.3rem 0.8rem;
+  border: none;
+}
+  
+
+
+.search-text{
+  font-family: 'regular-text';
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #454444;
+  padding: 0.3rem 0.6rem;
 }
 
 .nav-end .whistlist-btn {
@@ -198,7 +228,9 @@
     border-radius: 6px;
   }
 
-
+   .search-btn{
+    display: none;
+   }
 
 
   .navbar-links {

@@ -8,7 +8,7 @@ export default function ProductSection({ product = [] }) {
   return (
     <section className="product-container">
       {/* <h2 className="product-heading">Our Products</h2> */}
-             <h2 className="product-title">Browse All Your Needs.</h2>
+             <h2 className="product-title-page">Browse All Your Needs.</h2>
       
          <div className="category">
            <p>All</p>

@@ -226,6 +226,13 @@
   
 }
 
+.product-title-page{
+  color: #000;
+  font-family: 'regular-text';
+  text-align: center;
+  margin: 0rem 0 0 0 0
+}
+
 
 @media (max-width: 768px) {
 
