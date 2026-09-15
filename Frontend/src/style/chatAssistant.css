@@ -1,66 +1,354 @@
-.chat-container {
+/* =========================
+   AI FLOATING BUTTON
+========================= */
+
+.ai-assistant-button {
+  position: fixed;
+
+  right: 40px;
+  bottom: 40px;
+
+  width: 55px;
+  height: 55px;
+
+  border: none;
+  border-radius: 50%;
+
+  padding: 0;
+
+  cursor: pointer;
+
+  background: transparent;
+
+  z-index: 9999;
+
+  transition: transform 0.25s ease;
+}
+
+.ai-assistant-button:hover {
+  transform: scale(1.1);
+}
+
+.ai-assistant-button img {
   width: 100%;
-  max-width: 500px;
-  height: 600px;
-  margin: auto;
+  height: 100%;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+}
+
+
+/* =========================
+   CHAT WINDOW
+========================= */
+
+.ai-chat-window {
+  position: fixed;
+
+  right: 25px;
+  bottom: 25px;
+
+  width: 360px;
+  height: 520px;
+
+  background: rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 0 20px 10px rgba(255, 255, 255, 1);
+
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  border-radius: 22px;
+
+  overflow: hidden;
+
   display: flex;
   flex-direction: column;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  background: #fff;
+
+  z-index: 9999;
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5);
+
+  animation: aiChatOpen 0.25s ease;
 }
 
-.chat-messages {
-  flex: 1;
-  padding: 15px;
-  overflow-y: auto;
+@keyframes aiChatOpen {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-.chat-bubble {
-  margin-bottom: 10px;
-  padding: 10px 14px;
-  border-radius: 20px;
-  max-width: 70%;
+
+/* =========================
+   HEADER
+========================= */
+
+.ai-chat-header {
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 16px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.ai-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family:"regular-text";
   font-size: 14px;
 }
 
-.chat-bubble.user {
-  background: #000;
-  color: white;
-  align-self: flex-end;
+.ai-title img {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
 }
 
-.chat-bubble.assistant {
-  background: #f1f1f1;
-  align-self: flex-start;
+.ai-title h3 {
+  margin: 0;
+
+  color: white;
+ 
+  font-size: 15px;
 }
+
+.ai-title span {
+  color: #03ff6c;
+
+  font-size: 11px;
+}
+
+.ai-close {
+  width: 34px;
+  height: 34px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.1);
+
+  color: white;
+
+  font-size: 24px;
+
+  cursor: pointer;
+}
+
+
+/* =========================
+   MESSAGES
+========================= */
+
+.chat-messages {
+  flex: 1;
+
+  padding: 15px;
+
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+
+/* USER */
+
+.chat-bubble.user {
+  align-self: flex-end;
+  font-family:"regular-text";
+  font-size: 14px;
+  max-width: 80%;
+
+  padding: 10px 14px;
+
+  border-radius: 18px 18px 4px 18px;
+
+  background: rgb(225, 224, 224);
+
+  color: rgb(45, 44, 44);
+
+  font-size: 14px;
+}
+
+
+/* ASSISTANT */
+
+.chat-bubble.assistant {
+  align-self: flex-start;
+  font-family:"regular-text";
+  font-size: 14px;
+  max-width: 80%;
+
+  padding: 10px 14px;
+
+  border-radius: 18px 18px 18px 4px;
+
+  background: #f2f1f1;
+
+  color: rgb(93, 91, 91);
+
+  font-size: 14px;
+}
+
+
+/* =========================
+   WELCOME
+========================= */
+
+.ai-welcome {
+  margin: auto;
+
+  text-align: center;
+ font-family:"regular-text";
+  font-size: 14px;
+  color: white;
+}
+
+.ai-welcome img {
+  width: 65px;
+  height: 65px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  margin-bottom: 10px;
+}
+
+.ai-welcome h3 {
+  margin: 0 0 5px;
+}
+
+.ai-welcome p {
+  margin: 0;
+
+  color: #aaa;
+}
+
+
+/* =========================
+   INPUT
+========================= */
 
 .chat-input {
   display: flex;
-  padding: 10px;
-  border-top: 1px solid #ddd;
+
+  gap: 8px;
+
+  padding: 12px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .chat-input input {
   flex: 1;
-  padding: 10px;
+
+  min-width: 0;
+
+  height: 45px;
+
+  padding: 0 15px;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  border-radius: 25px;
+ font-family:"regular-text";
+  font-size: 14px;
+  outline: none;
+
+   background: rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1);
+    /* inset 0 1px 0 rgba(255, 255, 255, 0.5), */
+    /* inset 0 -1px 0 rgba(255, 255, 255, 0.1), */
+    /* inset 0 0 20px 10px rgba(255, 255, 255, 1); */
+
+  color: rgb(35, 34, 34);
+
+  font-size: 14px;
+}
+
+.chat-input input::placeholder {
+  color: rgb(35, 34, 34);
 }
 
 .chat-input button {
-  margin-left: 10px;
-  padding: 10px 16px;
+  height: 45px;
+ font-family:"regular-text";
+  font-size: 14px;
+  padding: 0 15px;
+
   border: none;
-  border-radius: 20px;
-  background: black;
-  color: white;
+
+  border-radius: 25px;
+
+  background: rgb(20, 20, 20);
+
+  color: rgb(198, 195, 195);
+
   cursor: pointer;
+
+  font-weight: 600;
 }
 
-@media (max-width: 768px) {
-  .chat-container {
-    height: 100vh;
-    border-radius: 0;
+.chat-input button:hover {
+  transform: scale(1.03);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+ 
+  .ai-chat-window {
+    right: 12px;
+    bottom: 12px;
+
+    width: calc(100vw - 30px);
+
+    height: 70vh;
+
+    border-radius: 20px;
+  }
+
+  .ai-assistant-button {
+    right: 18px;
+    bottom: 25px;
+
+    width: 50px;
+    height: 50px;
   }
 }

@@ -26,6 +26,7 @@ import Account from "./pages/Account";
 import Checkout from './components/Checkout';
 import Payment from './components/Payment';
 import Clouser from './components/HerosectionClourser/MorphSlider';
+import ChatAssistant from "./components/ChatAssistant";
 
 // -----routing
 import MainRoutes from './routes/MainRoutes';
@@ -62,6 +63,7 @@ function App() {
     {!loading && (
       <>
         <Navber />
+        {/* <ChatAssistant/> */}
         <Routes>
           <Route path="/" element={<MainRoutes />} />
           <Route path="/login" element={<Login />} />

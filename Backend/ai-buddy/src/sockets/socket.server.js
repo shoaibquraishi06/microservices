@@ -1,62 +1,52 @@
 const { Server } = require("socket.io");
-const jwt = require("jsonwebtoken");
-const cookie = require("cookie");
 const agent = require("../agent/agent");
 
 async function initSocketServer(httpServer) {
-  const io = new Server(httpServer, {});
-
-  io.use((socket, next) => {
-    const cookies = socket.handshake.headers?.cookie;
-
-    const { token } = cookies ? cookie.parse(cookies) : {};
-
-    if (!token) {
-      return next(new Error("Authentication error"));
-    }
-
-    try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-      socket.user = decoded;
-      socket.token = token;
-
-      next();
-    } catch (err) {
-      return next(new Error("in valid token"));
-    }
+  const io = new Server(httpServer, {
+    cors: {
+      origin: [
+        "http://localhost:5173",
+        "https://nike-4.netlify.app",
+      ],
+      credentials: true,
+    },
   });
-  io.on("connection", (socket) => {
-    console.log("a user connected");
 
-    console.log(socket.user, socket.token);
+  // console.log("🔥 SOCKET.IO SERVER INITIALIZED");
+
+  io.on("connection", (socket) => {
+    // console.log("✅ USER CONNECTED:", socket.id);
 
     socket.on("message", async (data) => {
-    //   console.log("Received message from client:", data);
+      // console.log("📩 MESSAGE FROM CLIENT:", data);
 
-         await new Promise(res => setTimeout(res, 1500))
-      const agentResponse = await agent.invoke(
-        {
+      try {
+        const agentResponse = await agent.invoke({
           messages: [
             {
               role: "user",
               content: data,
             },
           ],
-        },
-        {
-          metadata: {
-            token: socket.token,
-          },
-        },
-      );
+        });
 
-      // console.log(agentResponse);
+        const lastMessage =
+          agentResponse.messages[
+            agentResponse.messages.length - 1
+          ];
 
-      const lastMessage =
-        agentResponse.messages[agentResponse.messages.length - 1];
+        // console.log("🤖 AI RESPONSE:", lastMessage.content);
 
-      socket.emit("message", lastMessage.content);
+        socket.emit("message", lastMessage.content);
+
+      } catch (error) {
+        console.error("❌ AI ERROR:", error);
+
+        socket.emit(
+          "message",
+          "AI assistant me error aa gaya."
+        );
+      }
     });
   });
 }

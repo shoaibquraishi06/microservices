@@ -104,10 +104,10 @@ if (!isMatch) {
     
 
     res.cookie('token', token, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "none",
-     maxAge: 24 * 60 * 60 * 1000,
+       httpOnly: true,
+    secure: false,
+    sameSite: "lax",
+    maxAge: 24 * 60 * 60 * 1000,
     });
 
     return res.status(200).json({
@@ -141,7 +141,8 @@ async function logoutUser(req, res) {
    try {
     res.cookie("token", "", {
     httpOnly: true,
-  secure: true,
+  secure: false,
+    sameSite: "lax",
   sameSite: "none",
     });
 

@@ -21,7 +21,7 @@ export default function CartDrawer() {
 
 
   const { items, loading } = useSelector(state => state.cart);
-   console.log("render items:", items);
+  //  console.log("render items:", items);
 
   useEffect(() => {
   dispatch(fetchCart());

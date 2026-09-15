@@ -2,19 +2,19 @@ const { tool } = require("@langchain/core/tools")
 const { z } = require("zod")
 const axios = require("axios")
 
-const searchProduct = tool(async ({ query, token }) => {
+const searchProduct = tool(async ({ query }) => {
 
-    console.log("searchProduct called with data:", { query, token })
+    // console.log("searchProduct called with data:", { query,  })
 
-    const response = await axios.get(`http://localhost:3001/api/products?q=${query}`, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
+    const response = await axios.get(`https://microservices-3-777q.onrender.com/api/products?q=${query}`, {
+        // headers: {
+        //     Authorization: `Bearer ${token}`
+        // }
     })
 
 
-     console.log(query);
-     
+    //  console.log(query);
+    //  
     return JSON.stringify(response.data)
 
 }, {
@@ -27,16 +27,17 @@ const searchProduct = tool(async ({ query, token }) => {
 })
 
 
-const addProductToCart = tool(async ({ productId, qty = 1, token }) => {
+const addProductToCart = tool(async ({ productId, qty = 1 }) => {
 
 
-    const response = await axios.post(`http://localhost:3002/api/cart/items`, {
+    const response = await axios.post(`https://microservices-1-wmb0.onrender.com/api/cart/items`, {
         productId,
         qty
     }, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
+        
+        // headers: {
+        //     Authorization: `Bearer ${token}`
+        // }
     })
 
     return `Added product with id ${productId} (qty: ${qty}) to cart`

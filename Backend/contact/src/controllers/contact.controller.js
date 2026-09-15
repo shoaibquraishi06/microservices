@@ -5,7 +5,7 @@ async function createContact(req, res) {
   try {
 
     const { name, email, topic, message } = req.body;
-    console.log(name, email, topic, message);
+    // console.log(name, email, topic, message);
     
 
     if (!name || !email || !topic || !message) {
