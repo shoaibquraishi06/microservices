@@ -4,7 +4,7 @@ import socket from "../service/socket";
 import { addMessage } from "../feature/chat/chatSlice";
 import Aibuddy from "../assets/ai-assitant.png"
 
-import "../style/chatassistant.css";
+import "../style/chatAssistant.css";
 
 export default function ChatAssistant() {
   const [isOpen, setIsOpen] = useState(false);
