@@ -63,7 +63,7 @@ function App() {
     {!loading && (
       <>
         <Navber />
-        {/* <ChatAssistant/> */}
+        <ChatAssistant/>
         <Routes>
           <Route path="/" element={<MainRoutes />} />
           <Route path="/login" element={<Login />} />

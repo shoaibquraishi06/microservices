@@ -17,14 +17,16 @@ router.post('/',
 	productController.createProduct
 );
 
-router.get('/', productController.getProduct);
+// router.get('/', productController.getProduct);
+// router.get('search', productController.searchProducts)
 
 router.patch('/:id', createAuthMiddleware(['seller']), productController.updateProductById);
 
 router.delete('/:id', createAuthMiddleware(['seller']), productController.deleteProductById);
 
 router.get('/seller', createAuthMiddleware(['seller']), productController.getProductsBySeller);
-
+router.get('/search', productController.searchProducts);
 router.get('/:id',  productController.getProductById);
+
 
 module.exports = router;

@@ -5,6 +5,7 @@ import cartReducer from "../feature/cartSlice"
 import orderReducer from "../feature/order/orderSlice"
 import paymentReducer from "../feature/paymentSlice"
 import chatReducer from "../feature/chat/chatSlice";
+import searchReducer from "../feature/Search/search.slice";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     cart:cartReducer,
     order: orderReducer,
     payment: paymentReducer,
-    chat: chatReducer
+    chat: chatReducer,
+    search: searchReducer,
   },
 });

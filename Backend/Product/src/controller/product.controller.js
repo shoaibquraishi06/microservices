@@ -1,7 +1,8 @@
 const productModel = require('../models/product.model');
 const { uploadImage } = require('../service/imagekit.service');
 const mongoose = require('mongoose');
-const { publishToQueue } = require("../broker/broker")
+const { publishToQueue } = require("../broker/broker");
+const ProductModel = require('../models/product.model');
 
 
 
@@ -41,33 +42,80 @@ async function createProduct(req, res) {
 }
 
 
-async function getProduct(req, res) {
+// async function getProduct(req, res) {
 
     
-    const { q, minprice, maxprice, skip = 0, limit = 20 } = req.query;
+//     const { q, minprice, maxprice, skip = 0, limit = 20 } = req.query;
 
-    const filter = {};
+//     const filter = {};
 
-    if(q){
-        filter.$text = { $search: q };
+//     if(q){
+//         filter.$text = { $search: q };
+//     }
+
+//     if(minprice){
+//         filter['price.amount'] = { ...filter['price.amount'], $gte: Number(minprice) };
+//     }
+
+//     if(maxprice){
+//         filter['price.amount'] = { ...filter['price.amount'], $lte: Number(maxprice) };
+
+//     }
+
+//    const products = await productModel.find(filter).skip(Number(skip)).limit(Math.min(Number(limit), 100));
+
+//    return res.status(200).json({
+//        data:products});
+
+// }
+
+const searchProducts = async (req, res) => {
+     
+  try {
+    const { q } = req.query;
+
+    if (!q || !q.trim()) {
+      return res.status(400).json({
+        success: false,
+        message: "Search query is required",
+      });
     }
 
-    if(minprice){
-        filter['price.amount'] = { ...filter['price.amount'], $gte: Number(minprice) };
-    }
+    const products = await ProductModel.find({
+      $or: [
+        {
+          title: {
+            $regex: q,
+            $options: "i",
+          },
+        },
+        {
+          description: {
+            $regex: q,
+            $options: "i",
+          },
+        },
+      ],
+    });
+ console.log("🔥 SEARCH CONTROLLER HIT");
+  console.log("🔎 QUERY:", req.query.q);
+    
 
-    if(maxprice){
-        filter['price.amount'] = { ...filter['price.amount'], $lte: Number(maxprice) };
+    return res.status(200).json({
+      success: true,
+      count: products.length,
+      data: products,
+    });
 
-    }
+  } catch (error) {
+    console.error("SEARCH ERROR:", error);
 
-   const products = await productModel.find(filter).skip(Number(skip)).limit(Math.min(Number(limit), 100));
-
-   return res.status(200).json({
-       data:products});
-
-}
-
+    return res.status(500).json({
+      success: false,
+      message: "Search failed",
+    });
+  }
+};
 
 
 
@@ -169,7 +217,8 @@ async function getProductsBySeller(req, res) {
 
 module.exports = { 
     createProduct,
-    getProduct,
+    // getProduct,
+    searchProducts,
     getProductById,
     deleteProductById,
     updateProductById,

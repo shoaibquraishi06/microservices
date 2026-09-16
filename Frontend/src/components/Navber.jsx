@@ -2,101 +2,141 @@ import React, { useState } from "react";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { VscAccount } from "react-icons/vsc";
 import { CgMenu } from "react-icons/cg";
-import { IoLocationOutline } from "react-icons/io5";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import { IoIosLogOut } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
 
-import logo from "../assets/newLogo.png";
-// import NewLogo2 from "../assets/2.jpg";
-import CartDrawer from "../components/Cart";
 import { Link, useNavigate } from "react-router-dom";
-import profilePic from "../assets/heroSection.avif";
 
-// Use your own profile image if available
+import logo from "../assets/newLogo.png";
+
+import CartDrawer from "../components/Cart";
+import Search from "../components/Search";
 
 import "../style/Navber.css";
 import "../style/profileCard.css";
-import Account from "../pages/Account";
-// import Wishlist from "../components/Whishlist";
 
 const Navber = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [showCart, setShowCart] = useState(false);
+
+  // Search open / close
+  const [searchOpen, setSearchOpen] = useState(false);
 
   const navigate = useNavigate();
 
-  const handleMenuToggle = () => setMenuOpen(!menuOpen);
+  const handleMenuToggle = () => {
+    setMenuOpen((prev) => !prev);
+  };
 
-  const handleProfileClick = (e) => {
-    // e.stopPropagation();
+  const handleProfileClick = () => {
     navigate("/account");
-    // setShowProfile((prev) => !prev);
-  };
-  const handlecartClick = (e) => {
-    // e.stopPropagation();
-    navigate("/cart");
-    // setShowProfile((prev) => !prev);
   };
 
-  React.useEffect(() => {
-    const handleClickOutside = () => setShowProfile(false);
-    if (showProfile) {
-      window.addEventListener("click", handleClickOutside);
-    }
-    return () => window.removeEventListener("click", handleClickOutside);
-  }, [showProfile]);
+  const handleCartClick = () => {
+    navigate("/cart");
+  };
+
+  const handleSearchOpen = () => {
+    setSearchOpen(true);
+  };
+
+  const handleSearchClose = () => {
+    setSearchOpen(false);
+  };
 
   return (
-    <div className="header">
-      <nav className="navbar">
-        <div className="navbar-logo">
-          <img src={logo} alt="Brand-logo" />
-        </div>
-        <div className={`navbar-links ${menuOpen ? "active" : ""}`}>
-          <Link to="/">Home</Link>
-          <Link to="/products">Products</Link>
-          {/* <Link to="/cart">Cart</Link> */}
-          <Link to="/orders">Orders</Link>
-          <Link to="/contact">Contact</Link>
-        </div>
-        <div className="nav-end">  
-          <button className="search-btn"> <span className="search-icon" ><CiSearch /></span>
-          <span className="search-text"> search</span>
-           </button>
-           
-          <div className="whistlist">
-            {/* <CartDrawer
-          isOpen={open}
-          onClose={() => setOpen(false)}
-        />
-   */}
+    <>
+      {/* ================= NAVBAR ================= */}
+      <div className="header">
+        <nav className="navbar">
 
-           
-            <button className="whistlist-btn" onClick={handlecartClick}>
-              <IoBagHandleOutline />
-            </button>
+          {/* LOGO */}
+          <div className="navbar-logo">
+            <Link to="/">
+              <img src={logo} alt="Brand-logo" />
+            </Link>
           </div>
+
+          {/* NAV LINKS */}
           <div
-            className="Profile"
-            onClick={handleProfileClick}
-            style={{ position: "relative", cursor: "pointer" }}
+            className={`navbar-links ${
+              menuOpen ? "active" : ""
+            }`}
           >
-            <VscAccount />
-            {showProfile && (
+            <Link to="/" onClick={() => setMenuOpen(false)}>
+              Home
+            </Link>
+
+            <Link
+              to="/products"
+              onClick={() => setMenuOpen(false)}
+            >
+              Products
+            </Link>
+
+            <Link
+              to="/orders"
+              onClick={() => setMenuOpen(false)}
+            >
+              Orders
+            </Link>
+
+            <Link
+              to="/contact"
+              onClick={() => setMenuOpen(false)}
+            >
+              Contact
+            </Link>
+          </div>
+
+          {/* RIGHT SIDE */}
+          <div className="nav-end">
+
+            {/* SEARCH */}
+            <button
+              className="nav-search-btn"
+              onClick={handleSearchOpen}
+              aria-label="Open search"
+            >
+              <CiSearch />
+              <span>Search</span>
+            </button>
+
+            {/* CART */}
+            <div className="whistlist">
               <button
-                className="close-profile"
-                onClick={() => setShowProfile(false)}
-              ></button>
-            )}
+                className="whistlist-btn"
+                onClick={handleCartClick}
+              >
+                <IoBagHandleOutline />
+              </button>
+            </div>
+
+            {/* PROFILE */}
+            <div
+              className="Profile"
+              onClick={handleProfileClick}
+            >
+              <VscAccount />
+            </div>
+
+            {/* MOBILE MENU */}
+            <div
+              className="navbar-menu"
+              onClick={handleMenuToggle}
+            >
+              <CgMenu />
+            </div>
           </div>
-          <div className="navbar-menu" onClick={handleMenuToggle}>
-            <CgMenu />
-          </div>
-        </div>
-      </nav>
-    </div>
+        </nav>
+      </div>
+
+      {/* ================= SEARCH OVERLAY ================= */}
+
+      {searchOpen && (
+        <Search onClose={handleSearchClose} />
+      )}
+    </>
   );
 };
 
