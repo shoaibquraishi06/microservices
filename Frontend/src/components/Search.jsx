@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
+import Logo from "../assets/newLogo.png";
 import { setSearchQuery, clearSearch } from "../feature/Search/search.slice";
 import { CiSearch } from "react-icons/ci";
 import { searchProducts } from "../feature/Search/search.Thunk";
@@ -69,12 +69,7 @@ const Search = ({ onClose }) => {
         <div className="search-top">
           {/* LOGO */}
           <Link to="/" className="search-logo" onClick={handleClose}>
-            <svg viewBox="0 0 100 40" aria-label="Nike">
-              <path
-                d="M4 25c18 1 34-8 58-18-13 11-29 24-47 25C8 33 3 30 4 25Z"
-                fill="currentColor"
-              />
-            </svg>
+            <img src={Logo} alt="Logo" />
           </Link>
 
           {/* SEARCH INPUT */}

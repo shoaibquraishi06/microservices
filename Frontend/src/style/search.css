@@ -92,11 +92,25 @@
   flex-shrink: 0;
 }
 
-.search-logo svg {
+/* .search-logo svg {
   width: 55px;
   height: 35px;
-}
+} */
 
+.search-logo img {
+  width: 70px;
+
+  display: flex;
+  align-items: center;
+
+  color: #000;
+
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+
+  object-fit: contain;
+}
 
 /* =========================================
    SEARCH INPUT
@@ -121,12 +135,21 @@
   border: 1px solid rgba(0, 0, 0, 0.08);
 
   border-radius: 50px;
-
+  font-family: "regular-text";
   transition: 0.25s ease;
 }
 
 .search-input-wrapper:focus-within {
-  background: white;
+   background: rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1);
+    /* inset 0 1px 0 rgba(255, 255, 255, 0.5), */
+    /* inset 0 -1px 0 rgba(255, 255, 255, 0.1), */
+    /* inset 0 0 20px 10px rgba(255, 255, 255, 1); */
 
   border-color: rgba(0, 0, 0, 0.18);
 
@@ -255,7 +278,7 @@
   font-family: "regular-text";
 
   font-size: 13px;
-
+  font-family: "regular-text";
   color: #777;
 
   text-transform: uppercase;
@@ -265,7 +288,7 @@
 
 .search-result-heading h2 {
   margin: 5px 0 0;
-
+   font-family: "regular-text";
   font-family: "bold-text";
 
   font-size: 32px;
@@ -561,14 +584,24 @@
   gap: 5px;
 
   border: none;
+ 
+  /* background: rgba(248, 245, 245, 0.293); */
+  background: rgba(25, 25, 25, 0.09);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1);
+    /* inset 0 1px 0 rgba(255, 255, 255, 0.5), */
+    /* inset 0 -1px 0 rgba(255, 255, 255, 0.1), */
+    /* inset 0 0 20px 10px rgba(255, 255, 255, 1); */
 
-  background: transparent;
-
-  color: #111;
+  color: #090909;
 
   cursor: pointer;
 
-  padding: 8px 12px;
+  padding: 4px 40px;
 
   font-family: "regular-text";
 
@@ -630,6 +663,10 @@
   .search-product-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .search-logo img {
+    width: 80px;
+    height: 80px;
+  }
 
 }
 
@@ -658,14 +695,18 @@
     gap: 8px;
   }
 
-  .search-logo {
+  /* .search-logo {
     width: 45px;
   }
 
   .search-logo svg {
     width: 42px;
-  }
+  } */
 
+  .search-logo img {
+    width: 60px;
+    height: 60px;
+  }
   .search-input-wrapper {
     height: 48px;
   }
