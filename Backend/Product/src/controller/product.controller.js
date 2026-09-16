@@ -97,8 +97,8 @@ const searchProducts = async (req, res) => {
         },
       ],
     });
- console.log("🔥 SEARCH CONTROLLER HIT");
-  console.log("🔎 QUERY:", req.query.q);
+//  console.log("🔥 SEARCH CONTROLLER HIT");
+//   console.log("🔎 QUERY:", req.query.q);
     
 
     return res.status(200).json({
