@@ -286,11 +286,38 @@
 @media (min-width: 769px) and (max-width: 1024px) {
 
 .navbar{
-  width: 73%;
-  left:9%;
+  width: 100%;
+  left:0%;
   gap: 10px;
   
 }
+  /* .nav-search-btn{
+    padding: 0.1rem 0.5rem;
+    background-color: #ffffff;
+  }
 
+    .nav-search-btn:hover{
+      background-color: #f0edede2;
+    } */
+
+
+}
+
+
+
+@media (max-width: 769px){
+
+  .nav-search-btn{
+    padding: 0.1rem 0.5rem;
+    /* background-color: #faf9f93e; */
+    background-color: transparent;
+    border:0.3px solid #7c7a7a53;
+  }
+
+    .nav-search-btn:hover{
+      background-color: #f0edede2;
+    }
+  
+  
 
 }
