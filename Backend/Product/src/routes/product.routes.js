@@ -17,7 +17,7 @@ router.post('/',
 	productController.createProduct
 );
 
-// router.get('/', productController.getProduct);
+router.get('/', productController.getProduct);
 // router.get('search', productController.searchProducts)
 
 router.patch('/:id', createAuthMiddleware(['seller']), productController.updateProductById);
@@ -25,8 +25,8 @@ router.patch('/:id', createAuthMiddleware(['seller']), productController.updateP
 router.delete('/:id', createAuthMiddleware(['seller']), productController.deleteProductById);
 
 router.get('/seller', createAuthMiddleware(['seller']), productController.getProductsBySeller);
-router.get('/search', productController.searchProducts);
-router.get('/:id',  productController.getProductById);
 
+router.get('/:id',  productController.getProductById);
+router.get('/search', productController.searchProducts);
 
 module.exports = router;

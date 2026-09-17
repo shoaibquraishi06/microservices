@@ -42,32 +42,32 @@ async function createProduct(req, res) {
 }
 
 
-// async function getProduct(req, res) {
+async function getProduct(req, res) {
 
     
-//     const { q, minprice, maxprice, skip = 0, limit = 20 } = req.query;
+    const { q, minprice, maxprice, skip = 0, limit = 20 } = req.query;
 
-//     const filter = {};
+    const filter = {};
 
-//     if(q){
-//         filter.$text = { $search: q };
-//     }
+    if(q){
+        filter.$text = { $search: q };
+    }
 
-//     if(minprice){
-//         filter['price.amount'] = { ...filter['price.amount'], $gte: Number(minprice) };
-//     }
+    if(minprice){
+        filter['price.amount'] = { ...filter['price.amount'], $gte: Number(minprice) };
+    }
 
-//     if(maxprice){
-//         filter['price.amount'] = { ...filter['price.amount'], $lte: Number(maxprice) };
+    if(maxprice){
+        filter['price.amount'] = { ...filter['price.amount'], $lte: Number(maxprice) };
 
-//     }
+    }
 
-//    const products = await productModel.find(filter).skip(Number(skip)).limit(Math.min(Number(limit), 100));
+   const products = await productModel.find(filter).skip(Number(skip)).limit(Math.min(Number(limit), 100));
 
-//    return res.status(200).json({
-//        data:products});
+   return res.status(200).json({
+       data:products});
 
-// }
+}
 
 const searchProducts = async (req, res) => {
      
@@ -217,7 +217,7 @@ async function getProductsBySeller(req, res) {
 
 module.exports = { 
     createProduct,
-    // getProduct,
+    getProduct,
     searchProducts,
     getProductById,
     deleteProductById,
