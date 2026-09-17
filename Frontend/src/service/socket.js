@@ -1,6 +1,6 @@
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:3005", {
+const socket = io("https://microservices-1-98rk.onrender.com/", {
   transports: ["polling", "websocket"],
 });
 
