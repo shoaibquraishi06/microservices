@@ -3,7 +3,7 @@ import axios from "axios";
 const searchProductsAPI = async (query) => {
 
   const response = await axios.get(
-    `http://localhost:3001/api/products/search?q=${encodeURIComponent(
+    `https://microservices-3-777q.onrender.com/api/products/search?q=${encodeURIComponent(
       query
     )}`
   );

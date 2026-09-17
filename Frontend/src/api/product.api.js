@@ -7,10 +7,10 @@ const API = axios.create({
 
 export const fetchProductsAPI = async () => {
   const { data } = await API.get("/");
-  
+   
   console.log("PRODUCT API RESPONSE:", data);
 
-  return data.data;
+  return data;
 };
 
 export const fetchProductByIdAPI = async (id) => {

@@ -19,7 +19,7 @@ router.post('/',
 
 router.get('/', productController.getProduct);
 // router.get('search', productController.searchProducts)
-
+router.get("/search", productController.searchProducts);
 router.patch('/:id', createAuthMiddleware(['seller']), productController.updateProductById);
 
 router.delete('/:id', createAuthMiddleware(['seller']), productController.deleteProductById);
@@ -27,6 +27,6 @@ router.delete('/:id', createAuthMiddleware(['seller']), productController.delete
 router.get('/seller', createAuthMiddleware(['seller']), productController.getProductsBySeller);
 
 router.get('/:id',  productController.getProductById);
-router.get('/search', productController.searchProducts);
+
 
 module.exports = router;
