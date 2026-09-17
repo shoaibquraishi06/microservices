@@ -8,6 +8,14 @@
     padding: 0;
 }
 
+.error-login{
+    font-family: "regular-text";
+    color: rgba(215, 14, 14, 0.877);
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+
 .login-box {
   background: #ffffff;
   padding: 30px;
@@ -65,7 +73,12 @@
    border: none;
   border-radius: 6px;
   cursor: pointer;
+   transition: all 0.2s ease;
+}
 
+.login-box button:active{
+    background-color: #2f2e2e;
+    scale: 0.95;
 }
 
 .login-box p {
@@ -100,10 +113,19 @@
     background-color: #000000;
     border: 1px solid #000000;
     border-radius: 5px;
+    transition: all 0.2s ease;
 }
+
 .google-login p{
     color: #cdd4d8;
 }
+
+.google-login:active{
+    background-color: #2f2e2e;
+    scale: 0.95;
+}
+
+
 .apple-login p{
     color: #2f2e2e;
     font-weight: 600;

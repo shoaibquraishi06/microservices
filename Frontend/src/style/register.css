@@ -74,6 +74,11 @@
    border: none;
   border-radius: 6px;
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+.register-box button:active{
+    background-color: #2f2e2e;
+    scale: 0.95;
 }
 
 .register-box p {
@@ -120,7 +125,15 @@
     background-color: #000000;
     border: 1px solid #000000;
     border-radius: 5px;
+    transition: all 0.2s ease;
 }
+
+.google-login:active{
+    background-color: #2f2e2e;
+    scale: 0.95;
+}
+
+
 .google-login p{
     color: #cdd4d8;
 }

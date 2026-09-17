@@ -57,7 +57,7 @@ const handleSubmit = async (e) => {
         <p>Welcome Back! Please enter Your Details</p>
 
         {error && (
-          <div className="error" style={{ color: "red", marginBottom: "10px" }}>
+          <div className="error-login" style={{ marginBottom: "5px" }}>
             {error}
           </div>
         )}

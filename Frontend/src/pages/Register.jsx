@@ -94,14 +94,9 @@ export default function Register() {
         <h2>Create Account</h2>
         <p>Welcome Back! Create Account and Enjoy Our Services</p>
 
-        {error && <div className="error" style={{color: 'black', marginBottom: '10px'}}>{error}</div>}
+        {error && <div className="error-login" style={{ marginBottom: '10px'}}>{error}</div>}
 
-        
-          
-         
-       
-      
-          <>
+            <>
             <input
               type="text"
               placeholder="username"
