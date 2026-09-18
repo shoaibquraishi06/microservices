@@ -12,13 +12,13 @@ async function initSocketServer(httpServer) {
     },
   });
 
-  // console.log("🔥 SOCKET.IO SERVER INITIALIZED");
+  console.log("🔥 SOCKET.IO SERVER INITIALIZED");
 
   io.on("connection", (socket) => {
-    // console.log("✅ USER CONNECTED:", socket.id);
+    console.log("✅ USER CONNECTED:", socket.id);
 
     socket.on("message", async (data) => {
-      // console.log("📩 MESSAGE FROM CLIENT:", data);
+      console.log("📩 MESSAGE FROM CLIENT:", data);
 
       try {
         const agentResponse = await agent.invoke({
@@ -35,13 +35,14 @@ async function initSocketServer(httpServer) {
             agentResponse.messages.length - 1
           ];
 
-        // console.log("🤖 AI RESPONSE:", lastMessage.content);
+        console.log("🤖 AI RESPONSE:", lastMessage.content);
 
         socket.emit("message", lastMessage.content);
 
       } catch (error) {
-        console.error("❌ AI ERROR:", error);
-
+       console.error("❌ AI ERROR:", error);
+  console.error("❌ MESSAGE:", error.message);
+  console.error("❌ STACK:", error.stack);
         socket.emit(
           "message",
           "AI assistant me error aa gaya."

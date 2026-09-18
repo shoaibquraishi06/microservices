@@ -5,15 +5,15 @@ const socket = io("https://microservices-1-98rk.onrender.com/", {
 });
 
 socket.on("connect", () => {
-  // console.log("✅ SOCKET CONNECTED:", socket.id);
+  console.log("✅ SOCKET CONNECTED:", socket.id);
 });
 
 socket.on("connect_error", (error) => {
-  // console.error("❌ SOCKET CONNECTION ERROR:", error.message);
+  console.error("❌ SOCKET CONNECTION ERROR:", error.message);
 });
 
 socket.on("disconnect", (reason) => {
-  // console.log("❌ SOCKET DISCONNECTED:", reason);
+  console.log("❌ SOCKET DISCONNECTED:", reason);
 });
 
 export default socket;

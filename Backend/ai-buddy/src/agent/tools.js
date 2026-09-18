@@ -3,28 +3,38 @@ const { z } = require("zod")
 const axios = require("axios")
 
 const searchProduct = tool(async ({ query }) => {
+  try {
+    console.log("🔎 SEARCH PRODUCT QUERY:", query);
 
-    // console.log("searchProduct called with data:", { query,  })
+    const url =
+      `https://microservices-3-777q.onrender.com/api/products/search?q=${encodeURIComponent(query)}`;
 
-    const response = await axios.get(`https://microservices-3-777q.onrender.com/api/products?q=${query}`, {
-        // headers: {
-        //     Authorization: `Bearer ${token}`
-        // }
-    })
+    console.log("🌐 SEARCH URL:", url);
 
+    const response = await axios.get(url);
 
-    //  console.log(query);
-    //  
-    return JSON.stringify(response.data)
+    console.log("✅ PRODUCT SERVICE STATUS:", response.status);
+    console.log("✅ PRODUCT SERVICE DATA:", response.data);
 
+    return JSON.stringify(response.data);
+
+  } catch (error) {
+    console.error("❌ SEARCH PRODUCT ERROR:", error.message);
+
+    if (error.response) {
+      console.error("❌ STATUS:", error.response.status);
+      console.error("❌ DATA:", error.response.data);
+    }
+
+    throw error;
+  }
 }, {
-
-    name: "searchProduct",
-    description: "Search for products based on a query",
-    schema: z.object({
-        query: z.string().describe("The search query for products")
-    })
-})
+  name: "searchProduct",
+  description: "Search for products based on a query.",
+  schema: z.object({
+    query: z.string().describe("The search query for products")
+  })
+});
 
 
 const addProductToCart = tool(async ({ productId, qty = 1 }) => {
