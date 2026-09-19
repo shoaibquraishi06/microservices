@@ -222,7 +222,7 @@ async function createPayment(req, res) {
 
       order: razorpayOrder,
 
-      key: process.env.RAZORPAY_KEY_ID,
+      key: process.env.TEST_SECRET_KEY,
     });
   } catch (error) {
     console.error("❌ CREATE PAYMENT ERROR");
