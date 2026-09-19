@@ -177,7 +177,7 @@ export default function Payment() {
       // 4. Check backend response
       // ----------------------------------------------
 
-      console.log("🔑 RAZORPAY KEY:", razorpayKey);
+
 
       if (!razorpayOrder?.id) {
         console.error(
@@ -189,6 +189,7 @@ export default function Payment() {
           "Razorpay order ID not received"
         );
       }
+       console.log("🔑 RAZORPAY KEY:", razorpayKey);
 
       if (!razorpayKey) {
         throw new Error(
