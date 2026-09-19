@@ -2,48 +2,63 @@ const mongoose = require('mongoose');
 
 const paymentSchema =  new mongoose.Schema({
  
-    order:{
-        type: mongoose.Schema.Types.ObjectId,
+   
+    // Your Order Service MongoDB Order ID
+    order: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+    },
+
+    // Razorpay Order ID
+    razorpayOrderId: {
+      type: String,
+      required: true,
+    },
+
+    // Razorpay Payment ID
+    paymentId: {
+      type: String,
+      default: null,
+    },
+
+    // Razorpay Signature
+    signature: {
+      type: String,
+      default: null,
+    },
+
+    // Payment Status
+    status: {
+      type: String,
+      enum: ["PENDING", "COMPLETED", "FAILED"],
+      default: "PENDING",
+    },
+
+    // User ID
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+    },
+
+    // Payment Amount
+    price: {
+      amount: {
+        type: Number,
         required: true,
-    },
+      },
 
-    paymentId:{
+      currency: {
         type: String,
-    },
-    orderId:{
-        type: String,
+        enum: ["INR", "USD"],
+        default: "INR",
         required: true,
-    
+      },
     },
-    signature:{
-        type: String,
-    },
-    status:{
-        type: String,
-        enum: ['PENDING', 'COMPLETED', 'FAILED'], default: 'PENDING',
-
-    },
-    user:{
-        type: mongoose.Schema.Types.ObjectId,
-        // required: true,
-    },
-    price:{
-        amount:{
-            type: Number,
-            required:true,
-          
-        },
-        currency:{
-            type: String,
-            required:true,
-              default:"INR",
-            enum:["INR","USD" ],
-        }
-    }},
-
-    {timestamps: true});
-     
-
+  },
+  {
+    timestamps: true,
+  }
+);
 
 const paymentModel = mongoose.model('Payment', paymentSchema);
 
