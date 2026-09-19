@@ -6,8 +6,8 @@ const { publishToQueue } = require("../broker/broker.js");
 
 require("dotenv").config();
 const razorpay = new Razorpay({
-  key_id: process.env.TEST_API_KEY,
-  key_secret: process.env.TEST_SECRET_KEY,
+  key_id: process.env.RAZORPAY_KEY_ID,
+  key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
 
 // async function createPayment(req, res) {
@@ -222,7 +222,7 @@ async function createPayment(req, res) {
 
       order: razorpayOrder,
 
-      key: process.env.TEST_SECRET_KEY,
+      key: process.env.RAZORPAY_KEY_ID,
     });
   } catch (error) {
     console.error("❌ CREATE PAYMENT ERROR");
