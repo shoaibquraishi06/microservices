@@ -133,7 +133,7 @@ async function createPayment(req, res) {
     // ==========================================
 
     const orderUrl =
-      `https://microservices-2-o221.onrender.com//api/orders/${orderId}`;
+      `https://microservices-2-o221.onrender.com/api/orders/${orderId}`;
 
     console.log(
       "🌐 ORDER SERVICE URL:",
