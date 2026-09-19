@@ -13,69 +13,66 @@ const razorpay = new Razorpay({
 
 
 async function createPayment(req, res) {
-   
-      const token =
+   const token =
     req.cookies?.token ||
     req.headers.authorization?.split(" ")[1];
 
+  console.log("🔥 CREATE PAYMENT");
+  console.log("📦 ORDER ID:", req.params.orderId);
+  console.log("🔐 TOKEN EXISTS:", !!token);
+
   try {
-
     const orderId = req.params.orderId;
-
-    console.log("🔥 CREATE PAYMENT");
-    console.log("📦 ORDER ID:", orderId);
-    console.log("🔐 TOKEN EXISTS:", !!token);
 
     if (!token) {
       return res.status(401).json({
         success: false,
-        message: "Authentication token missing",
+        message: "Payment service: token missing",
       });
     }
 
-    // Get order from Order Service
-    const orderResponse = await axios.get(
-      `https://microservices-2-0221.onrender.com/api/orders/${orderId}`,
-      {
-        headers: {
-          Cookie: `token=${token}`,
-        },
-      }
-    );
+  const orderUrl =
+  `https://microservices-2-o221.onrender.com/api/orders/${orderId}`;
 
-    console.log("📦 ORDER RESPONSE:", orderResponse.data);
+console.log("🌐 ORDER SERVICE URL:", orderUrl);
+console.log("🔐 TOKEN EXISTS:", !!token);
+
+const orderResponse = await axios.get(orderUrl, {
+  headers: {
+    Cookie: `token=${token}`,
+  },
+});
+
+console.log(
+  "✅ ORDER SERVICE RESPONSE:",
+  orderResponse.status,
+  orderResponse.data
+);
 
     const totalPrice =
       orderResponse.data.order.totalPrice;
 
-    console.log("💰 TOTAL PRICE:", totalPrice);
-
-    // Create Razorpay order
-    const razorpayOrder = await razorpay.orders.create({
-      amount: Math.round(totalPrice * 100),
-      currency: "INR",
-      receipt: `order_${orderId}`,
-    });
+    const razorpayOrder =
+      await razorpay.orders.create({
+        amount: Math.round(totalPrice * 100),
+        currency: "INR",
+        receipt: `order_${orderId}`,
+      });
 
     console.log(
       "💳 RAZORPAY ORDER:",
       razorpayOrder
     );
 
-    // Save payment
-    const payment = await paymentModel.create({
-      orderId,
-      order: razorpayOrder.id,
-      price: {
-        amount: razorpayOrder.amount,
-        currency: razorpayOrder.currency,
-      },
-    });
-
-    console.log(
-      "✅ PAYMENT CREATED:",
-      payment
-    );
+    const payment =
+      await paymentModel.create({
+        orderId,
+        order: razorpayOrder.id,
+        price: {
+          amount: razorpayOrder.amount,
+          currency: razorpayOrder.currency,
+        },
+      });
 
     return res.status(201).json({
       success: true,
@@ -85,18 +82,19 @@ async function createPayment(req, res) {
       key: process.env.RAZORPAY_KEY_ID,
     });
 
-  } catch (err) {
+  } catch (error) {
+     console.error("❌ CREATE PAYMENT ERROR");
+  console.error("STATUS:", error.response?.status);
+  console.error("DATA:", error.response?.data);
+  console.error("URL:", error.config?.url);
+  console.error("METHOD:", error.config?.method);
 
-    console.error(
-      "❌ CREATE PAYMENT ERROR:",
-      err.response?.data || err.message
-    );
-
-    return res.status(500).json({
-      success: false,
-      message: "Internal Server Error",
-      error: err.response?.data || err.message,
-    });
+  return res.status(500).json({
+    success: false,
+    message: "Internal Server Error",
+    error: error.response?.data || error.message,
+  });
+   
   }
 
 
