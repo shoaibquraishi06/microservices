@@ -177,6 +177,8 @@ export default function Payment() {
       // 4. Check backend response
       // ----------------------------------------------
 
+      console.log("🔑 RAZORPAY KEY:", razorpayKey);
+
       if (!razorpayOrder?.id) {
         console.error(
           "❌ Razorpay Order Missing:",
