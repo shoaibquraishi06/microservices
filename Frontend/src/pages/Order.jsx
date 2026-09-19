@@ -16,8 +16,8 @@ export default function Order() {
   const { items } = useSelector((state) => state.cart);
 
   
-  console.log("Items:", items);
-  console.log("Orders:", orders);
+  // console.log("Items:", items);
+  // console.log("Orders:", orders);
 
 
   // ✅ Component load hote hi API call

@@ -67,7 +67,7 @@ export default function Register() {
         withCredentials: true
       });
 
-     console.log(res);
+    //  console.log(res);
       setError("");
       alert("Account created!");
       navigate("/");

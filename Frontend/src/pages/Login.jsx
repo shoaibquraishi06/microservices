@@ -30,7 +30,7 @@ const handleSubmit = async (e) => {
       { email, password },
       { withCredentials: true }
     );
-    console.log("LOGIN RESPONSE:", res.data),
+    // console.log("LOGIN RESPONSE:", res.data),
 
     localStorage.setItem("token", res.data.token);
 
