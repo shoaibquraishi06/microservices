@@ -60,7 +60,7 @@ export default function Payment() {
 
   const handlePayment = async () => {
     try {
-      console.log("🚀 PAYMENT STARTED");
+      // console.log("🚀 PAYMENT STARTED");
 
       // ----------------------------------------------
       // 1. Get Order ID
@@ -68,7 +68,7 @@ export default function Payment() {
 
       const orderId = order._id;
 
-      console.log("🆔 ORDER ID:", orderId);
+      // console.log("🆔 ORDER ID:", orderId);
 
       // Order ID check
       if (!orderId) {
@@ -97,9 +97,9 @@ export default function Payment() {
       // 3. Create Razorpay Order
       // ----------------------------------------------
 
-      console.log(
-        "📦 Creating Razorpay order..."
-      );
+      // console.log(
+      //   "📦 Creating Razorpay order..."
+      // );
 
        const token = localStorage.getItem("token");
       const response = await axios.post(
@@ -118,17 +118,14 @@ export default function Payment() {
       );
       
 
-      console.log(
-        "✅ CREATE PAYMENT RESPONSE:",
-        response.data
-      );
+  
 
         const verifyPayment = async (paymentResponse) => {
     try {
-      console.log(
-        "🔐 VERIFYING PAYMENT:",
-        paymentResponse
-      );
+      // console.log(
+      //   "🔐 VERIFYING PAYMENT:",
+      //   paymentResponse
+      // );
 
       const response = await axios.post(
         `${PAYMENT_SERVICE_URL}/api/payments/verify`,
@@ -147,10 +144,10 @@ export default function Payment() {
         }
       );
 
-      console.log(
-        "✅ VERIFY RESPONSE:",
-        response.data
-      );
+      // console.log(
+      //   "✅ VERIFY RESPONSE:",
+      //   response.data
+      // );
 
       if (response.data.success) {
         navigate("/payment-success", {
@@ -189,7 +186,7 @@ export default function Payment() {
           "Razorpay order ID not received"
         );
       }
-       console.log("🔑 RAZORPAY KEY:", razorpayKey);
+  
 
       if (!razorpayKey) {
         throw new Error(

@@ -88,7 +88,7 @@ async function createOrder(req, res) {
         //  console.log("order:", cartResponse.data.cart.items);
 
            } catch (err) {
-            console.log("error:", err);
+            // console.log("error:", err);
             
         res.status(500).json({ message: "Internal server error", error: err.message })
     }
@@ -162,17 +162,17 @@ async function myOrders(req, res) {
 async function getOrderById(req, res) {
    const { id } = req.params;
 
-  console.log("🔥 GET ORDER BY ID");
-  console.log("📦 ORDER ID:", id);
-  console.log("👤 USER:", req.user);
+//   console.log("🔥 GET ORDER BY ID");
+//   console.log("📦 ORDER ID:", id);
+//   console.log("👤 USER:", req.user);
 
   try {
     const order = await orderModel.findById(id);
 
-    console.log("📦 ORDER FROM DATABASE:", order);
+    // console.log("📦 ORDER FROM DATABASE:", order);
 
     if (!order) {
-      console.log("❌ ORDER NOT FOUND:", id);
+    //   console.log("❌ ORDER NOT FOUND:", id);
 
       return res.status(404).json({
         success: false,

@@ -101,12 +101,12 @@ async function createPayment(req, res) {
   const token = req.cookies?.token || req.headers.authorization?.split(" ")[1];
 
   try {
-    console.log("🔥 CREATE PAYMENT");
+    // console.log("🔥 CREATE PAYMENT");
 
     const orderId = req.params.orderId;
 
-    console.log("📦 ORDER ID:", orderId);
-    console.log("🔐 TOKEN EXISTS:", !!token);
+    // console.log("📦 ORDER ID:", orderId);
+    // console.log("🔐 TOKEN EXISTS:", !!token);
 
     if (!orderId) {
       return res.status(400).json({
@@ -128,7 +128,7 @@ async function createPayment(req, res) {
 
     const orderUrl = `https://microservices-2-o221.onrender.com/api/orders/${orderId}`;
 
-    console.log("🌐 ORDER SERVICE URL:", orderUrl);
+    // console.log("🌐 ORDER SERVICE URL:", orderUrl);
 
     const orderResponse = await axios.get(orderUrl, {
       headers: {
@@ -136,11 +136,11 @@ async function createPayment(req, res) {
       },
     });
 
-    console.log(
-      "✅ ORDER SERVICE RESPONSE:",
-      orderResponse.status,
-      orderResponse.data,
-    );
+    // console.log(
+    //   "✅ ORDER SERVICE RESPONSE:",
+    //   orderResponse.status,
+    //   orderResponse.data,
+    // );
 
     const orderData = orderResponse.data?.order;
 
@@ -157,7 +157,7 @@ async function createPayment(req, res) {
 
     const totalPrice = orderData.totalPrice;
 
-    console.log("💰 ORDER TOTAL:", totalPrice);
+    // console.log("💰 ORDER TOTAL:", totalPrice);
 
     if (!totalPrice?.amount) {
       return res.status(400).json({
@@ -186,7 +186,7 @@ async function createPayment(req, res) {
       receipt: `order_${orderId}`,
     });
 
-    console.log("💳 RAZORPAY ORDER CREATED:", razorpayOrder);
+    // console.log("💳 RAZORPAY ORDER CREATED:", razorpayOrder);
 
     // ==========================================
     // 5. SAVE PAYMENT
@@ -207,7 +207,7 @@ async function createPayment(req, res) {
       status: "PENDING",
     });
 
-    console.log("💾 PAYMENT SAVED:", payment);
+    // console.log("💾 PAYMENT SAVED:", payment);
 
     // ==========================================
     // 6. RESPONSE
@@ -225,13 +225,13 @@ async function createPayment(req, res) {
       key: process.env.RAZORPAY_KEY_ID,
     });
   } catch (error) {
-    console.error("❌ CREATE PAYMENT ERROR");
+    // console.error("❌ CREATE PAYMENT ERROR");
 
-    console.error("MESSAGE:", error.message);
+    // console.error("MESSAGE:", error.message);
 
-    console.error("RESPONSE:", error.response?.data);
+    // console.error("RESPONSE:", error.response?.data);
 
-    console.error("STATUS:", error.response?.status);
+    // console.error("STATUS:", error.response?.status);
 
     return res.status(500).json({
       success: false,
