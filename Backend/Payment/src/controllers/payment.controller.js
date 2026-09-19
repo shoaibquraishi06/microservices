@@ -192,14 +192,20 @@ async function createPayment(req, res) {
     // 5. SAVE PAYMENT
     // ==========================================
 
-    const payment = await paymentModel.create({
-      orderId,
-      order: razorpayOrder.id,
-      price: {
-        amount: razorpayOrder.amount,
-        currency: razorpayOrder.currency,
-      },
-    });
+   const payment = await paymentModel.create({
+  order: orderId,
+
+  razorpayOrderId: razorpayOrder.id,
+
+  user: orderData.user,
+
+  price: {
+    amount: razorpayOrder.amount,
+    currency: razorpayOrder.currency,
+  },
+
+  status: "PENDING",
+});
 
     console.log("💾 PAYMENT SAVED:", payment);
 
