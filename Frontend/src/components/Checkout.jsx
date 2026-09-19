@@ -24,7 +24,7 @@ export default function Checkout() {
   const { loading, success } = useSelector((state) => state.order);
  
    const { items = [] } = useSelector(state => state.cart);
-   console.log("items", items);
+  //  console.log("items", items);
 
    if (!items || items.length === 0) {
   alert("Cart is empty");

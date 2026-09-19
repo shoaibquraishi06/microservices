@@ -21,9 +21,13 @@ const graph = new StateGraph(MessagesAnnotation)
     const toolCallResults = await Promise.all(
       toolsCall.map(async (call) => {
         const tool = tools[call.name];
-        if (!tool) {
-          throw new Error(`Tool ${call.name} not found`);
-        }
+      if (!tool) {
+  return new ToolMessage({
+    content: `Tool ${call.name} is not available. Available tools are: searchProduct, addProductToCart.`,
+    name: call.name,
+    tool_call_id: call.id,
+  });
+}
         const toolInput = call.args;
 
         console.log("Invoking tool:", call.name, "with input:", call);

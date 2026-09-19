@@ -7,7 +7,7 @@ const searchProduct = tool(async ({ query }) => {
     console.log("🔎 SEARCH PRODUCT QUERY:", query);
 
     const url =
-      `https://microservices-3-777q.onrender.com/api/products/search?q=${encodeURIComponent(query)}`;
+      `https://microservices-3-777q.onrender.com/api/products/search?q=${(query)}`;
 
     console.log("🌐 SEARCH URL:", url);
 

@@ -160,24 +160,41 @@ async function myOrders(req, res) {
 
 
 async function getOrderById(req, res) {
-    const user = req.user;
-    const orderId = req.params.id;
+   const { id } = req.params;
 
-    try {
-        const order = await orderModel.findById(orderId)
+  console.log("🔥 GET ORDER BY ID");
+  console.log("📦 ORDER ID:", id);
+  console.log("👤 USER:", req.user);
 
-        if (!order) {
-            return res.status(404).json({ message: "Order not found" });
-        }
+  try {
+    const order = await orderModel.findById(id);
 
-        // if (order.user.toString() !== user.id) {
-        //     return res.status(403).json({ message: "Forbidden: You do not have access to this order" });
-        // }
+    console.log("📦 ORDER FROM DATABASE:", order);
 
-        res.status(200).json({ order })
-    } catch (err) {
-        res.status(500).json({ message: "Internal server error", error: err.message })
+    if (!order) {
+      console.log("❌ ORDER NOT FOUND:", id);
+
+      return res.status(404).json({
+        success: false,
+        message: "Order not found",
+        orderId: id,
+      });
     }
+
+    return res.status(200).json({
+      success: true,
+      order,
+    });
+
+  } catch (error) {
+    console.error("❌ GET ORDER ERROR:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      error: error.message,
+    });
+  }
 }
 
 async function cancelOrderById(req, res) {

@@ -14,52 +14,90 @@ const razorpay = new Razorpay({
 
 async function createPayment(req, res) {
    
-      const token = req.cookies?.token || req.headers?.authorization?.split(' ')[ 1 ];
-    //  console.log("REQ TOKEN:", req.token);
-    
-    try {
+      const token =
+    req.cookies?.token ||
+    req.headers.authorization?.split(" ")[1];
 
-        const orderId = req.params.orderId;
+  try {
 
-        const orderResponse = await axios.get(`https://microservices-2-0221.onrender.com/api/orders/${orderId}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }) 
-          
-  const price = orderResponse.data.order.totalPrice;
+    const orderId = req.params.orderId;
 
-            const order = await razorpay.orders.create(price);
+    console.log("🔥 CREATE PAYMENT");
+    console.log("📦 ORDER ID:", orderId);
+    console.log("🔐 TOKEN EXISTS:", !!token);
 
-        const payment = await paymentModel.create({
-  
-             order:orderId,
-             orderId: order.id,
-             price: {
-                amount:order.amount,
-                currency: order.currency
-             }
-        })
-
-
-            await publishToQueue("PAYMENT_SELLER_DASHBOARD.PAYMENT_CREATED", payment)
-        await publishToQueue("PAYMENT_NOTIFICATION.PAYMENT_INITIATED", {
-            email: req.user.email,
-            orderId: orderId,
-            amount: price.amount / 100,
-            currency: price.currency,
-            username: req.user.username,
-        })
-
-
-             return res.status(201).json({message: 'Payment Created Successfully', payment});
-
-    }catch(err){
-        console.log(err);
-        
-        return res.status(500).json({message: 'Internal Server Error'});
+    if (!token) {
+      return res.status(401).json({
+        success: false,
+        message: "Authentication token missing",
+      });
     }
 
+    // Get order from Order Service
+    const orderResponse = await axios.get(
+      `https://microservices-2-0221.onrender.com/api/orders/${orderId}`,
+      {
+        headers: {
+          Cookie: `token=${token}`,
+        },
+      }
+    );
+
+    console.log("📦 ORDER RESPONSE:", orderResponse.data);
+
+    const totalPrice =
+      orderResponse.data.order.totalPrice;
+
+    console.log("💰 TOTAL PRICE:", totalPrice);
+
+    // Create Razorpay order
+    const razorpayOrder = await razorpay.orders.create({
+      amount: Math.round(totalPrice * 100),
+      currency: "INR",
+      receipt: `order_${orderId}`,
+    });
+
+    console.log(
+      "💳 RAZORPAY ORDER:",
+      razorpayOrder
+    );
+
+    // Save payment
+    const payment = await paymentModel.create({
+      orderId,
+      order: razorpayOrder.id,
+      price: {
+        amount: razorpayOrder.amount,
+        currency: razorpayOrder.currency,
+      },
+    });
+
+    console.log(
+      "✅ PAYMENT CREATED:",
+      payment
+    );
+
+    return res.status(201).json({
+      success: true,
+      message: "Payment Created Successfully",
+      payment,
+      order: razorpayOrder,
+      key: process.env.RAZORPAY_KEY_ID,
+    });
+
+  } catch (err) {
+
+    console.error(
+      "❌ CREATE PAYMENT ERROR:",
+      err.response?.data || err.message
+    );
+
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: err.response?.data || err.message,
+    });
+  }
 
 
 }
@@ -96,19 +134,19 @@ try{
     await payment.save();
 
     
-     await publishToQueue("PAYMENT_NOTIFICATION.PAYMENT_COMPLETED",
-            {
-                email: req.user.email,
-                orderId: payment.order,
-                paymentId: payment.paymentId,
-                amount: payment.price.amount / 100,
-                currency: payment.price.currency,
-                fullName: req.user.fullName
-            }
-        )
+    //  await publishToQueue("PAYMENT_NOTIFICATION.PAYMENT_COMPLETED",
+    //         {
+    //             email: req.user.email,
+    //             orderId: payment.order,
+    //             paymentId: payment.paymentId,
+    //             amount: payment.price.amount / 100,
+    //             currency: payment.price.currency,
+    //             fullName: req.user.fullName
+    //         }
+    //     )
 
 
-        await publishToQueue("PAYMENT_SELLER_DASHBOARD.PAYMENT_UPDATED", payment)
+    //     await publishToQueue("PAYMENT_SELLER_DASHBOARD.PAYMENT_UPDATED", payment)
 
 
       res.status(200).json({message: 'Payment Verified Successfully', payment});

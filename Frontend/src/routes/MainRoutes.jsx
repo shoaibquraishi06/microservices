@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import ProductGrid from "../components/ProductGrid";
 import ChatAssistant from "../components/ChatAssistant";
 import Clouser from '../components/HerosectionClourser/MorphSlider';
+import Payment2 from  "../components/Payment@";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchProducts } from "../feature/productThunk";
@@ -21,6 +22,7 @@ const MainRoutes = () => {
       
       <HeroSection />
       <ChatAssistant />
+      {/* <Payment2/> */}
       <ProductGrid product={Array.isArray(items) ? items : []} />
       <Contact />
       <Footer />
