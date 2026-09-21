@@ -1,33 +1,37 @@
-// src/components/Skalaton.jsx
-
+import React from "react";
 import "../style/productSkaleton.css";
 
-export default function Skalaton() {
+export default function ProductSkaleton({ count = 8 }) {
   return (
-    <section className="ps-skeleton">
-      {/* Filter Button */}
-      <div className="sk-filter shimmer"></div>
+    <div className="product-skeleton-grid">
+      {Array.from({ length: count }).map((_, index) => (
+        <div className="product-skeleton-card" key={index}>
 
-      {/* Product Grid */}
-      <div className="sk-grid">
-        {Array.from({ length: 8 }).map((_, index) => (
-          <div className="sk-card" key={index}>
-            <div className="sk-image shimmer"></div>
+          {/* Product Image */}
+          <div className="ps-image-wrap">
+            <div className="ps-shimmer ps-image"></div>
 
-            <div className="sk-row">
-              {/* <div className="sk-title shimmer"></div> */}
-              {/* <div className="sk-price shimmer"></div> */}
-            </div>
-
-            <div className="sk-subtitle shimmer"></div>
-
-          
+            {/* Wishlist Icon */}
+            <div className="ps-shimmer ps-heart"></div>
           </div>
-        ))}
-      </div>
 
-      {/* View All */}
-      <div className="sk-viewall shimmer"></div>
-    </section>
+          {/* Product Title + Price */}
+          <div className="ps-product-head">
+            <div className="ps-shimmer ps-title"></div>
+            <div className="ps-shimmer ps-price"></div>
+          </div>
+
+          {/* Product Description */}
+          <div className="ps-shimmer ps-description"></div>
+
+          {/* Buttons */}
+          <div className="ps-buttons">
+            <div className="ps-shimmer ps-cart-btn"></div>
+            <div className="ps-shimmer ps-buy-btn"></div>
+          </div>
+
+        </div>
+      ))}
+    </div>
   );
 }

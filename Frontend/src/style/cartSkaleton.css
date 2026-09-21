@@ -1,124 +1,774 @@
-/* ===========================
-   src/components/skalton.css
-=========================== */
+/* =========================================================
+   CART SKELETON
+   Premium Nike / Minimal Shimmer
+   ========================================================= */
 
-.sk-wrapper {
-  display: grid;
-  gap: 18px;
-  padding: 16px;
+.cart-skeleton-page {
+  width: 100%;
+  min-height: 100vh;
+
+  box-sizing: border-box;
+
+  padding:
+    28px
+    clamp(18px, 5vw, 80px)
+    70px;
+
+  background: #f6f6f6;
+
+  font-family: "regular-text", Arial, sans-serif;
+
+  overflow: hidden;
 }
 
-.sk-card {
-  display: flex;
-  gap: 14px;
-  padding: 14px;
-  border-radius: 18px;
-  background: #ffffff;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+
+/* =========================================================
+   SHIMMER BASE
+   ========================================================= */
+
+.cart-skeleton-page .skel {
+  display: block;
+
+  background-color: #e7e7e7;
+
+  background-image:
+    linear-gradient(
+      105deg,
+      transparent 25%,
+      rgba(255, 255, 255, 0.15) 38%,
+      rgba(255, 255, 255, 0.9) 50%,
+      rgba(255, 255, 255, 0.15) 62%,
+      transparent 75%
+    );
+
+  background-size: 250% 100%;
+  background-repeat: no-repeat;
+
+  animation:
+    cartSkeletonShimmer 1.45s ease-in-out infinite;
+
+  border-radius: 6px;
 }
 
-.sk-image {
-  width: 110px;
-  height: 110px;
-  border-radius: 14px;
-  flex-shrink: 0;
+
+/* Smooth premium shimmer */
+
+@keyframes cartSkeletonShimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
 }
 
-.sk-content {
-  flex: 1;
-}
 
-.sk-line {
-  height: 14px;
-  border-radius: 10px;
-  margin-bottom: 12px;
-}
+/* =========================================================
+   BACK BUTTON
+   ========================================================= */
 
-.sk-title {
-  width: 65%;
-  height: 18px;
-}
-
-.sk-text {
-  width: 85%;
-}
-
-.sk-price {
-  width: 35%;
-}
-
-.sk-qty {
+.cart-skeleton-back {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 14px 0;
+
+  width: fit-content;
+
+  margin-bottom: 34px;
 }
 
-.sk-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
+.skel-back-arrow {
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50% !important;
 }
 
-.sk-count {
+.skel-back-text {
   width: 42px;
-  height: 20px;
-  border-radius: 8px;
+  height: 13px;
+
+  border-radius: 5px !important;
 }
 
-.sk-remove {
-  width: 90px;
-  height: 14px;
-  border-radius: 10px;
+
+/* =========================================================
+   PAGE HEADER
+   ========================================================= */
+
+.cart-skeleton-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  margin-bottom: 28px;
 }
 
-.shimmer {
-  position: relative;
+.cart-skeleton-header > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skel-eyebrow {
+  width: 85px;
+  height: 9px;
+
+  border-radius: 4px !important;
+}
+
+.skel-page-title {
+  width: 220px;
+  height: 42px;
+
+  border-radius: 9px !important;
+}
+
+.skel-item-count {
+  width: 48px;
+  height: 13px;
+
+  margin-bottom: 8px;
+
+  border-radius: 5px !important;
+}
+
+
+/* =========================================================
+   MAIN GRID
+   ========================================================= */
+
+.cart-skeleton-layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(330px, 0.54fr);
+
+  gap: clamp(24px, 3vw, 50px);
+
+  align-items: start;
+}
+
+
+/* =========================================================
+   LEFT CART ITEMS
+   ========================================================= */
+
+.cart-skeleton-items {
+  width: 100%;
+
+  background: #fff;
+
+  border: 1px solid #e5e5e5;
+  border-radius: 16px;
+
   overflow: hidden;
-  background: #e9e9e9;
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.025);
 }
 
-.shimmer::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  transform: translateX(-100%);
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.85),
-    transparent
-  );
-  animation: shimmer 1.1s infinite;
+
+.cart-skeleton-item {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    238px
+    minmax(180px, 1fr)
+    80px;
+
+  gap: 30px;
+
+  align-items: center;
+
+  min-height: 236px;
+
+  padding: 28px 30px;
+
+  box-sizing: border-box;
 }
 
-@keyframes shimmer {
-  100% {
-    transform: translateX(100%);
+.cart-skeleton-item + .cart-skeleton-item {
+  border-top: 1px solid #ededed;
+}
+
+
+/* =========================================================
+   PRODUCT IMAGE
+   ========================================================= */
+
+.skel-product-image {
+  width: 100%;
+  height: 180px;
+
+  border-radius: 12px !important;
+}
+
+
+/* =========================================================
+   PRODUCT INFO
+   ========================================================= */
+
+.cart-skeleton-product-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 12px;
+
+  min-width: 0;
+}
+
+.skel-brand {
+  width: 42px;
+  height: 8px;
+
+  border-radius: 3px !important;
+}
+
+.skel-product-title {
+  width: min(180px, 80%);
+  height: 18px;
+
+  border-radius: 5px !important;
+}
+
+.skel-product-description {
+  width: min(120px, 65%);
+  height: 12px;
+
+  border-radius: 4px !important;
+}
+
+
+/* =========================================================
+   QUANTITY
+   ========================================================= */
+
+.skel-quantity {
+  width: 138px;
+  height: 44px;
+
+  margin-top: 30px;
+
+  border-radius: 24px !important;
+}
+
+
+/* =========================================================
+   PRICE
+   ========================================================= */
+
+.cart-skeleton-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  gap: 8px;
+}
+
+.skel-price-main {
+  width: 58px;
+  height: 17px;
+
+  border-radius: 5px !important;
+}
+
+.skel-price-small {
+  width: 38px;
+  height: 11px;
+
+  border-radius: 4px !important;
+}
+
+
+/* =========================================================
+   RIGHT SUMMARY
+   ========================================================= */
+
+.cart-skeleton-summary {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 30px 32px;
+
+  background: #fff;
+
+  border: 1px solid #e3e3e3;
+  border-radius: 18px;
+
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.045);
+}
+
+
+/* Sticky on desktop */
+
+@media (min-width: 901px) {
+  .cart-skeleton-summary {
+    position: sticky;
+    top: 95px;
   }
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .sk-card {
-    padding: 12px;
-    gap: 12px;
-    display:flex;
-    flex-direction: column;
-    /* justify-content: center;
-    align-items: center; */
+
+/* =========================================================
+   SUMMARY HEADER
+   ========================================================= */
+
+.cart-skeleton-summary-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.skel-summary-eyebrow {
+  width: 110px;
+  height: 9px;
+
+  border-radius: 4px !important;
+}
+
+.skel-summary-title {
+  width: 105px;
+  height: 22px;
+
+  border-radius: 6px !important;
+}
+
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
+.skel-summary-divider {
+  width: 100%;
+  height: 1px;
+
+  margin: 28px 0;
+
+  background: #e8e8e8 !important;
+
+  animation: none !important;
+
+  border-radius: 0 !important;
+}
+
+
+/* =========================================================
+   SUMMARY ROWS
+   ========================================================= */
+
+.cart-skeleton-summary-rows {
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.skeleton-summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.skel-summary-label {
+  width: 80px;
+  height: 13px;
+
+  border-radius: 5px !important;
+}
+
+.skel-summary-value {
+  width: 48px;
+  height: 13px;
+
+  border-radius: 5px !important;
+}
+
+.skel-summary-free {
+  width: 35px;
+  height: 13px;
+
+  border-radius: 5px !important;
+}
+
+
+/* =========================================================
+   YOU PAY
+   ========================================================= */
+
+.skeleton-pay-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 32px;
+}
+
+.skel-pay-label {
+  width: 60px;
+  height: 14px;
+
+  border-radius: 5px !important;
+}
+
+.skel-pay-value {
+  width: 75px;
+  height: 24px;
+
+  border-radius: 6px !important;
+}
+
+
+/* =========================================================
+   CHECKOUT BUTTON
+   ========================================================= */
+
+.skel-checkout-button {
+  width: 100%;
+  height: 56px;
+
+  border-radius: 10px !important;
+}
+
+
+/* =========================================================
+   SECURE CHECKOUT
+   ========================================================= */
+
+.skel-secure-text {
+  width: 170px;
+  height: 9px;
+
+  margin: 18px auto 0;
+
+  border-radius: 4px !important;
+}
+
+
+/* =========================================================
+   LARGE TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+  .cart-skeleton-layout {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(300px, 0.55fr);
+
+    gap: 24px;
   }
 
-  .sk-image {
+  .cart-skeleton-item {
+    grid-template-columns:
+      190px
+      minmax(150px, 1fr)
+      65px;
+
+    gap: 22px;
+
+    min-height: 205px;
+
+    padding: 24px;
+  }
+
+  .skel-product-image {
+    height: 155px;
+  }
+
+  .cart-skeleton-summary {
+    padding: 26px;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .cart-skeleton-page {
+    padding-top: 25px;
+  }
+
+  .cart-skeleton-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-skeleton-summary {
+    position: static;
+
+    width: 100%;
+  }
+
+  .cart-skeleton-item {
+    grid-template-columns:
+      190px
+      minmax(0, 1fr)
+      75px;
+  }
+
+  .skel-product-image {
+    height: 155px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .cart-skeleton-page {
+    min-height: 100vh;
+
+    padding:
+      22px
+      14px
+      40px;
+  }
+
+
+  /* Header */
+
+  .cart-skeleton-back {
+    margin-bottom: 28px;
+  }
+
+  .cart-skeleton-header {
+    align-items: flex-end;
+
+    margin-bottom: 20px;
+  }
+
+  .skel-page-title {
+    width: 175px;
+    height: 34px;
+  }
+
+  .skel-eyebrow {
+    width: 70px;
+    height: 8px;
+  }
+
+  .skel-item-count {
+    width: 42px;
+    height: 11px;
+  }
+
+
+  /* Cart */
+
+  .cart-skeleton-items {
+    border-radius: 14px;
+  }
+
+  .cart-skeleton-item {
+    grid-template-columns:
+      105px
+      minmax(0, 1fr);
+
+    gap: 17px;
+
+    min-height: 185px;
+
+    padding: 18px;
+  }
+
+
+  .skel-product-image {
+    width: 105px;
+    height: 105px;
+
+    border-radius: 9px !important;
+  }
+
+
+  .cart-skeleton-product-info {
+    gap: 9px;
+  }
+
+  .skel-brand {
+    width: 35px;
+    height: 7px;
+  }
+
+  .skel-product-title {
+    width: 125px;
+    height: 15px;
+  }
+
+  .skel-product-description {
+    width: 85px;
+    height: 10px;
+  }
+
+
+  /* Quantity */
+
+  .skel-quantity {
+    width: 105px;
+    height: 36px;
+
+    margin-top: 12px;
+  }
+
+
+  /* Price */
+
+  .cart-skeleton-price {
+    position: absolute;
+
+    right: 18px;
+    top: 18px;
+  }
+
+  .skel-price-main {
+    width: 48px;
+    height: 14px;
+  }
+
+  .skel-price-small {
+    width: 32px;
+    height: 9px;
+  }
+
+
+  /* Summary */
+
+  .cart-skeleton-summary {
+    padding: 22px;
+
+    border-radius: 14px;
+  }
+
+  .skel-summary-title {
+    width: 80px;
+    height: 19px;
+  }
+
+  .skel-summary-eyebrow {
+    width: 85px;
+    height: 8px;
+  }
+
+  .skel-summary-divider {
+    margin: 22px 0;
+  }
+
+  .skeleton-summary-row {
+    gap: 20px;
+  }
+
+  .skel-checkout-button {
+    height: 52px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+  .cart-skeleton-page {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .cart-skeleton-item {
+    grid-template-columns:
+      88px
+      minmax(0, 1fr);
+
+    gap: 14px;
+
+    padding: 15px;
+
+    min-height: 160px;
+  }
+
+  .skel-product-image {
+    width: 88px;
+    height: 88px;
+  }
+
+  .skel-product-title {
+    width: 105px;
+  }
+
+  .skel-product-description {
+    width: 70px;
+  }
+
+  .skel-quantity {
+    width: 92px;
+    height: 33px;
+
+    margin-top: 8px;
+  }
+
+  .cart-skeleton-price {
+    right: 15px;
+    top: 15px;
+  }
+
+  .cart-skeleton-summary {
+    padding: 18px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL SCREEN
+   ========================================================= */
+
+@media (max-width: 330px) {
+
+  .cart-skeleton-item {
+    grid-template-columns:
+      75px
+      minmax(0, 1fr);
+  }
+
+  .skel-product-image {
+    width: 75px;
+    height: 75px;
+  }
+
+  .skel-product-title {
     width: 90px;
-    height: 90px;
   }
 
-  .sk-title {
-    width: 75%;
+  .skel-quantity {
+    width: 82px;
   }
 
-  .sk-text {
-    width: 95%;
+  .cart-skeleton-summary {
+    padding: 15px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .cart-skeleton-page .skel {
+    animation: none;
   }
 }

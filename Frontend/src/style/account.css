@@ -1,29 +1,700 @@
-.page-title {
-  font-family: "bold-text";
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-
-}
-
 .account-page {
-  display: flex;
-  gap: 2rem;
-  background: #eae8e8;
-  /* position: absolute; */
-  padding: 2rem;
-  z-index: 999;
-   padding-top: 5rem;
+
+  width: 100%;
+  min-height: 100vh;
+
+  background: #f4f4f4;
+
+  padding: 110px 32px 60px;
+
+  box-sizing: border-box;
 }
+
+
+.account-layout {
+
+  width: 100%;
+
+  max-width: 1400px;
+
+  margin: 0 auto;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 24px;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+.account-main {
+
+  flex: 1;
+
+  min-width: 0;
+}
+
+
+.account-top {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-end;
+
+  margin-bottom: 22px;
+
+}
+
+
+.account-eyebrow {
+
+  display: block;
+
+  font-family: "regular-text", Arial, sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 1.5px;
+
+  color: #8b8b8b;
+
+  margin-bottom: 5px;
+}
+
+
+.page-title {
+
+  margin: 0;
+
+  font-family: "bold-text", Arial, sans-serif;
+
+  font-size: clamp(28px, 3vw, 42px);
+
+  line-height: 1;
+
+  color: #111;
+
+  text-transform: uppercase;
+
+  letter-spacing: -1.5px;
+}
+
 
 .account-content {
+
+  width: 100%;
+}
+
+
+/* =========================
+   COMMON CARD
+========================= */
+
+.account-card {
+
+  background: #fff;
+
+  border: 1px solid #e8e8e8;
+
+  border-radius: 14px;
+
+  padding: 28px;
+
+  box-sizing: border-box;
+
+  animation: accountFade 0.3s ease;
+}
+
+
+@keyframes accountFade {
+
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+
+/* =========================
+   PERSONAL
+========================= */
+
+.card-top {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding-bottom: 25px;
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+
+.nike-mark {
+
+  width: 52px;
+  height: 52px;
+
+  border: 1px solid #d7d7d7;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 18px;
+
+  font-weight: 700;
+}
+
+
+.section-label {
+
+  display: block;
+
+  font-family: "regular-text", Arial, sans-serif;
+
+  color: #999;
+
+  font-size: 9px;
+
+  letter-spacing: 1.3px;
+
+  margin-bottom: 4px;
+}
+
+
+.card-top h2,
+.account-card h2 {
+
+  margin: 0;
+
+  font-family: "bold-text", Arial, sans-serif;
+
+  font-size: 20px;
+
+  color: #111;
+}
+
+
+.card-top p {
+
+  margin: 5px 0 0;
+
+  font-family: "regular-text", Arial, sans-serif;
+
+  color: #888;
+
+  font-size: 11px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.account-form-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 22px;
+
+  padding-top: 26px;
+}
+
+
+.account-field label {
+
+  display: block;
+
+  font-family: "regular-text", Arial, sans-serif;
+
+  font-size: 10px;
+
+  color: #777;
+
+  margin-bottom: 7px;
+}
+
+
+.field-value {
+
+  width: 100%;
+
+  min-height: 40px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #d8d8d8;
+
+  border-radius: 6px;
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 0 12px;
+
+  color: #111;
+
+  font-family: "regular-text", Arial, sans-serif;
+
+  font-size: 12px;
+
+  background: #fff;
+
+}
+
+
+.card-bottom {
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  border-top: 1px solid #eeeeee;
+
+  margin-top: 26px;
+
+  padding-top: 16px;
+}
+
+
+.save-btn,
+.primary-account-btn {
+
+  border: none;
+
+  background: #111;
+
+  color: #fff;
+
+  border-radius: 6px;
+
+  padding: 10px 18px;
+
+  font-family: "regular-text", Arial, sans-serif;
+
+  font-size: 11px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.save-btn:hover,
+.primary-account-btn:hover {
+
+  background: #2a2a2a;
+
+  transform: translateY(-1px);
+
+}
+
+
+.save-btn:active,
+.primary-account-btn:active {
+
+  transform: scale(0.97);
+
+}
+
+
+/* =========================
+   EMPTY STATES
+========================= */
+
+.empty-account-card {
+
+  min-height: 480px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+}
+
+
+.empty-icon {
+
+  width: 58px;
+  height: 58px;
+
+  border-radius: 50%;
+
+  background: #f5f5f5;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 25px;
+
+  margin-bottom: 18px;
+}
+
+
+.empty-account-card h2 {
+
+  margin-bottom: 7px;
+}
+
+
+.empty-account-card p {
+
+  color: #888;
+
+  font-family: "regular-text", Arial, sans-serif;
+
+  font-size: 11px;
+
+  margin: 0 0 22px;
+}
+
+
+/* =========================
+   CART
+========================= */
+
+.section-heading-row {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding-bottom: 20px;
+
+  border-bottom: 1px solid #eee;
+}
+
+
+.item-count {
+
+  color: #888;
+
+  font-family: "regular-text", Arial, sans-serif;
+
+  font-size: 11px;
+}
+
+
+.account-cart-list {
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+
+.account-cart-item {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 15px 0;
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+
+.cart-item-image {
+
+  width: 75px;
+  height: 65px;
+
+  background: #f5f5f5;
+
+  border-radius: 7px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  overflow: hidden;
+
+  flex-shrink: 0;
+}
+
+
+.cart-item-image img {
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+
+
+.cart-item-image span {
+
+  font-size: 9px;
+
+  font-weight: 700;
+}
+
+
+.cart-item-info {
+
   flex: 1;
 }
 
-@media (max-width: 768px) {
+
+.cart-item-info h3 {
+
+  margin: 0 0 5px;
+
+  font-family: "bold-text", Arial, sans-serif;
+
+  font-size: 13px;
+
+  color: #111;
+}
+
+
+.cart-item-info p {
+
+  margin: 0;
+
+  font-family: "regular-text", Arial, sans-serif;
+
+  font-size: 10px;
+
+  color: #888;
+}
+
+
+.cart-item-price {
+
+  font-family: "bold-text", Arial, sans-serif;
+
+  font-size: 13px;
+
+  color: #111;
+}
+
+
+.cart-footer {
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  padding-top: 20px;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+
   .account-page {
+
+    padding: 100px 20px 40px;
+
+  }
+
+  .account-layout {
+
+    gap: 18px;
+
+  }
+
+  .account-card {
+
+    padding: 22px;
+
+  }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+  .account-page {
+
+    padding: 90px 12px 35px;
+
+  }
+
+
+  .account-layout {
+
     flex-direction: column;
-    padding: 1rem;
-    padding-top: 5rem;
+
+    gap: 14px;
+
+  }
+
+
+  .sidebar {
+
+    order: 1;
+
+  }
+
+
+  .account-main {
+
+    order: 2;
+
+    width: 100%;
+
+  }
+
+
+  .account-top {
+
+    margin-bottom: 16px;
+
+  }
+
+
+  .page-title {
+
+    font-size: 28px;
+
+  }
+
+
+  .account-card {
+
+    padding: 18px;
+
+    border-radius: 12px;
+
+  }
+
+
+  .account-form-grid {
+
+    grid-template-columns: 1fr;
+
+    gap: 16px;
+
+  }
+
+
+  .card-top {
+
+    align-items: flex-start;
+
+  }
+
+
+  .empty-account-card {
+
+    min-height: 350px;
+
+  }
+
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 430px) {
+
+  .account-page {
+
+    padding-left: 8px;
+    padding-right: 8px;
+
+  }
+
+
+  .page-title {
+
+    font-size: 25px;
+
+  }
+
+
+  .account-card {
+
+    padding: 15px;
+
+  }
+
+
+  .card-top h2,
+  .account-card h2 {
+
+    font-size: 17px;
+
+  }
+
+
+  .account-cart-item {
+
+    gap: 10px;
+
+  }
+
+
+  .cart-item-image {
+
+    width: 62px;
+    height: 55px;
+
+  }
+
+
+  .cart-item-info h3 {
+
+    font-size: 11px;
+
+  }
+
+
+  .cart-item-price {
+
+    font-size: 11px;
+
   }
 
 }

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import logo from "../assets/logo.jpg";
-import apple from "../assets/apple.png";
 import google from "../assets/google.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -16,130 +15,232 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
-  const [role, setRole] = useState(""); // 'user' or 'seller'
+  const [role, setRole] = useState("");
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-
-const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  try {
-    const res = await axios.post(
-      "https://microservices-u9us.onrender.com/api/auth/login", 
-     
-      { email, password },
-      { withCredentials: true }
-    );
-    // console.log("LOGIN RESPONSE:", res.data),
-
-    localStorage.setItem("token", res.data.token);
-
-    const user = res.data.user;
-
-    dispatch(loginSuccess(user));
-
+    setSubmitting(true);
     setError("");
-    navigate("/account");
-  } catch (err) {
-    setError(err.response?.data?.message || "Wrong credentials");
-  } finally {
-    setSubmitting(false);
-  }
-};
+
+    try {
+      const res = await axios.post(
+        "https://microservices-u9us.onrender.com/api/auth/login",
+        {
+          email,
+          password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
+      localStorage.setItem("token", res.data.token);
+
+      const user = res.data.user;
+
+      dispatch(loginSuccess(user));
+
+      navigate("/account");
+    } catch (err) {
+      setError(
+        err.response?.data?.message || "Wrong credentials"
+      );
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
-    <div className="login-container">
-      <form className="login-box" onSubmit={handleSubmit}>
-        <div className="logo">
-          <img src={logo} alt="brandlogo" />
-        </div>
-        <h2>Welcome Back</h2>
-        <p>Welcome Back! Please enter Your Details</p>
+    <main className="auth-page login-page">
+      <div className="auth-shell">
 
-        {error && (
-          <div className="error-login" style={{ marginBottom: "5px" }}>
-            {error}
+        {/* LEFT BRAND PANEL */}
+        <div className="auth-brand">
+          <img src={logo} alt="Brand Logo" />
+
+          <div className="brand-content">
+            <span>NIKE STORE</span>
+            <h1>
+              Move.
+              <br />
+              Create.
+              <br />
+              Repeat.
+            </h1>
+
+            <p>
+              Premium products. Simple experience.
+              Built for your everyday movement.
+            </p>
           </div>
-        )}
 
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          <div className="brand-footer">
+            <span>© 2026</span>
+            <span>JUST DO IT.</span>
+          </div>
+        </div>
 
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-
-        <div>
-          {" "}
-          <p
-            style={{
-              fontFamily: "regular-text",
-              width: "fit-content",
-              color: "#2e2d2dff",
-            }}
+        {/* FORM PANEL */}
+        <section className="auth-form-section">
+          <form
+            className="auth-form"
+            onSubmit={handleSubmit}
           >
-            You are buyer or Seller
-          </p>{" "}
-        </div>
+            <div className="mobile-logo">
+              <img src={logo} alt="Brand Logo" />
+            </div>
 
-        <div
-          style={{
-            display: "flex",
-            width: "fit-content",
-            fontFamily: "regular-text",
-          }}
-        >
-          <label>
-            <input
-              type="radio"
-              name="role"
-              value="uer"
-              checked={role === "user"}
-              onChange={() => setRole("user")}
-            />
-            <span style={{ font: "0.5rem" }}>User</span>
-          </label>
-          <label style={{ marginLeft: "1rem" }}>
-            <input
-              type="radio"
-              name="role"
-              value="seller"
-              checked={role === "seller"}
-              onChange={() => setRole("seller")}
-            />
-            Seller
-          </label>
-        </div>
+            <div className="auth-heading">
+              <span className="eyebrow">
+                WELCOME BACK
+              </span>
 
-        <button type="submit" disabled={submitting}>
-          Login
-        </button>
+              <h2>Sign in</h2>
 
-        <p>
-          Don't have an account?{" "}
-          <Link to="/register">
-            <span className="register">Register</span>
-          </Link>
-        </p>
+              <p>
+                Enter your details to access your account.
+              </p>
+            </div>
 
-        <div className="cloud-login">
-          <div className="google-login">
-            <img src={google} alt="google" />
-            <p>Sigh up with Google</p>
-          </div>
-          {/* <div className="apple-login">
-            <img src={apple} alt="apple" />
-            <p>Sigh up with Apple</p>
-          </div> */}
-        </div>
-      </form>
-    </div>
+            {error && (
+              <div className="auth-error">
+                {error}
+              </div>
+            )}
+
+            {/* EMAIL */}
+            <div className="field-group">
+              <label htmlFor="login-email">
+                Email
+              </label>
+
+              <input
+                id="login-email"
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) =>
+                  setEmail(e.target.value)
+                }
+                autoComplete="email"
+                required
+              />
+            </div>
+
+            {/* PASSWORD */}
+            <div className="field-group">
+              <label htmlFor="login-password">
+                Password
+              </label>
+
+              <input
+                id="login-password"
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) =>
+                  setPassword(e.target.value)
+                }
+                autoComplete="current-password"
+                required
+              />
+            </div>
+
+            {/* ROLE */}
+            <div className="role-section">
+              <span className="role-label">
+                Account type
+              </span>
+
+              <div className="role-options">
+
+                <label
+                  className={`role-option ${
+                    role === "user" ? "selected" : ""
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="role"
+                    value="user"
+                    checked={role === "user"}
+                    onChange={() => setRole("user")}
+                  />
+
+                  <span>User</span>
+                </label>
+
+                <label
+                  className={`role-option ${
+                    role === "seller" ? "selected" : ""
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="role"
+                    value="seller"
+                    checked={role === "seller"}
+                    onChange={() => setRole("seller")}
+                  />
+
+                  <span>Seller</span>
+                </label>
+
+              </div>
+            </div>
+
+            {/* LOGIN BUTTON */}
+            <button
+              className="primary-auth-btn"
+              type="submit"
+              disabled={submitting}
+            >
+              {submitting ? (
+                <span className="button-loading">
+                  <span></span>
+                  Signing in...
+                </span>
+              ) : (
+                <>
+                  <span>Sign in</span>
+                  <span className="button-arrow">→</span>
+                </>
+              )}
+            </button>
+
+            {/* REGISTER */}
+            <p className="auth-switch">
+              Don't have an account?
+              <Link to="/register">
+                Create account
+              </Link>
+            </p>
+
+            <div className="auth-divider">
+              <span>OR</span>
+            </div>
+
+            {/* GOOGLE */}
+            <button
+              type="button"
+              className="google-auth-btn"
+            >
+              <img
+                src={google}
+                alt="Google"
+              />
+
+              <span>Continue with Google</span>
+            </button>
+
+            <p className="auth-note">
+              By continuing, you agree to our terms
+              and privacy policy.
+            </p>
+          </form>
+        </section>
+      </div>
+    </main>
   );
 }

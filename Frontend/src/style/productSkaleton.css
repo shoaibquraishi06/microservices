@@ -1,160 +1,381 @@
-/* src/components/skaleton.css */
+/* =========================================
+   PRODUCT SKELETON GRID
+========================================= */
 
-.ps-skeleton {
-  padding: 30px;
-  background: #f5f5f5;
-  min-height: 100vh;
-  margin-top: 5rem;
+.product-skeleton-grid {
+  width: 100%;
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 32px;
+
+  padding: 0 20px;
+      margin-top: 6rem;
+  box-sizing: border-box;
 }
 
-/* shimmer effect */
-.shimmer {
-  position: relative;
+
+/* =========================================
+   SKELETON CARD
+========================================= */
+
+.product-skeleton-card {
+  width: 100%;
+  min-width: 0;
+
+  padding: 12px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+
+  box-sizing: border-box;
+
   overflow: hidden;
-  background: #e7e7e7;
 }
 
-.shimmer::after {
+
+/* =========================================
+   SHIMMER
+========================================= */
+
+.ps-shimmer {
+  position: relative;
+
+  overflow: hidden;
+
+  background: #eeeeee;
+
+  border-radius: 5px;
+}
+
+.ps-shimmer::after {
   content: "";
+
   position: absolute;
+
   inset: 0;
-  transform: translateX(-100%);
+
   background: linear-gradient(
     90deg,
-    transparent,
-    rgba(255, 255, 255, 0.9),
-    transparent
+    transparent 0%,
+    rgba(255, 255, 255, 0.55) 35%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(255, 255, 255, 0.55) 65%,
+    transparent 100%
   );
-  animation: shimmer 1.2s infinite;
+
+  transform: translateX(-100%);
+
+  animation: productShimmer 1.5s infinite;
 }
 
-@keyframes shimmer {
+
+@keyframes productShimmer {
+
   100% {
     transform: translateX(100%);
   }
+
 }
 
-/* Filter */
-.sk-filter {
-  width: 72px;
-  height: 42px;
-  border-radius: 8px;
-  margin-bottom: 28px;
-}
 
-/* Grid */
-.sk-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 2fr);
-  gap: 24px;
-}
+/* =========================================
+   IMAGE
+========================================= */
 
-.sk-card {
-  background: #fff;
-  border: 1px solid #ececec;
-  border-radius: 10px;
-  padding: 14px;
-  width: 350px;
-}
+.ps-image-wrap {
+  position: relative;
 
-.sk-image {
   width: 100%;
-  height: 180px;
-  border-radius: 8px;
-  margin-bottom: 16px;
-}
 
-.sk-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  margin-bottom: 14px;
-}
+  aspect-ratio: 1 / 0.75;
 
-.sk-title {
-  width: 45%;
-  height: 16px;
-  border-radius: 8px;
-  margin-left: 3rem;
-}
+  overflow: hidden;
 
-.sk-price {
-  width: 24%;
-  height: 16px;
-  border-radius: 8px;
-}
+  background: #f4f4f4;
 
-.sk-subtitle {
-  width: 60%;
-  height: 14px;
-  border-radius: 8px;
   margin-bottom: 18px;
 }
 
-.sk-button {
+.ps-image {
   width: 100%;
-  height: 42px;
-  border-radius: 8px;
+  height: 100%;
+
+  border-radius: 0;
 }
 
-/* View All */
-.sk-viewall {
-  width: 120px;
-  height: 40px;
-  border-radius: 8px;
-  margin: 60px auto 0;
+
+/* =========================================
+   WISHLIST HEART
+========================================= */
+
+.ps-heart {
+  position: absolute;
+
+  top: 8px;
+  right: 8px;
+
+  width: 25px;
+  height: 25px;
+
+  border-radius: 50%;
+
+  background: #e4e4e4;
 }
 
-/* Tablet */
+
+/* =========================================
+   TITLE + PRICE
+========================================= */
+
+.ps-product-head {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 12px;
+
+  margin: 0 8px 0;
+}
+
+.ps-title {
+  width: 110px;
+  height: 18px;
+}
+
+.ps-price {
+  width: 55px;
+  height: 18px;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.ps-description {
+  width: 130px;
+  height: 16px;
+
+  margin: 40px 8px 16px;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.ps-buttons {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin: 0 8px 10px;
+}
+
+.ps-cart-btn {
+  flex: 1;
+
+  height: 41px;
+
+  border-radius: 6px;
+}
+
+.ps-buy-btn {
+  flex: 1;
+
+  height: 41px;
+
+  border-radius: 6px;
+}
+
+
+/* =========================================
+   LARGE DESKTOP
+========================================= */
+
+@media (min-width: 1400px) {
+
+  .product-skeleton-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    gap: 30px;
+
+    padding: 0 20px;
+  }
+
+}
+
+
+/* =========================================
+   DESKTOP / LAPTOP
+========================================= */
+
 @media (max-width: 1200px) {
-  .sk-grid {
-    grid-template-columns: repeat(3, 2fr);
-    
-  }
 
-  .sk-card{
-    width: 330px;
+  .product-skeleton-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 24px;
+
+    padding: 0 18px;
   }
 
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .ps-skeleton {
-    padding: 18px;
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .product-skeleton-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+
+    padding: 0 16px;
   }
 
-  .sk-card{
-    width: 300px;
-  }
-  .sk-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+  .product-skeleton-card {
+    padding: 10px;
   }
 
-  .sk-image {
-    height: 140px;
+  .ps-image-wrap {
+    margin-bottom: 15px;
   }
 
-  .sk-button {
-    height: 38px;
+  .ps-description {
+    margin-top: 30px;
   }
 
-  .sk-viewall {
-    width: 110px;
-    height: 38px;
-  }
 }
 
-@media (max-width: 480px) {
-  .sk-grid {
-   grid-template-columns: repeat(2, 1fr);
-   gap: 5px;
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .product-skeleton-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 14px;
+
+    padding: 0 10px;
   }
 
-   .sk-card{
-    width: 150px;
-    height: 160px;
+  .product-skeleton-card {
+    padding: 8px;
+
+    border-radius: 5px;
+  }
+
+  .ps-image-wrap {
+    margin-bottom: 12px;
+  }
+
+  .ps-heart {
+    width: 21px;
+    height: 21px;
+
+    top: 6px;
+    right: 6px;
+  }
+
+  .ps-product-head {
+    margin: 0 4px;
+  }
+
+  .ps-title {
+    width: 75px;
+    height: 14px;
+  }
+
+  .ps-price {
+    width: 42px;
+    height: 14px;
+  }
+
+  .ps-description {
+    width: 85px;
+    height: 13px;
+
+    margin: 28px 4px 12px;
+  }
+
+  .ps-buttons {
+    gap: 6px;
+
+    margin: 0 4px 6px;
+  }
+
+  .ps-cart-btn,
+  .ps-buy-btn {
+    height: 34px;
+  }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+
+  .product-skeleton-grid {
+    gap: 10px;
+
+    padding: 0 8px;
+  }
+
+  .product-skeleton-card {
+    padding: 6px;
+  }
+
+  .ps-title {
+    width: 65px;
+  }
+
+  .ps-price {
+    width: 38px;
+  }
+
+  .ps-description {
+    width: 70px;
+
+    margin-top: 24px;
+  }
+
+  .ps-buttons {
+    gap: 4px;
+  }
+
+  .ps-cart-btn,
+  .ps-buy-btn {
+    height: 30px;
+  }
+
+}
+
+
+/* =========================================
+   REDUCE MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .ps-shimmer::after {
+    animation: none;
   }
 
 }

@@ -1,198 +1,765 @@
+/* =========================================================
+   FILTER TOGGLE BUTTON
+========================================================= */
 
-.filter {
-  width: 250px;
-  height: 100%;
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
-  padding: 0px 54px 0px 44px;
-  font-family: 'regular-text', Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
+.filter-toggle-btn {
+  display: inline-flex;
+
+  align-items: center;
   justify-content: center;
-  gap: 0;
-  z-index: 1001;
-  position: fixed;
- top: 0;
+
+  gap: 10px;
+
+  width: auto;
+  height: 40px;
+
+  margin: 2.5rem 0 1rem 4rem;
+
+  padding: 0 16px;
+
+  border: 1px solid #e5e5e5;
+
+  border-radius: 5px;
+
+  background: #fff;
+
+  color: #111;
+
+  font-family: "regular-text", Arial, sans-serif;
+
+  font-size: 0.82rem;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.18s ease;
 }
+
+
+.filter-toggle-btn:hover {
+  border-color: #cfcfcf;
+
+  background: #fafafa;
+}
+
+
+.filter-toggle-btn:active {
+  transform: scale(0.96);
+}
+
+
+/* =========================================================
+   FILTER ICON
+========================================================= */
+
+.filter-icon {
+  width: 15px;
+  height: 14px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 3px;
+}
+
+
+.filter-icon span {
+  display: block;
+
+  height: 1.5px;
+
+  background: #111;
+
+  border-radius: 2px;
+
+  transition: width 0.2s ease;
+}
+
+
+.filter-icon span:nth-child(1) {
+  width: 15px;
+}
+
+
+.filter-icon span:nth-child(2) {
+  width: 10px;
+}
+
+
+.filter-icon span:nth-child(3) {
+  width: 5px;
+}
+
+
+.filter-toggle-btn:hover
+.filter-icon span:nth-child(2) {
+  width: 12px;
+}
+
+
+.filter-toggle-btn:hover
+.filter-icon span:nth-child(3) {
+  width: 8px;
+}
+
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.filter-overlay {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+
+  visibility: hidden;
+
+  background: rgba(0, 0, 0, 0);
+
+  transition:
+    background 0.3s ease,
+    visibility 0.3s ease;
+
+  pointer-events: none;
+}
+
+
+.filter-overlay.active {
+  visibility: visible;
+
+  background: rgba(0, 0, 0, 0.25);
+
+  pointer-events: auto;
+}
+
+
+/* subtle glass effect */
+
+.filter-overlay::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  backdrop-filter: blur(2px);
+
+  -webkit-backdrop-filter: blur(2px);
+
+  opacity: 0;
+
+  transition: opacity 0.3s ease;
+
+  pointer-events: none;
+}
+
+
+.filter-overlay.active::after {
+  opacity: 1;
+}
+
+
+/* =========================================================
+   FILTER PANEL
+========================================================= */
 
 .filter {
+  position: relative;
+
+  z-index: 2;
+
+  width: 330px;
+
+  height: 100vh;
+
+  padding: 34px 30px 28px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  background: #fff;
+
+  border-right: 1px solid #ededed;
+
+  box-shadow:
+    8px 0 35px rgba(0, 0, 0, 0.08);
+
   transform: translateX(-100%);
-  transition: transform 4s ease-in-out;
+
+  transition:
+    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.filter-overlay .filter {
+
+.filter-overlay.active .filter {
   transform: translateX(0);
 }
 
+
+/* =========================================================
+   HEADER
+========================================================= */
+
 .filter-header {
   display: flex;
-  align-items: center;
+
+  align-items: flex-start;
+
   justify-content: space-between;
-  margin-bottom: 60px;
+
+  padding-bottom: 26px;
+
+  border-bottom: 1px solid #ededed;
+
+  margin-bottom: 30px;
 }
 
+
+.filter-eyebrow {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #8a8a8a;
+
+  font-family: "regular-text", Arial, sans-serif;
+
+  font-size: 0.65rem;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+}
 
 
 .filter-header h3 {
-  font-size: 1.2rem;
-  font-weight: 700;
   margin: 0;
+
+  color: #111;
+
+  font-family: "Semi-bold-text", Arial, sans-serif;
+
+  font-size: 1.35rem;
+
+  font-weight: 600;
+
+  line-height: 1;
 }
 
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
 .close-btn {
-  background: #f5f5f5;
-  border: none;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  font-size: 1.5rem;
-  cursor: pointer;
-  display: absolute;
-  position: absolute;
-  top: 25px;
-  right: 25px;
+  position: relative;
+
+  width: 34px !important;
+  height: 34px !important;
+
+  margin: 0 !important;
+
+  padding: 0 !important;
+
+  display: flex;
+
   align-items: center;
   justify-content: center;
-  transition: background 0.5s;
+
+  border: 1px solid #e7e7e7;
+
+  border-radius: 50%;
+
+  background: #fff;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
+
+
 .close-btn:hover {
-  background: #e0e0e0;
+  background: #f6f6f6;
+
+  border-color: #d8d8d8;
+
+  transform: rotate(90deg);
 }
-.filter-toggle-btn{
-  width: fit-content;
-  height: fit-content;
-  font-size: 1rem;
-  font-family: 'regular-text';
-  font-weight: 600;
-  padding: 0.6rem 1.5rem;
-  border-radius: 5px;
-  border: none;
-  margin: 2.5rem 0  1rem 4rem;
+
+
+.close-btn:active {
+  transform: rotate(90deg) scale(0.92);
 }
+
+
+/* X icon */
+
+.close-btn span {
+  position: absolute;
+
+  width: 12px;
+
+  height: 1.3px;
+
+  background: #111;
+
+  border-radius: 2px;
+}
+
+
+.close-btn span:first-child {
+  transform: rotate(45deg);
+}
+
+
+.close-btn span:last-child {
+  transform: rotate(-45deg);
+}
+
+
+/* =========================================================
+   SECTION
+========================================================= */
+
 .filter-section {
+  margin: 0;
+
+  flex: 1;
+}
+
+
+.section-heading {
   margin-bottom: 18px;
 }
 
-label {
-  font-size: 1rem;
-  font-family: "regular-text";
-  font-weight: 500;
-  margin-bottom: 10px;
-  color: #262525;
+
+.section-heading h4 {
+  margin: 0;
+
+  color: #111;
+
+  font-family: "Semi-bold-text", Arial, sans-serif;
+
+  font-size: 0.85rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0.01em;
 }
 
-.filter-group {
+
+/* =========================================================
+   RADIO GROUP
+========================================================= */
+
+.radio-group {
   display: flex;
+
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 0;
+
+  gap: 5px;
 }
 
-.radio-group label,
-.checkbox-group label {
+
+.radio-option {
+  position: relative;
+
+  min-height: 43px;
+
   display: flex;
+
   align-items: center;
-  font-size: 1rem;
-  gap: 8px;
-  cursor: pointer;
+
+  gap: 12px;
+
+  margin: 0;
+
+  padding: 0 10px;
+
+  color: #2b2b2b;
+
+  font-family: "regular-text", Arial, sans-serif;
+
+  font-size: 0.82rem;
+
   font-weight: 400;
+
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
 }
 
-.radio-group input[type="radio"],
-.checkbox-group input[type="checkbox"] {
-  accent-color: #111;
-  width: 18px;
-  height: 18px;
-  margin-right: 8px;
+
+.radio-option:hover {
+  background: #f7f7f7;
+
+  color: #111;
 }
 
-.filter-divider {
-  border: none;
-  border-top: 1px solid #ececec;
-  margin: 16px 0;
+
+/* hide native radio */
+
+.radio-option input {
+  position: absolute;
+
+  opacity: 0;
+
+  pointer-events: none;
 }
+
+
+/* custom radio */
+
+.custom-radio {
+  width: 17px;
+  height: 17px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #bcbcbc;
+
+  border-radius: 50%;
+
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+/* inner dot */
+
+.custom-radio::after {
+  content: "";
+
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #111;
+
+  transform: scale(0);
+
+  transition: transform 0.2s ease;
+}
+
+
+/* checked */
+
+.radio-option input:checked
++ .custom-radio {
+  border-color: #111;
+}
+
+
+.radio-option input:checked
++ .custom-radio::after {
+  transform: scale(1);
+}
+
+
+/* =========================================================
+   ACTION AREA
+========================================================= */
 
 .filter-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 24px;
-  gap: 12px;
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 10px;
+
+  padding-top: 20px;
+
+  border-top: 1px solid #ededed;
 }
 
 
-.btns {
-  display: flex;
-  gap: 15px;
-  padding-top: 80px;
-}
+/* common */
 
-.btns .clear-btn {
-  background: #fff;
-  border: 1.5px solid #ececec;
-  color: #111;
-  border-radius: 24px;
-   padding: 7px 30px;
-  font-size: 0.9rem;
+.clear-btn,
+.apply-btn {
+  height: 42px;
+
+  border-radius: 5px;
+
+  font-family: "Semi-bold-text", Arial, sans-serif;
+
+  font-size: 0.78rem;
+
   font-weight: 500;
-  font-family: "regular-text";
+
   cursor: pointer;
-  transition: background 0.2s, border 0.2s;
+
+  transition:
+    transform 0.18s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
 }
+
+
+/* clear */
+
+.clear-btn {
+  background: #fff;
+
+  color: #111;
+
+  border: 1px solid #dedede;
+}
+
+
 .clear-btn:hover {
-  background: #f5f5f5;
-  border-color: #d1d1d1;
+  background: #f7f7f7;
+
+  border-color: #cfcfcf;
 }
+
+
+/* apply */
 
 .apply-btn {
   background: #111;
+
   color: #fff;
-  border: none;
-  border-radius: 24px;
-  padding: 7px 30px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  font-family: "regular-text";
-  cursor: pointer;
-  transition: background 0.2s;
+
+  border: 1px solid #111;
 }
+
+
 .apply-btn:hover {
-  background: #222;
+  background: #242424;
 }
 
-@media (max-width: 768px) {
-  .filter {
-    width: 80%;
-    height: 80%;
-    padding: 20px 20px;
-    position: fixed;
-    top: 9%;
-    left: 3%;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
-  }
-    
-      .product-title{
-        display: flex;
-        text-align: center;
-         margin-left: 45px;
-      }
 
-   .category {
-    margin-left: 45px;
-   }
+.clear-btn:active,
+.apply-btn:active {
+  transform: scale(0.96);
+}
 
-  .filter-overlay .filter {
-    transform: translateX(0);
-  }
+
+/* =========================================================
+   LAPTOP
+========================================================= */
+
+@media (max-width: 1199px) {
 
   .filter-toggle-btn {
-    display: block;
-   margin: 2.5rem 0 1rem 0.9rem;
+    margin-left: 2rem;
   }
+
+  .filter {
+    width: 310px;
+  }
+
 }
 
 
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .filter-toggle-btn {
+    margin:
+      2rem
+      0
+      1rem
+      1rem;
+
+    height: 38px;
+
+    padding: 0 14px;
+  }
 
 
+  .filter {
+    width: 320px;
+
+    padding:
+      28px
+      24px
+      24px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .filter-overlay {
+    align-items: flex-end;
+  }
+
+
+  .filter {
+    width: 100%;
+
+    height: auto;
+
+    max-height: 78vh;
+
+    padding:
+      24px
+      20px
+      calc(20px + env(safe-area-inset-bottom));
+
+    border: none;
+
+    border-top:
+      1px solid #ededed;
+
+    border-radius:
+      16px
+      16px
+      0
+      0;
+
+    box-shadow:
+      0 -8px 35px rgba(0, 0, 0, 0.1);
+
+    transform:
+      translateY(100%);
+  }
+
+
+  .filter-overlay.active .filter {
+    transform:
+      translateY(0);
+  }
+
+
+  /* little top handle */
+
+  .filter::before {
+    content: "";
+
+    position: absolute;
+
+    top: 8px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 34px;
+
+    height: 3px;
+
+    border-radius: 10px;
+
+    background: #d8d8d8;
+  }
+
+
+  .filter-header {
+    padding-top: 8px;
+
+    margin-bottom: 22px;
+
+    padding-bottom: 20px;
+  }
+
+
+  .filter-header h3 {
+    font-size: 1.2rem;
+  }
+
+
+  .radio-option {
+    min-height: 44px;
+
+    font-size: 0.8rem;
+  }
+
+
+  .filter-actions {
+    padding-top: 16px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .filter {
+    max-height: 82vh;
+
+    padding-left: 16px;
+
+    padding-right: 16px;
+  }
+
+
+  .filter-toggle-btn {
+    margin-left: 0.7rem;
+  }
+
+
+  .filter-actions button {
+    height: 40px;
+
+    font-size: 0.74rem;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .filter,
+  .filter-overlay,
+  .filter-overlay::after,
+  .filter-toggle-btn,
+  .filter-icon span,
+  .close-btn,
+  .radio-option,
+  .custom-radio,
+  .custom-radio::after,
+  .clear-btn,
+  .apply-btn {
+    transition: none !important;
+
+    animation: none !important;
+  }
+
+}

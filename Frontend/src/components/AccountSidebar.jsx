@@ -1,88 +1,141 @@
-import "../style/sidebar.css";
-import axios from "axios";
-import { IoIosLogOut } from "react-icons/io";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { logout } from "../feature/authSlice";
-import { resetCart } from "../feature/cartSlice";
-import { CiUser } from "react-icons/ci";
-import { MdFavoriteBorder } from "react-icons/md";
-import { LuShoppingCart } from "react-icons/lu";
-import { MdOutlineBorderColor } from "react-icons/md";
-import photo from "../assets/newLogo.png"
-import NotUser from "../components/NotAcountUser";
+import "../style/accountsidebar.css";
 
-export default function AccountSidebar() {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.user);
-  const navigate = useNavigate();
+import {
+  CiUser,
+  CiHeart,
+  CiShoppingCart,
+} from "react-icons/ci";
 
-  if (!user) {
-    return <NotUser/>;
-  }
+import {
+  MdOutlineBorderColor,
+} from "react-icons/md";
 
-    const handleLogout = async () => {
-    try {
-      await axios.post(
-        "https://microservices-u9us.onrender.com/api/auth/logout",
-        {},
-        {
-          withCredentials: true, // important for cookies
-        }
-      );
+import {
+  IoIosLogOut,
+} from "react-icons/io";
 
-      dispatch(resetCart());
-      dispatch(logout());
 
-      localStorage.clear();
-      sessionStorage.clear();
+export default function AccountSidebar({
+  user,
+  activeTab,
+  setActiveTab,
+  handleLogout,
+}) {
 
-      navigate("/login", { replace: true });
-    } catch (error) {
-      console.error(
-        error.response?.data?.message || "Logout failed"
-      );
-    }
-  };
+  const menuItems = [
 
+    {
+      id: "personal",
+      label: "Personal information",
+      icon: <CiUser />,
+    },
+
+    {
+      id: "orders",
+      label: "My Orders",
+      icon: <MdOutlineBorderColor />,
+    },
+
+    {
+      id: "wishlist",
+      label: "Wishlist",
+      icon: <CiHeart />,
+    },
+
+    {
+      id: "cart",
+      label: "Cart",
+      icon: <CiShoppingCart />,
+    },
+
+  ];
 
 
   return (
+
     <aside className="sidebar">
-  
-     <div className="sidebar-container"></div>
-      <div className="profile-box">
-        <div className="avatar">S</div>
-      <div className="profile-det">
-        <h3>{user.username}</h3>
-        <p>{user.email}</p>
+
+      <div className="sidebar-profile">
+
+        <div className="sidebar-avatar">
+
+          {(user?.username || user?.name || "U")
+            .charAt(0)
+            .toUpperCase()}
+
         </div>
+
+
+        <div className="sidebar-user">
+
+          <h3>
+            {user?.username ||
+              user?.name ||
+              "Nike Member"}
+          </h3>
+
+          <p>
+            {user?.email || ""}
+          </p>
+
+        </div>
+
       </div>
 
-      <ul className="menu">
-        <li className="active"> <span><CiUser /></span> Personal information</li>
-        <li><span><MdOutlineBorderColor /></span> My Orders</li>
-        <li><span><MdFavoriteBorder /></span> Wishlist</li>
-        <li><span><LuShoppingCart /></span> Cart</li>
-        {/* <li className="logout" onClick={handleLogout}>
-          {" "}
-          <IoIosLogOut />
-          <span>Logout</span>
-        </li> */}
-     
-     
-      </ul>
-    
-        <div className="logout-btn">
-          <button>
-        <span><IoIosLogOut /></span>    Logout
+
+      <nav className="account-menu">
+
+        <span className="menu-caption">
+          ACCOUNT
+        </span>
+
+
+        {menuItems.map((item) => (
+
+          <button
+            key={item.id}
+            className={`account-menu-item ${
+              activeTab === item.id
+                ? "active"
+                : ""
+            }`}
+            onClick={() => setActiveTab(item.id)}
+          >
+
+            <span className="menu-icon">
+              {item.icon}
+            </span>
+
+            <span>
+              {item.label}
+            </span>
+
           </button>
 
-        </div>
+        ))}
+
+      </nav>
+
+
+      <div className="sidebar-bottom">
+
+        <button
+          className="logout-account-btn"
+          onClick={handleLogout}
+        >
+
+          <IoIosLogOut />
+
+          <span>
+            Logout
+          </span>
+
+        </button>
+
+      </div>
 
     </aside>
 
-    
   );
+
 }

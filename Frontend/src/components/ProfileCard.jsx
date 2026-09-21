@@ -1,22 +1,113 @@
 import "../style/profileCard.css";
 
-export default function UserProfileCard({ user }) {
+import {
+  CiUser,
+  CiHeart,
+  CiShoppingCart,
+} from "react-icons/ci";
+
+import {
+  MdOutlineBorderColor,
+} from "react-icons/md";
+
+
+export default function UserProfileCard({
+  user,
+  activeTab,
+  setActiveTab,
+}) {
+
+  const menu = [
+
+    {
+      id: "personal",
+      label: "Personal information",
+      icon: <CiUser />,
+    },
+
+    {
+      id: "orders",
+      label: "My Orders",
+      icon: <MdOutlineBorderColor />,
+    },
+
+    {
+      id: "wishlist",
+      label: "Wishlist",
+      icon: <CiHeart />,
+    },
+
+    {
+      id: "cart",
+      label: "Cart",
+      icon: <CiShoppingCart />,
+    },
+
+  ];
+
+
   return (
+
     <div className="profile-card">
-      <div className="profile-avatar">
-        <span>{user.name.charAt(0)}</span>
+
+      <div className="profile-user">
+
+        <div className="profile-avatar">
+
+          {(user?.username || user?.name || "U")
+            .charAt(0)
+            .toUpperCase()}
+
+        </div>
+
+
+        <div>
+
+          <h3 className="profile-name">
+            {user?.username ||
+              user?.name ||
+              "Nike Member"}
+          </h3>
+
+          <p className="profile-email">
+            {user?.email}
+          </p>
+
+        </div>
+
       </div>
 
-      <h3 className="profile-name">{user.name}</h3>
-      <p className="profile-email">{user.email}</p>
 
       <div className="profile-menu">
-        <button className="active">My Account</button>
-        <button>My Orders</button>
-        <button>Wishlist</button>
-        <button>Cart</button>
-        <button className="logout">Logout</button>
+
+        {menu.map((item) => (
+
+          <button
+            key={item.id}
+            className={
+              activeTab === item.id
+                ? "active"
+                : ""
+            }
+            onClick={() =>
+              setActiveTab(item.id)
+            }
+          >
+
+            <span>
+              {item.icon}
+            </span>
+
+            {item.label}
+
+          </button>
+
+        ))}
+
       </div>
+
     </div>
+
   );
+
 }
