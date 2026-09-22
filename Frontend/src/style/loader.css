@@ -8,9 +8,13 @@
     overflow: hidden;
     animation: screenOut .8s ease forwards 3.2s
 }
+.intro-text{
+    color: #fff;
+    font-family: "regular-text", Arial, Helvetica, sans-serif;
+    font-size: 1.2rem;
+}
 
-
-.nike-svg {
+/* .nike-svg {
     width: min(52vw, 520px);
     position: relative;
     z-index: 2
@@ -28,12 +32,12 @@
         fill .45s ease forwards 1.35s,
         float .9s ease forwards 2s,
         zoom .9s cubic-bezier(.2, .8, .2, 1) forwards 2.55s
-}
+} */
 
 .progress {
     position: absolute;
-    bottom: 18%;
-    width: min(240px, 45vw);
+    bottom: 44%;
+    width: min(200px, 45vw);
     height: 3px;
     background: rgba(255, 255, 255, .15);
     border-radius: 999px;

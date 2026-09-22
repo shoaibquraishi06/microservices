@@ -4,11 +4,11 @@ import { useState } from "react";
 
 import { addToCart } from "../feature/cartThunk";
 
-import { FiShoppingBag } from "react-icons/fi";
+import { FiShoppingBag, FiArrowUpRight } from "react-icons/fi";
 import { BiCartAlt } from "react-icons/bi";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
-import "../style/product.css";
+import "../style/productCard.css";
 
 export default function ProductCard({ product }) {
   const dispatch = useDispatch();
@@ -17,6 +17,8 @@ export default function ProductCard({ product }) {
   const [liked, setLiked] = useState(false);
 
   if (!product) return null;
+
+  /* ================= ADD TO CART ================= */
 
   const handleAddToCart = (e) => {
     e.stopPropagation();
@@ -28,88 +30,135 @@ export default function ProductCard({ product }) {
     );
   };
 
+  /* ================= WISHLIST ================= */
+
   const handleLikeToggle = (e) => {
     e.stopPropagation();
+
     setLiked((prev) => !prev);
   };
+
+  /* ================= PRODUCT DETAILS ================= */
 
   const ProductDetailsHandler = () => {
     navigate(`/product/${product._id}`);
   };
 
+  /* ================= BUY NOW ================= */
+
   const handleBuyNow = (e) => {
     e.stopPropagation();
+
     navigate(`/product/${product._id}`);
   };
 
   return (
-    <div
+    <article
       className="product-card"
       onClick={ProductDetailsHandler}
     >
-      <div className="whistlist-products">
+      {/* =========================================
+          IMAGE AREA
+      ========================================== */}
+
+      <div className="product-image-wrapper">
+
+        {/* Wishlist */}
+
         <button
           type="button"
           className={`wishlist-btn ${liked ? "liked" : ""}`}
           onClick={handleLikeToggle}
-          aria-label={liked ? "Unlike" : "Like"}
+          aria-label={liked ? "Remove from wishlist" : "Add to wishlist"}
         >
-          {liked ? (
-            <AiFillHeart />
+          {liked ? <AiFillHeart /> : <AiOutlineHeart />}
+        </button>
+
+        {/* Small image index */}
+
+        <span className="product-image-number">
+          01
+        </span>
+
+        {/* Product Image */}
+
+        <div className="product-img">
+          {product.images?.[0]?.url ? (
+            <img
+              src={product.images[0].url}
+              alt={product.title || "Product"}
+            />
           ) : (
-            <AiOutlineHeart />
+            <div className="product-image-placeholder">
+              No Image
+            </div>
           )}
-        </button>
+        </div>
+
+        {/* Image hover action */}
+
+        <div className="image-view-action">
+          <span>View Product</span>
+
+          <span className="view-arrow">
+            <FiArrowUpRight />
+          </span>
+        </div>
       </div>
 
-      <div className="logo">
-        {/* Logo intentionally unchanged */}
-      </div>
+      {/* =========================================
+          PRODUCT INFORMATION
+      ========================================== */}
 
-      <div className="product-img">
-        <img
-          src={product.images?.[0]?.url}
-          alt={product.title}
-        />
-      </div>
+      <div className="product-content">
 
-      <div className="product-details">
-        <h3>{product.title}</h3>
+        <div className="product-title-row">
 
-        <p className="price">
-          ₹{product.price?.amount}
-        </p>
-      </div>
+          <h3 className="product-name">
+            {product.title}
+          </h3>
 
-      <p className="product-description">
-        {product.description}
-      </p>
+          <span className="product-price">
+            ₹{product.price?.amount ?? 0}
+          </span>
 
-      <div className="btn-section">
-        <button
-          className="addToCart"
-          type="button"
-          onClick={handleAddToCart}
-        >
-          <span>
+        </div>
+
+        {product.description && (
+          <p className="product-description">
+            {product.description}
+          </p>
+        )}
+
+        {/* =====================================
+            ACTION BUTTONS
+        ====================================== */}
+
+        <div className="btn-section">
+
+          <button
+            className="addToCart"
+            type="button"
+            onClick={handleAddToCart}
+          >
             <FiShoppingBag />
-          </span>
 
-          <span>Add to Cart</span>
-        </button>
+            <span>Add to Cart</span>
+          </button>
 
-        <button
-          className="buyNow"
-          type="button"
-          onClick={handleBuyNow}
-        >
-          <span>
-            <BiCartAlt />
-          </span>
+          <button
+            className="buyNow"
+            type="button"
+            onClick={handleBuyNow}
+          >
+            <span>Buy Now</span>
 
-          <span>Buy Now</span>
-        </button>
+            <FiArrowUpRight />
+          </button>
+
+        </div>
+
       </div>
-    </div>
+    </article>
   );
 }

@@ -1,9 +1,23 @@
 import React, { useState } from "react";
-import { SlPhone } from "react-icons/sl";
-import { TfiEmail } from "react-icons/tfi";
-import { IoLocationOutline } from "react-icons/io5";
-import { IoMdHappy } from "react-icons/io";
 import axios from "axios";
+
+import {
+  SlPhone,
+} from "react-icons/sl";
+
+import {
+  TfiEmail,
+} from "react-icons/tfi";
+
+import {
+  IoLocationOutline,
+} from "react-icons/io5";
+
+import {
+  FiArrowUpRight,
+  FiCheck,
+} from "react-icons/fi";
+
 import "../style/contact.css";
 
 export default function Contact() {
@@ -13,167 +27,397 @@ export default function Contact() {
     topic: "",
     message: "",
   });
+
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-    // console.log("form data", e.target.value);
+    const { name, value } = e.target;
+
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    if (submitted) {
+      setSubmitted(false);
+    }
   };
 
   const handleSubmit = async (e) => {
-   
-  e.preventDefault();
-  setSubmitted(true)
+    e.preventDefault();
 
-  const { name, email, topic, message } = form;
+    setLoading(true);
+    setSubmitted(false);
 
-  console.log("data:", name, email, topic, message);
+    try {
+      await axios.post(
+        "https://microservices-4-j5pd.onrender.com/api/contact",
+        {
+          name: form.name,
+          email: form.email,
+          topic: form.topic,
+          message: form.message,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-  try {
+      setSubmitted(true);
 
-    await axios.post("https://microservices-4-j5pd.onrender.com/api/contact", {
-    
-      headers: {
-        "Content-Type": "application/json"
-      },
-        name, email, topic, message
-    })
-   
-
-  } catch (error) {
-
-    console.log(error);
-
-  }
-
-    // You can add your form submission logic here
+      setForm({
+        name: "",
+        email: "",
+        topic: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Contact form error:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="contact-main-container">
-      <div className="contact-header">
-        {/* <div className="contact-icon">
-					<svg height="48" width="48" viewBox="0 0 48 48"><path d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4zm0 36c-8.82 0-16-7.18-16-16S15.18 8 24 8s16 7.18 16 16-7.18 16-16 16zm-2-24h4v4h-4zm0 6h4v12h-4z"/></svg>
-				</div> */}
-        <h1>Get in Touch</h1>
-        <p>We'd love to hear from you. Please fill out this form.</p>
-      </div>
-      <div className="contact-content">
-        <form className="contact-form" onSubmit={handleSubmit}>
-          <div className="contact-row">
-            <div className="contact-field">
-              <label htmlFor="name">NAME</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Full Name"
-                value={form.name}
-                onChange={handleChange}
-                required
-              />
+    <main className="contact-page">
+
+      {/* ================= HEADER ================= */}
+
+      <section className="contact-hero">
+
+        <div className="contact-eyebrow">
+          <span></span>
+          GET IN TOUCH
+        </div>
+
+        <h1>
+          Let's talk
+          <span>.</span>
+        </h1>
+
+        <p>
+          Have a question about an order, product, or anything
+          else? We're here to help.
+        </p>
+
+      </section>
+
+
+      {/* ================= MAIN CONTENT ================= */}
+
+      <section className="contact-wrapper">
+
+        {/* ================= FORM ================= */}
+
+        <div className="contact-form-card">
+
+          <div className="form-top">
+
+            <div>
+              <span className="form-label">
+                SEND US A MESSAGE
+              </span>
+
+              <h2>
+                How can we help?
+              </h2>
             </div>
-            <div className="contact-field">
-              <label htmlFor="email">EMAIL</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Email"
-                value={form.email}
-                onChange={handleChange}
-                required
-              />
+
+            <div className="form-number">
+              01
             </div>
+
           </div>
-          <div className="contact-row">
-            <div className="contact-field" style={{ width: "100%" }}>
-              <label htmlFor="topic">TOPIC</label>
-              <select
-                id="topic"
-                name="topic"
-                value={form.topic}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Select a topic</option>
-                <option value="order">Order</option>
-                <option value="product">Product</option>
-                <option value="support">Support</option>
-                <option value="other">Other</option>
-              </select>
+
+
+          <form
+            className="contact-form"
+            onSubmit={handleSubmit}
+          >
+
+            {/* NAME + EMAIL */}
+
+            <div className="contact-fields-row">
+
+              <div className="contact-field">
+                <label htmlFor="name">
+                  NAME
+                </label>
+
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="Your name"
+                  value={form.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+
+              <div className="contact-field">
+                <label htmlFor="email">
+                  EMAIL
+                </label>
+
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
             </div>
-          </div>
-          <div className="contact-row">
-            <div className="contact-field" style={{ width: "100%" }}>
-              <label htmlFor="message">MESSAGE</label>
+
+
+            {/* TOPIC */}
+
+            <div className="contact-field full-field">
+
+              <label htmlFor="topic">
+                TOPIC
+              </label>
+
+              <div className="select-wrapper">
+
+                <select
+                  id="topic"
+                  name="topic"
+                  value={form.topic}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">
+                    Select a topic
+                  </option>
+
+                  <option value="order">
+                    Order
+                  </option>
+
+                  <option value="product">
+                    Product
+                  </option>
+
+                  <option value="support">
+                    Support
+                  </option>
+
+                  <option value="other">
+                    Other
+                  </option>
+
+                </select>
+
+              </div>
+
+            </div>
+
+
+            {/* MESSAGE */}
+
+            <div className="contact-field full-field">
+
+              <label htmlFor="message">
+                MESSAGE
+              </label>
+
               <textarea
                 id="message"
                 name="message"
-                placeholder="How can we help?"
+                placeholder="Tell us how we can help..."
                 value={form.message}
                 onChange={handleChange}
+                rows="5"
                 required
-                rows={5}
               />
+
             </div>
-          </div>
-          <button type="submit" className="contact-submit-btn">
-            Send Message
-          </button>
-          <div className="contact-policy">
-            By sending this message, you agree to our{" "}
-            <a href="#">
-              <span className="policy">Privacy Policy</span>
-            </a>
-            .
-          </div>
-          {submitted && (
-            <div className="contact-success"><span><IoMdHappy /></span> Thank you for contact us!</div>
-          )}
-        </form>
-        <div className="contact-info">
-          <h3>CONTACT INFORMATION</h3>
-          <div className="contact-info-item">
-            <span className="contact-info-icon">
-              <SlPhone />
-            </span>
-            <div>
-              <strong>Phone</strong>
-              <br />
-              <span className="con-gap"> Mon–Fri, 9am – 6pm IST </span> <br />
-              <p>+91 8420680130</p>
-            </div>
-          </div>
-          <div className="contact-info-item">
-            <span className="contact-info-icon">
-              <TfiEmail />
-            </span>
-            <div>
-              <strong>Email</strong>
-              <br />
-              <span className="con-gap"> Our team will reply in 24h </span>{" "}
-              <br />
-              <p>dxshoaib51@gmail.com</p>
-            </div>
-          </div>
-          <div className="contact-info-item">
-            <span className="contact-info-icon">
-              <IoLocationOutline />
-            </span>
-            <div>
-              <strong>Inida</strong>
-              <br />
-              <span className="con-gap"> UP, Lucknow </span>
-              <br />
-              Raebareli 229307
-            </div>
-          </div>
-          {/* <div className="contact-map">
-						<img src="https://maps.googleapis.com/maps/api/staticmap?center=One+Bowerman+Dr,Beaverton,OR&zoom=13&size=300x100&key=YOUR_API_KEY" alt="Map" style={{ width: '100%', borderRadius: '8px' }} />
-					</div> */}
+
+
+            {/* SUBMIT */}
+
+            <button
+              type="submit"
+              className="contact-submit"
+              disabled={loading}
+            >
+
+              <span>
+                {loading ? "Sending..." : "Send Message"}
+              </span>
+
+              <span className="submit-icon">
+                <FiArrowUpRight />
+              </span>
+
+            </button>
+
+
+            {/* POLICY */}
+
+            <p className="contact-policy">
+              By sending this message, you agree to our{" "}
+              <a href="#">
+                Privacy Policy
+              </a>
+              .
+            </p>
+
+
+            {/* SUCCESS */}
+
+            {submitted && (
+              <div className="contact-success">
+
+                <span className="success-icon">
+                  <FiCheck />
+                </span>
+
+                <div>
+                  <strong>Message sent successfully.</strong>
+
+                  <small>
+                    We'll get back to you soon.
+                  </small>
+                </div>
+
+              </div>
+            )}
+
+          </form>
+
         </div>
-      </div>
-    </div>
+
+
+        {/* ================= CONTACT INFO ================= */}
+
+        <aside className="contact-info-card">
+
+          <div className="info-top">
+
+            <span className="form-label">
+              CONTACT INFORMATION
+            </span>
+
+            <span className="info-dot"></span>
+
+          </div>
+
+
+          <div className="contact-info-list">
+
+            {/* PHONE */}
+
+            <div className="contact-info-item">
+
+              <div className="info-icon">
+                <SlPhone />
+              </div>
+
+              <div className="info-content">
+
+                <span>
+                  PHONE
+                </span>
+
+                <h3>
+                  +91 8420680130
+                </h3>
+
+                <p>
+                  Mon–Fri, 9am – 6pm IST
+                </p>
+
+              </div>
+
+            </div>
+
+
+            {/* EMAIL */}
+
+            <div className="contact-info-item">
+
+              <div className="info-icon">
+                <TfiEmail />
+              </div>
+
+              <div className="info-content">
+
+                <span>
+                  EMAIL
+                </span>
+
+                <h3>
+                  dxshoaib51@gmail.com
+                </h3>
+
+                <p>
+                  Our team will reply within 24h
+                </p>
+
+              </div>
+
+            </div>
+
+
+            {/* LOCATION */}
+
+            <div className="contact-info-item">
+
+              <div className="info-icon">
+                <IoLocationOutline />
+              </div>
+
+              <div className="info-content">
+
+                <span>
+                  LOCATION
+                </span>
+
+                <h3>
+                  Raebareli, India
+                </h3>
+
+                <p>
+                  Uttar Pradesh · 229307
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          {/* BOTTOM TEXT */}
+
+          <div className="contact-info-bottom">
+
+            <span>
+              NIKE STORE
+            </span>
+
+            <p>
+              We're always happy
+              <br />
+              to hear from you.
+            </p>
+
+          </div>
+
+        </aside>
+
+      </section>
+
+    </main>
   );
 }

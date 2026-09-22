@@ -1,3 +1,4 @@
+import { BsFilterLeft } from "react-icons/bs";
 import "../style/filterSidebar.css";
 
 import React, { useEffect, useState } from "react";
@@ -49,6 +50,7 @@ const FilterSidebar = () => {
           <span></span>
           <span></span>
           <span></span>
+           {/* <BsFilterLeft/> */}
         </span>
       </button>
 

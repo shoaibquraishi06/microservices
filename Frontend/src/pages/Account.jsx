@@ -39,7 +39,7 @@ export default function Account() {
   const [activeTab, setActiveTab] = useState("personal");
 
 
-  if (!user) {
+  if ( user) {
     return <NotUser />;
   }
 

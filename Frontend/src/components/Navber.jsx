@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { IoBagHandleOutline } from "react-icons/io5";
+import {
+  IoBagHandleOutline,
+  IoCloseOutline,
+} from "react-icons/io5";
 import { VscAccount } from "react-icons/vsc";
 import { CgMenu } from "react-icons/cg";
 import { CiSearch } from "react-icons/ci";
@@ -16,27 +19,31 @@ import "../style/profileCard.css";
 
 const Navber = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [showProfile, setShowProfile] = useState(false);
   const [showCart, setShowCart] = useState(false);
-
-  // Search open / close
   const [searchOpen, setSearchOpen] = useState(false);
 
   const navigate = useNavigate();
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
 
   const handleMenuToggle = () => {
     setMenuOpen((prev) => !prev);
   };
 
   const handleProfileClick = () => {
+    closeMenu();
     navigate("/account");
   };
 
   const handleCartClick = () => {
+    closeMenu();
     navigate("/cart");
   };
 
   const handleSearchOpen = () => {
+    closeMenu();
     setSearchOpen(true);
   };
 
@@ -47,49 +54,67 @@ const Navber = () => {
   return (
     <>
       {/* ================= NAVBAR ================= */}
-      <div className="header">
+      <header className="header">
         <nav className="navbar">
 
-          {/* LOGO */}
+          {/* ================= LOGO ================= */}
           <div className="navbar-logo">
-            <Link to="/">
-              <img src={logo} alt="Brand-logo" />
+            <Link to="/" onClick={closeMenu}>
+              <img src={logo} alt="Brand logo" />
             </Link>
           </div>
 
-          {/* NAV LINKS */}
+          {/* ================= DESKTOP / MOBILE LINKS ================= */}
           <div
             className={`navbar-links ${
               menuOpen ? "active" : ""
             }`}
           >
-            <Link to="/" onClick={() => setMenuOpen(false)}>
-              Home
+            <Link to="/" onClick={closeMenu}>
+              <span>Home</span>
             </Link>
 
-            <Link
-              to="/products"
-              onClick={() => setMenuOpen(false)}
-            >
-              Products
+            <Link to="/products" onClick={closeMenu}>
+              <span>Products</span>
             </Link>
 
-            <Link
-              to="/orders"
-              onClick={() => setMenuOpen(false)}
-            >
-              Orders
+            <Link to="/orders" onClick={closeMenu}>
+              <span>Orders</span>
             </Link>
 
-            <Link
-              to="/contact"
-              onClick={() => setMenuOpen(false)}
-            >
-              Contact
+            <Link to="/contact" onClick={closeMenu}>
+              <span>Contact</span>
             </Link>
+
+            {/* Mobile only */}
+            <div className="mobile-menu-divider" />
+
+            <button
+              className="mobile-search"
+              onClick={handleSearchOpen}
+            >
+              <CiSearch />
+              <span>Search</span>
+            </button>
+
+            <button
+              className="mobile-account"
+              onClick={handleProfileClick}
+            >
+              <VscAccount />
+              <span>Account</span>
+            </button>
+
+            <button
+              className="mobile-cart"
+              onClick={handleCartClick}
+            >
+              <IoBagHandleOutline />
+              <span>Cart</span>
+            </button>
           </div>
 
-          {/* RIGHT SIDE */}
+          {/* ================= RIGHT SIDE ================= */}
           <div className="nav-end">
 
             {/* SEARCH */}
@@ -103,36 +128,55 @@ const Navber = () => {
             </button>
 
             {/* CART */}
-            <div className="whistlist">
-              <button
-                className="whistlist-btn"
-                onClick={handleCartClick}
-              >
-                <IoBagHandleOutline />
-              </button>
-            </div>
+            <button
+              className="nav-icon-btn"
+              onClick={handleCartClick}
+              aria-label="Open cart"
+            >
+              <IoBagHandleOutline />
+            </button>
 
-            {/* PROFILE */}
-            <div
-              className="Profile"
+            {/* ACCOUNT */}
+            <button
+              className="nav-icon-btn profile-btn"
               onClick={handleProfileClick}
+              aria-label="Open account"
             >
               <VscAccount />
-            </div>
+            </button>
 
-            {/* MOBILE MENU */}
-            <div
-              className="navbar-menu"
+            {/* HAMBURGER */}
+            <button
+              className={`navbar-menu ${
+                menuOpen ? "menu-open" : ""
+              }`}
               onClick={handleMenuToggle}
+              aria-label={
+                menuOpen
+                  ? "Close navigation menu"
+                  : "Open navigation menu"
+              }
+              aria-expanded={menuOpen}
             >
-              <CgMenu />
-            </div>
+              {menuOpen ? (
+                <IoCloseOutline />
+              ) : (
+                <CgMenu />
+              )}
+            </button>
           </div>
         </nav>
-      </div>
 
-      {/* ================= SEARCH OVERLAY ================= */}
+        {/* ================= MOBILE BACKDROP ================= */}
+        <div
+          className={`menu-backdrop ${
+            menuOpen ? "show" : ""
+          }`}
+          onClick={closeMenu}
+        />
+      </header>
 
+      {/* ================= SEARCH ================= */}
       {searchOpen && (
         <Search onClose={handleSearchClose} />
       )}

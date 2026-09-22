@@ -1,53 +1,796 @@
+/* =========================================================
+   PRODUCT CARD
+   Premium / Minimal / Editorial
+========================================================= */
+
 .product-card {
   position: relative;
-  background: #f7f7f7;
-  padding: 20px;
-  height: 150px;
-  width: 200px;
-  text-align: center;
+
+  width: 100%;
+  min-width: 0;
+
+  background: #ffffff;
+
+  border: 1px solid #e8e8e8;
+
+  border-radius: 4px;
+
+  overflow: hidden;
+
   cursor: pointer;
+
+  font-family: "regular-text", sans-serif;
+
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease,
+    box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.product-card img {
-     width: 80%;
-    object-fit: cover;
-    height: 50%;
-  margin-bottom: 15px;
+
+/* =========================================================
+   CARD HOVER
+========================================================= */
+
+@media (hover: hover) {
+
+  .product-card:hover {
+    transform: translateY(-7px);
+
+    border-color: #d5d5d5;
+
+    box-shadow:
+      0 18px 45px rgba(0, 0, 0, 0.07);
+  }
+
 }
 
-.product-card h4 {
-  font-family: "regular-text";
-  font-size: 13px;
-  font-weight: 400;
-  margin-bottom: 5px;
+
+/* =========================================================
+   IMAGE WRAPPER
+========================================================= */
+
+.product-image-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 1 / 0.88;
+
+  background: #f5f5f5;
+
+  overflow: hidden;
 }
 
-.product-card p {
-  color: #777;
-  font-family: 'regular-text';
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.product-img {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
 }
 
-.badge {
-   font-family: 'bold-text';
+
+.product-img img {
+ width: 100%;
+    height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+
+  transition:
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.5s ease;
+}
+
+
+/* Image zoom */
+
+@media (hover: hover) {
+
+  .product-card:hover .product-img img {
+    transform: scale(1.07);
+  }
+
+}
+
+
+/* =========================================================
+   IMAGE NUMBER
+========================================================= */
+
+.product-image-number {
   position: absolute;
-  top: 15px;
-  right: 15px;
-  background: #000;
-  color: #fff;
-  font-size: 12px;
-  padding: 4px 8px;
+
+  top: 16px;
+  left: 16px;
+
+  z-index: 3;
+
+  font-family: "bold-text", sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 1.5px;
+
+  color: #777;
+
+  opacity: 0.8;
 }
 
 
-@media (min-width:1080px) {
+/* =========================================================
+   WISHLIST
+========================================================= */
 
-     .product-card {
-      height: 150px;
-     }
+.wishlist-btn {
+  position: absolute;
 
-   .product-card img{
+  top: 13px;
+  right: 13px;
 
+  z-index: 5;
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(0, 0, 0, 0.08);
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.88);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  color: #222;
+
+  font-size: 19px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+
+.wishlist-btn svg {
+  display: block;
+
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+@media (hover: hover) {
+
+  .wishlist-btn:hover {
+    background: #111;
+
+    border-color: #111;
+
+    color: #fff;
+
+    transform: scale(1.08);
+  }
+
+}
+
+
+.wishlist-btn:active {
+  transform: scale(0.9);
+}
+
+
+.wishlist-btn.liked {
+  color: #111;
+
+  animation: heartPop 0.35s ease;
+}
+
+
+.wishlist-btn.liked svg {
+  transform: scale(1.08);
+}
+
+
+/* =========================================================
+   IMAGE HOVER ACTION
+========================================================= */
+
+.image-view-action {
+  position: absolute;
+
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+
+  z-index: 4;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 11px 10px 14px;
+
+  border-radius: 3px;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  font-size: 11px;
+
+  color: #111;
+
+  opacity: 0;
+
+  transform: translateY(12px);
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+@media (hover: hover) {
+
+  .product-card:hover .image-view-action {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+
+}
+
+
+.view-arrow {
+  width: 23px;
+  height: 23px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #111;
+
+  color: #fff;
+
+  font-size: 13px;
+}
+
+
+.view-arrow svg {
+  display: block;
+}
+
+
+/* =========================================================
+   NO IMAGE
+========================================================= */
+
+.product-image-placeholder {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 12px;
+
+  color: #999;
+
+  background: #f3f3f3;
+}
+
+
+/* =========================================================
+   PRODUCT CONTENT
+========================================================= */
+
+.product-content {
+  padding: 20px 18px 18px;
+}
+
+
+/* =========================================================
+   TITLE + PRICE
+========================================================= */
+
+.product-title-row {
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+
+.product-name {
+  margin: 0;
+
+  max-width: 70%;
+
+  font-family: "bold-text", sans-serif;
+
+  font-size: 15px;
+
+  line-height: 1.25;
+
+  font-weight: 600;
+
+  color: #111;
+
+  overflow: hidden;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+
+.product-price {
+  flex-shrink: 0;
+
+  font-family: "bold-text", sans-serif;
+
+  font-size: 14px;
+
+  line-height: 1.3;
+
+  color: #111;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.product-description {
+  margin: 14px 0 19px;
+
+  min-height: 38px;
+
+  color: #777;
+
+  font-size: 12px;
+
+  line-height: 1.55;
+
+  overflow: hidden;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+
+/* =========================================================
+   BUTTON SECTION
+========================================================= */
+
+.btn-section {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 8px;
+}
+
+
+/* =========================================================
+   COMMON BUTTON
+========================================================= */
+
+.addToCart,
+.buyNow {
+  min-width: 0;
+
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  border-radius: 3px;
+
+  font-family: "regular-text", sans-serif;
+
+  font-size: 11px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+
+.addToCart svg,
+.buyNow svg {
+  flex-shrink: 0;
+
+  font-size: 15px;
+
+  transition:
+    transform 0.3s ease;
+}
+
+
+/* =========================================================
+   ADD TO CART
+========================================================= */
+
+.addToCart {
+  border: 1px solid #e6e6e6;
+
+  background: #f4f4f4;
+
+  color: #111;
+}
+
+
+@media (hover: hover) {
+
+  .addToCart:hover {
+    background: #111;
+
+    border-color: #111;
+
+    color: #fff;
+
+    transform: translateY(-2px);
+  }
+
+
+  .addToCart:hover svg {
+    transform: translateY(-1px);
+  }
+
+}
+
+
+/* =========================================================
+   BUY NOW
+========================================================= */
+
+.buyNow {
+  border: 1px solid #111;
+
+  background: #111;
+
+  color: #fff;
+}
+
+
+@media (hover: hover) {
+
+  .buyNow:hover {
+    background: #fff;
+
+    color: #111;
+
+    transform: translateY(-2px);
+  }
+
+
+  .buyNow:hover svg {
+    transform:
+      translate(2px, -2px);
+  }
+
+}
+
+
+/* =========================================================
+   BUTTON ACTIVE
+========================================================= */
+
+.addToCart:active,
+.buyNow:active {
+  transform: scale(0.97);
+}
+
+
+/* =========================================================
+   FOCUS
+========================================================= */
+
+.wishlist-btn:focus-visible,
+.addToCart:focus-visible,
+.buyNow:focus-visible {
+  outline: 2px solid #111;
+
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes heartPop {
+
+  0% {
+    transform: scale(0.8);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .product-image-wrapper {
+    aspect-ratio: 1 / 0.92;
+  }
+
+
+  .product-content {
+    padding: 17px 15px 15px;
+  }
+
+
+  .product-name {
+    font-size: 14px;
+  }
+
+
+  .product-price {
+    font-size: 13px;
+  }
+
+
+  .product-description {
+    margin-top: 11px;
+    margin-bottom: 15px;
+
+    font-size: 11px;
+  }
+
+
+  .addToCart,
+  .buyNow {
+    height: 40px;
+
+    font-size: 10px;
+  }
+
+
+  .wishlist-btn {
+    width: 35px;
+    height: 35px;
+
+    font-size: 17px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .product-card {
+    border-radius: 3px;
+  }
+
+
+  .product-image-wrapper {
+    aspect-ratio: 1 / 1;
+  }
+
+
+  .product-img img {
+    width: 90%;
     height: 90%;
-   }
-  
+  }
+
+
+  .product-image-number {
+    top: 10px;
+    left: 10px;
+
+    font-size: 8px;
+  }
+
+
+  .wishlist-btn {
+    top: 9px;
+    right: 9px;
+
+    width: 32px;
+    height: 32px;
+
+    font-size: 16px;
+  }
+
+
+  .product-content {
+    padding: 13px 11px 11px;
+  }
+
+
+  .product-title-row {
+    gap: 7px;
+  }
+
+
+  .product-name {
+    font-size: 12px;
+
+    line-height: 1.3;
+  }
+
+
+  .product-price {
+    font-size: 11px;
+  }
+
+
+  .product-description {
+    margin: 9px 0 12px;
+
+    min-height: 32px;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+  }
+
+
+  .btn-section {
+    gap: 5px;
+  }
+
+
+  .addToCart,
+  .buyNow {
+    height: 36px;
+
+    gap: 4px;
+
+    font-size: 9px;
+  }
+
+
+  .addToCart svg,
+  .buyNow svg {
+    font-size: 13px;
+  }
+
+
+  /*
+    Mobile par "View Product" overlay nahi dikhega.
+    Touch devices ke liye cleaner UI.
+  */
+
+  .image-view-action {
+    display: none;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+  .product-content {
+    padding: 11px 9px 10px;
+  }
+
+
+  .product-name {
+    font-size: 11px;
+  }
+
+
+  .product-price {
+    font-size: 10px;
+  }
+
+
+  .product-description {
+    font-size: 9px;
+
+    margin-bottom: 10px;
+  }
+
+
+  .addToCart,
+  .buyNow {
+    height: 34px;
+
+    font-size: 8px;
+  }
+
+
+  .addToCart span,
+  .buyNow span {
+    white-space: nowrap;
+  }
+
+
+  .wishlist-btn {
+    width: 29px;
+    height: 29px;
+
+    font-size: 14px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .product-card,
+  .product-card *,
+  .product-card *::before,
+  .product-card *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    transition-duration: 0.01ms !important;
+  }
+
 }

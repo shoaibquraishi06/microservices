@@ -1,0 +1,810 @@
+/* =========================================================
+   LANDING PRODUCT SECTION
+========================================================= */
+
+.landing-product-section {
+  width: 100%;
+
+  max-width: 1500px;
+
+  margin: 0 auto;
+
+  padding: 120px 5vw 130px;
+
+  background: #fff;
+
+  overflow: hidden;
+
+  font-family: "regular-text", sans-serif;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.landing-product-header {
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  gap: 50px;
+
+  margin-bottom: 70px;
+}
+
+
+.landing-product-heading-area {
+  flex: 1;
+}
+
+
+.landing-product-eyebrow {
+  display: block;
+
+  margin-bottom: 20px;
+
+  font-family: "bold-text", sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 3px;
+
+  color: #999;
+
+  animation:
+    landingTextReveal
+    0.8s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+
+.landing-product-heading {
+  margin: 0;
+
+  font-family: "bold-text", sans-serif;
+
+  font-size: clamp(55px, 7vw, 100px);
+
+  line-height: 0.88;
+
+  letter-spacing: -5px;
+
+  color: #111;
+
+  animation:
+    landingTextReveal
+    0.9s
+    0.08s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+
+.landing-product-heading span {
+  display: block;
+
+  color: #a5a5a5;
+}
+
+
+/* =========================================================
+   HEADER RIGHT
+========================================================= */
+
+.landing-product-header-right {
+  width: 300px;
+
+  flex-shrink: 0;
+
+  padding-bottom: 4px;
+
+  animation:
+    landingTextReveal
+    0.9s
+    0.15s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+
+.landing-product-description {
+  margin: 0 0 25px;
+
+  font-size: 12px;
+
+  line-height: 1.7;
+
+  color: #777;
+}
+
+
+.landing-product-view-all-top {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  font-family: "bold-text", sans-serif;
+
+  font-size: 10px;
+
+  color: #111;
+
+  cursor: pointer;
+
+  transition:
+    gap 0.35s ease;
+}
+
+
+.landing-product-view-all-top svg {
+  font-size: 14px;
+
+  transition:
+    transform 0.35s ease;
+}
+
+
+.landing-product-view-all-top:hover {
+  gap: 18px;
+}
+
+
+.landing-product-view-all-top:hover svg {
+  transform: rotate(45deg);
+}
+
+
+/* =========================================================
+   CAROUSEL TOP
+========================================================= */
+
+.landing-product-carousel-top {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 18px;
+}
+
+
+.landing-product-counter {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  font-family: "bold-text", sans-serif;
+
+  font-size: 9px;
+
+  letter-spacing: 2px;
+
+  color: #aaa;
+}
+
+
+.landing-product-counter-active {
+  color: #111;
+
+  font-size: 12px;
+}
+
+
+.landing-product-counter-divider {
+  width: 30px;
+
+  height: 1px;
+
+  background: #ccc;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.landing-product-navigation {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+
+.landing-product-nav-btn {
+  width: 43px;
+
+  height: 43px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border: 1px solid #dedede;
+
+  border-radius: 50%;
+
+  background: #fff;
+
+  color: #111;
+
+  cursor: pointer;
+
+  font-size: 15px;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.35s
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.landing-product-nav-btn:hover {
+  background: #111;
+
+  color: #fff;
+
+  border-color: #111;
+
+  transform: scale(1.07);
+}
+
+
+.landing-product-nav-btn:active {
+  transform: scale(0.92);
+}
+
+
+/* =========================================================
+   HORIZONTAL CAROUSEL
+========================================================= */
+
+.landing-product-carousel {
+  width: 100%;
+
+  display: flex;
+
+  gap: 22px;
+
+  overflow-x: auto;
+
+  overflow-y: hidden;
+
+  scroll-behavior: smooth;
+
+  scroll-snap-type: x mandatory;
+
+  scrollbar-width: none;
+
+  -ms-overflow-style: none;
+
+  padding: 5px 0 20px;
+
+  cursor: grab;
+}
+
+
+.landing-product-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+
+.landing-product-carousel:active {
+  cursor: grabbing;
+}
+
+
+/* =========================================================
+   CARD WIDTH
+========================================================= */
+
+.landing-product-carousel-card {
+  position: relative;
+
+  flex: 0 0
+    calc(
+      (100% - 44px) / 3
+    );
+
+  min-width: 0;
+
+  scroll-snap-align: start;
+
+  animation:
+    landingCardReveal
+    0.8s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+
+.landing-product-carousel-card:nth-child(1) {
+  animation-delay: 0.08s;
+}
+
+
+.landing-product-carousel-card:nth-child(2) {
+  animation-delay: 0.14s;
+}
+
+
+.landing-product-carousel-card:nth-child(3) {
+  animation-delay: 0.20s;
+}
+
+
+.landing-product-carousel-card:nth-child(4) {
+  animation-delay: 0.26s;
+}
+
+
+.landing-product-carousel-card:nth-child(5) {
+  animation-delay: 0.32s;
+}
+
+
+.landing-product-carousel-card:nth-child(6) {
+  animation-delay: 0.38s;
+}
+
+
+/* =========================================================
+   PRODUCT NUMBER
+========================================================= */
+
+.landing-product-index {
+  position: absolute;
+
+  top: 18px;
+
+  left: 18px;
+
+  z-index: 20;
+
+  font-family: "bold-text", sans-serif;
+
+  font-size: 8px;
+
+  letter-spacing: 2px;
+
+  color: #777;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   BOTTOM
+========================================================= */
+
+.landing-product-bottom {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+  margin-top: 30px;
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.landing-product-progress {
+  flex: 1;
+
+  max-width: 300px;
+}
+
+
+.landing-product-progress-track {
+  width: 100%;
+
+  height: 1px;
+
+  background: #e4e4e4;
+
+  overflow: hidden;
+}
+
+
+.landing-product-progress-track span {
+  display: block;
+
+  height: 100%;
+
+  background: #111;
+
+  transition:
+    width 0.55s
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* =========================================================
+   VIEW ALL
+========================================================= */
+
+.landing-product-view-all {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  font-family: "bold-text", sans-serif;
+
+  font-size: 11px;
+
+  color: #111;
+
+  cursor: pointer;
+
+  transition:
+    gap 0.4s
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.landing-product-view-all-icon {
+  width: 35px;
+
+  height: 35px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border: 1px solid #111;
+
+  border-radius: 50%;
+
+  font-size: 14px;
+
+  transition:
+    background 0.35s ease,
+    color 0.35s ease,
+    transform 0.4s ease;
+}
+
+
+.landing-product-view-all:hover {
+  gap: 22px;
+}
+
+
+.landing-product-view-all:hover
+.landing-product-view-all-icon {
+  background: #111;
+
+  color: #fff;
+
+  transform: rotate(45deg);
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.landing-product-empty-state {
+  min-height: 250px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-family: "regular-text", sans-serif;
+
+  font-size: 13px;
+
+  color: #888;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes landingTextReveal {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(35px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+
+}
+
+
+@keyframes landingCardReveal {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(45px)
+      scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+  .landing-product-section {
+    padding: 95px 4vw 105px;
+  }
+
+
+  .landing-product-header {
+    margin-bottom: 55px;
+  }
+
+
+  .landing-product-heading {
+    font-size: clamp(
+      50px,
+      8vw,
+      75px
+    );
+
+    letter-spacing: -4px;
+  }
+
+
+  .landing-product-header-right {
+    width: 250px;
+  }
+
+
+  .landing-product-carousel-card {
+    flex-basis:
+      calc(
+        (100% - 22px) / 2
+      );
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+  .landing-product-section {
+    padding: 75px 18px 85px;
+  }
+
+
+  .landing-product-header {
+    display: block;
+
+    margin-bottom: 40px;
+  }
+
+
+  .landing-product-eyebrow {
+    margin-bottom: 15px;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+  }
+
+
+  .landing-product-heading {
+    font-size:
+      clamp(
+        42px,
+        12vw,
+        58px
+      );
+
+    line-height: 0.91;
+
+    letter-spacing: -3px;
+  }
+
+
+  .landing-product-header-right {
+    width: 100%;
+
+    margin-top: 25px;
+  }
+
+
+  .landing-product-description {
+    max-width: 330px;
+
+    margin-bottom: 18px;
+
+    font-size: 11px;
+  }
+
+
+  .landing-product-carousel-top {
+    margin-bottom: 12px;
+  }
+
+
+  .landing-product-nav-btn {
+    width: 38px;
+
+    height: 38px;
+
+    font-size: 13px;
+  }
+
+
+  /* 
+     Mobile:
+     1 full card + little part of next card
+  */
+
+  .landing-product-carousel {
+    gap: 14px;
+
+    padding-bottom: 15px;
+  }
+
+
+  .landing-product-carousel-card {
+    flex-basis:
+      calc(
+        88% - 7px
+      );
+  }
+
+
+  .landing-product-index {
+    top: 14px;
+
+    left: 14px;
+
+    font-size: 7px;
+  }
+
+
+  .landing-product-bottom {
+    margin-top: 22px;
+
+    gap: 20px;
+  }
+
+
+  .landing-product-progress {
+    max-width: 150px;
+  }
+
+
+  .landing-product-view-all {
+    font-size: 9px;
+
+    gap: 10px;
+  }
+
+
+  .landing-product-view-all-icon {
+    width: 31px;
+
+    height: 31px;
+
+    font-size: 12px;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 400px) {
+
+  .landing-product-section {
+    padding-left: 13px;
+
+    padding-right: 13px;
+  }
+
+
+  .landing-product-heading {
+    font-size: 39px;
+
+    letter-spacing: -2px;
+  }
+
+
+  .landing-product-carousel-card {
+    flex-basis: 91%;
+  }
+
+
+  .landing-product-description {
+    font-size: 10px;
+  }
+
+
+  .landing-product-progress {
+    max-width: 100px;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .landing-product-section *,
+  .landing-product-section *::before,
+  .landing-product-section *::after {
+    animation-duration: 0.01ms !important;
+
+    animation-iteration-count: 1 !important;
+
+    scroll-behavior: auto !important;
+
+    transition-duration: 0.01ms !important;
+  }
+
+}

@@ -4,6 +4,8 @@ import Footer from "../components/Footer";
 import ProductGrid from "../components/ProductGrid";
 import ChatAssistant from "../components/ChatAssistant";
 import Clouser from '../components/HerosectionClourser/MorphSlider';
+import CategorySection  from "../components/CategorySection";
+import FAQ from "../components/FAQ"
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -22,8 +24,10 @@ const MainRoutes = () => {
       
       <HeroSection />
       <ChatAssistant />
+      <CategorySection/>
       {/* <Payment2/> */}
       <ProductGrid product={Array.isArray(items) ? items : []} />
+      <FAQ/>
       <Contact />
       <Footer />
     </div>

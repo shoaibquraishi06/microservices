@@ -1,0 +1,550 @@
+/* =====================================================
+   CATEGORY SECTION
+===================================================== */
+
+.category-section {
+  width: 100%;
+  padding: 7rem 5vw 6rem;
+  background: #ffffff;
+  overflow: hidden;
+  font-family: "regular-text";
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.category-heading {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+  gap: 3rem;
+}
+
+.category-heading-left {
+  max-width: 650px;
+}
+
+.category-eyebrow {
+  display: block;
+  margin-bottom: 0.8rem;
+
+  font-family: "regular-text";
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+
+  color: #8b8b8b;
+}
+
+.category-heading h2 {
+  margin: 0;
+
+  font-family: "bold-text";
+  font-size: clamp(2.8rem, 6vw, 6.5rem);
+  line-height: 0.88;
+  letter-spacing: -0.055em;
+
+  color: #111111;
+}
+
+.category-heading h2 span {
+  color: #8c8c8c;
+}
+
+.category-heading-text {
+  max-width: 300px;
+
+  margin: 0;
+
+  font-family: "regular-text";
+  font-size: 0.85rem;
+  line-height: 1.6;
+
+  color: #777777;
+}
+
+
+/* =====================================================
+   CATEGORY GRID
+===================================================== */
+
+.category-grid {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 1.2rem;
+}
+
+
+/* =====================================================
+   CATEGORY CARD
+===================================================== */
+
+.category-card {
+  position: relative;
+
+  display: block;
+
+  height: 620px;
+
+  overflow: hidden;
+
+  text-decoration: none;
+
+  background: #eeeeee;
+
+  border-radius: 2px;
+
+  isolation: isolate;
+
+  animation: categoryReveal 0.8s ease both;
+}
+
+.category-card-2 {
+  animation-delay: 0.15s;
+}
+
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+.category-image-wrapper {
+  position: absolute;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  z-index: -2;
+}
+
+.category-image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+
+  transition:
+    transform 1s cubic-bezier(0.2, 0.7, 0.2, 1),
+    filter 0.8s ease;
+}
+
+
+/* =====================================================
+   IMAGE OVERLAY
+===================================================== */
+
+.category-image-overlay {
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.08) 0%,
+      rgba(0, 0, 0, 0.02) 35%,
+      rgba(0, 0, 0, 0.72) 100%
+    );
+
+  transition: background 0.5s ease;
+}
+
+
+/* =====================================================
+   TOP AREA
+===================================================== */
+
+.category-top {
+  position: absolute;
+
+  top: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: #ffffff;
+
+  font-family: "regular-text";
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+}
+
+.category-arrow {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.5);
+
+  border-radius: 50%;
+
+  font-size: 1.1rem;
+
+  backdrop-filter: blur(8px);
+
+  transition:
+    background 0.35s ease,
+    color 0.35s ease,
+    transform 0.35s ease;
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.category-content {
+  position: absolute;
+
+  left: 2rem;
+  right: 2rem;
+  bottom: 2rem;
+
+  color: #ffffff;
+}
+
+.category-subtitle {
+  display: block;
+
+  margin-bottom: 0.7rem;
+
+  font-family: "regular-text";
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+
+  opacity: 0.75;
+}
+
+.category-content h3 {
+  margin: 0;
+
+  font-family: "bold-text";
+  font-size: clamp(3rem, 5vw, 5.5rem);
+
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+
+  text-transform: uppercase;
+}
+
+.category-content p {
+  max-width: 300px;
+
+  margin: 1rem 0 1.4rem;
+
+  font-family: "regular-text";
+  font-size: 0.85rem;
+  line-height: 1.5;
+
+  color: rgba(255, 255, 255, 0.78);
+}
+
+
+/* =====================================================
+   BUTTON
+===================================================== */
+
+.category-button {
+  width: fit-content;
+
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+
+  padding: 0.55rem 0.6rem 0.55rem 1rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.4);
+
+  border-radius: 100px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(12px);
+
+  color: #ffffff;
+
+  font-family: "regular-text";
+  font-size: 0.72rem;
+
+  transition:
+    background 0.35s ease,
+    color 0.35s ease,
+    padding 0.35s ease;
+}
+
+.category-button-arrow {
+  width: 28px;
+  height: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  color: #111111;
+
+  font-size: 0.9rem;
+
+  transition: transform 0.35s ease;
+}
+
+
+/* =====================================================
+   HOVER
+===================================================== */
+
+.category-card:hover .category-image {
+  transform: scale(1.06);
+}
+
+.category-card:hover .category-image-overlay {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.04) 30%,
+      rgba(0, 0, 0, 0.82) 100%
+    );
+}
+
+.category-card:hover .category-arrow {
+  background: #ffffff;
+  color: #111111;
+
+  transform: rotate(45deg);
+}
+
+.category-card:hover .category-button {
+  background: #ffffff;
+  color: #111111;
+
+  padding-right: 0.8rem;
+}
+
+.category-card:hover .category-button-arrow {
+  transform: rotate(45deg);
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.category-footer {
+  display: flex;
+  align-items: center;
+
+  gap: 1rem;
+
+  margin-top: 1.5rem;
+
+  color: #888888;
+
+  font-family: "regular-text";
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+}
+
+.category-footer-line {
+  flex: 1;
+
+  height: 1px;
+
+  background: #dddddd;
+}
+
+
+/* =====================================================
+   ANIMATION
+===================================================== */
+
+@keyframes categoryReveal {
+  from {
+    opacity: 0;
+    transform: translateY(35px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1024px) {
+
+  .category-section {
+    padding: 5rem 4vw;
+  }
+
+  .category-heading {
+    margin-bottom: 2rem;
+  }
+
+  .category-card {
+    height: 500px;
+  }
+
+  .category-content {
+    left: 1.5rem;
+    right: 1.5rem;
+    bottom: 1.5rem;
+  }
+
+  .category-content h3 {
+    font-size: clamp(2.8rem, 7vw, 4.5rem);
+  }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .category-section {
+    padding: 4rem 1rem;
+  }
+
+  .category-heading {
+    display: block;
+
+    margin-bottom: 1.8rem;
+  }
+
+  .category-eyebrow {
+    font-size: 0.6rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .category-heading h2 {
+    font-size: clamp(2.8rem, 14vw, 4rem);
+  }
+
+  .category-heading-text {
+    margin-top: 1rem;
+
+    max-width: 330px;
+
+    font-size: 0.8rem;
+  }
+
+
+  .category-grid {
+    grid-template-columns: 1fr;
+
+    gap: 0.8rem;
+  }
+
+  .category-card {
+    height: 480px;
+  }
+
+  .category-content {
+    left: 1.3rem;
+    right: 1.3rem;
+    bottom: 1.3rem;
+  }
+
+  .category-content h3 {
+    font-size: clamp(3.2rem, 16vw, 5rem);
+  }
+
+  .category-content p {
+    font-size: 0.78rem;
+
+    max-width: 270px;
+
+    margin: 0.8rem 0 1rem;
+  }
+
+  .category-top {
+    top: 1.2rem;
+    left: 1.2rem;
+    right: 1.2rem;
+  }
+
+  .category-arrow {
+    width: 38px;
+    height: 38px;
+  }
+
+  .category-footer {
+    margin-top: 1rem;
+  }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+  .category-section {
+    padding: 3.5rem 0.8rem;
+  }
+
+  .category-card {
+    height: 430px;
+  }
+
+  .category-content {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  .category-content h3 {
+    font-size: 3.3rem;
+  }
+
+  .category-button {
+    font-size: 0.68rem;
+  }
+
+}
+
+
+/* =====================================================
+   REDUCE MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .category-card,
+  .category-image,
+  .category-arrow,
+  .category-button,
+  .category-button-arrow {
+    animation: none;
+    transition: none;
+  }
+
+}

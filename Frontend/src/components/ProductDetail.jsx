@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { GiShoppingCart } from "react-icons/gi";
+import { FiArrowUpRight } from "react-icons/fi";
+import { HiOutlineShieldCheck } from "react-icons/hi2";
 import axios from "axios";
 import "../style/productDetail.css";
 
@@ -20,9 +22,6 @@ export default function ProductDetails() {
           `https://microservices-3-777q.onrender.com/api/products/${id}`
         );
 
-        // console.log("PRODUCT DETAIL:", response.data);
-
-        // Actual product response.data.data ke andar hai
         setProduct(response.data.data);
       } catch (error) {
         console.error("PRODUCT DETAIL ERROR:", error);
@@ -37,7 +36,12 @@ export default function ProductDetails() {
   if (loading) {
     return (
       <div className="product-loading">
-        <p>Loading...</p>
+        <div className="product-loader">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <p>Loading product</p>
       </div>
     );
   }
@@ -45,7 +49,13 @@ export default function ProductDetails() {
   if (!product) {
     return (
       <div className="product-error">
-        <h2>Product not found</h2>
+        <div className="error-inner">
+          <span>404</span>
+          <h2>Product not found</h2>
+          <p>
+            The product you're looking for may no longer be available.
+          </p>
+        </div>
       </div>
     );
   }
@@ -53,152 +63,323 @@ export default function ProductDetails() {
   const images = product.images || [];
 
   return (
-    <div className="product-details-page">
+    <main className="product-details-page">
+
       <div className="product-details-container">
 
-        {/* LEFT SIDE */}
-        <div className="product-gallery">
+        {/* =========================================
+            LEFT — PRODUCT VISUAL
+        ========================================= */}
+        <section className="product-gallery">
 
-          {/* Main Image */}
+          <div className="gallery-top">
+            <span className="gallery-label">
+              PRODUCT / {String(product._id).slice(-4)}
+            </span>
+
+            <span className="gallery-count">
+              {String(selectedImage + 1).padStart(2, "0")} /{" "}
+              {String(images.length).padStart(2, "0")}
+            </span>
+          </div>
+
           <div className="main-product-image">
+
             {images.length > 0 ? (
               <img
+                key={selectedImage}
                 src={images[selectedImage]?.url}
                 alt={product.title}
               />
             ) : (
-              <div className="no-image">No Image</div>
+              <div className="no-image">
+                No Image Available
+              </div>
             )}
+
+            <div className="image-badge">
+              <span>NIKE</span>
+              <FiArrowUpRight />
+            </div>
           </div>
 
-          {/* Thumbnail Images */}
+          {/* THUMBNAILS */}
           {images.length > 0 && (
             <div className="product-thumbnails">
-              {images.slice(0, 4).map((image, index) => (
+
+              {images.slice(0, 5).map((image, index) => (
                 <button
                   key={index}
                   className={`thumbnail ${
                     selectedImage === index ? "active" : ""
                   }`}
                   onClick={() => setSelectedImage(index)}
+                  aria-label={`View product image ${index + 1}`}
                 >
                   <img
                     src={image.url}
                     alt={`${product.title} ${index + 1}`}
                   />
+
+                  {selectedImage === index && (
+                    <span className="thumbnail-line"></span>
+                  )}
                 </button>
               ))}
 
-              {images.length > 4 && (
+              {images.length > 5 && (
                 <div className="more-images">
-                  +{images.length - 4} more
+                  +{images.length - 5}
                 </div>
               )}
+
             </div>
           )}
-        </div>
 
-        {/* RIGHT SIDE */}
-        <div className="product-info">
+        </section>
 
-          {/* Brand */}
-          <div className="product-brand">
-            <span className="brand-icon">N</span>
-            <span>NIKE</span>
+        {/* =========================================
+            RIGHT — PRODUCT INFORMATION
+        ========================================= */}
+        <section className="product-info">
 
-            <span className="product-code">
-              #{product._id?.slice(-8)}
-            </span>
-          </div>
+          <div className="product-info-inner">
 
-          {/* Title */}
-          {/* <h1 className="product-title">
-            {product.title}
-          </h1> */}
+            {/* TOP META */}
+            <div className="product-meta">
 
-          {/* Rating */}
-          <div className="product-rating">
-            <span className="stars">★★★★★</span>
-            <span className="reviews">42 reviews</span>
-          </div>
+              <div className="product-brand">
+                <span className="brand-mark">N</span>
 
-          {/* Price */}
-          <div className="product-price">
-            ₹{product.price?.amount || 0}
-          </div>
+                <span className="brand-name">
+                  NIKE
+                </span>
 
-          {/* Description */}
-          {product.description && (
-            <p className="product-description">
-              {product.description}
-            </p>
-          )}
+                <span className="product-code">
+                  #{product._id?.slice(-8)}
+                </span>
+              </div>
 
-          {/* Color */}
-          <div className="product-option">
-            <div className="option-title">
-              Color <span>White</span>
-            </div>
-
-            <div className="color-options">
-              {images.slice(0, 3).map((image, index) => (
-                <button
-                  key={index}
-                  className={`color-image ${
-                    selectedImage === index ? "selected" : ""
-                  }`}
-                  onClick={() => setSelectedImage(index)}
-                >
-                  <img
-                    src={image.url}
-                    alt="Product color"
-                  />
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Size */}
-          <div className="product-option">
-            <div className="size-header">
-              <span>
-                Size <small>EU Men</small>
+              <span className="product-status">
+                IN STOCK
               </span>
 
-              <button>Size guide</button>
             </div>
 
-            <div className="size-options">
-              {["40.5", "41", "42", "43", "43.5", "44", "44.5", "45", "46"].map(
-                (size) => (
+            {/* TITLE */}
+            <div className="product-heading">
+
+              <span className="product-eyebrow">
+                NEW ARRIVAL
+              </span>
+
+              <h1>
+                {product.title || "Nike Product"}
+              </h1>
+
+            </div>
+
+            {/* RATING */}
+            <div className="product-rating">
+
+              <div className="stars">
+                ★★★★★
+              </div>
+
+              <span>
+                4.8
+              </span>
+
+              <span className="rating-divider">
+                /
+              </span>
+
+              <span className="reviews">
+                42 Reviews
+              </span>
+
+            </div>
+
+            {/* PRICE */}
+            <div className="price-row">
+
+              <span className="product-price">
+                ₹{product.price?.amount || 0}
+              </span>
+
+              <span className="price-note">
+                Inclusive of all taxes
+              </span>
+
+            </div>
+
+            {/* DESCRIPTION */}
+            {product.description && (
+              <p className="product-description">
+                {product.description}
+              </p>
+            )}
+
+            <div className="product-divider"></div>
+
+            {/* COLOR */}
+            <div className="product-option">
+
+              <div className="option-header">
+                <div>
+                  <span className="option-label">
+                    COLOR
+                  </span>
+
+                  <span className="option-value">
+                    White
+                  </span>
+                </div>
+
+                <span className="option-number">
+                  01
+                </span>
+              </div>
+
+              <div className="color-options">
+
+                {images.slice(0, 3).map((image, index) => (
+                  <button
+                    key={index}
+                    className={`color-image ${
+                      selectedImage === index
+                        ? "selected"
+                        : ""
+                    }`}
+                    onClick={() => setSelectedImage(index)}
+                  >
+                    <img
+                      src={image.url}
+                      alt="Product color"
+                    />
+                  </button>
+                ))}
+
+              </div>
+
+            </div>
+
+            {/* SIZE */}
+            <div className="product-option size-option">
+
+              <div className="size-header">
+
+                <div>
+                  <span className="option-label">
+                    SELECT SIZE
+                  </span>
+
+                  <span className="option-value">
+                    EU Men
+                  </span>
+                </div>
+
+                <button className="size-guide">
+                  Size Guide
+                  <FiArrowUpRight />
+                </button>
+
+              </div>
+
+              <div className="size-options">
+
+                {[
+                  "40.5",
+                  "41",
+                  "42",
+                  "43",
+                  "43.5",
+                  "44",
+                  "44.5",
+                  "45",
+                  "46",
+                ].map((size) => (
                   <button
                     key={size}
                     className={`size-button ${
-                      selectedSize === size ? "selected" : ""
+                      selectedSize === size
+                        ? "selected"
+                        : ""
                     }`}
                     onClick={() => setSelectedSize(size)}
                   >
                     {size}
                   </button>
-                )
-              )}
+                ))}
+
+              </div>
+
             </div>
+
+            {/* CTA */}
+            <button className="add-cart-button">
+
+              <span className="cart-icon">
+                <GiShoppingCart />
+              </span>
+
+              <span className="cart-text">
+                Add to Bag
+              </span>
+
+              <span className="cart-arrow">
+                <FiArrowUpRight />
+              </span>
+
+            </button>
+
+            {/* DELIVERY */}
+            <div className="product-benefits">
+
+              <div className="benefit-item">
+
+                <div className="benefit-icon">
+                  <CiDeliveryTruck />
+                </div>
+
+                <div>
+                  <strong>
+                    Free Delivery
+                  </strong>
+
+                  <span>
+                    On orders over ₹2,500
+                  </span>
+                </div>
+
+              </div>
+
+              <div className="benefit-item">
+
+                <div className="benefit-icon">
+                  <HiOutlineShieldCheck />
+                </div>
+
+                <div>
+                  <strong>
+                    Secure Payment
+                  </strong>
+
+                  <span>
+                    100% secure checkout
+                  </span>
+                </div>
+
+              </div>
+
+            </div>
+
           </div>
 
-          {/* Add To Cart */}
-          <button className="add-cart-button">
-            <span><GiShoppingCart /></span>
-            Add to cart
-          </button>
+        </section>
 
-          {/* Delivery */}
-          <div className="delivery-info">
-            <span><CiDeliveryTruck /></span>
-            <span>Free delivery on orders over $30.00</span>
-          </div>
-
-        </div>
       </div>
-    </div>
+
+    </main>
   );
 }
