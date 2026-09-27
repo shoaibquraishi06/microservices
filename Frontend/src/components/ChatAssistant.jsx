@@ -57,7 +57,7 @@ export default function ChatAssistant() {
           onClick={() => setIsOpen(true)}
           aria-label="Open AI Assistant"
         >
-          <img
+          <img loading="lazy"
             src={Aibuddy}
             alt="AI Assistant"
           />
