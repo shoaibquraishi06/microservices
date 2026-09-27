@@ -248,6 +248,9 @@
     border-radius: 12px;
   }
 
+  .hero{
+     height: 50vh;
+  }
   .morph-slider-btn {
     width: 34px;
     height: 34px;

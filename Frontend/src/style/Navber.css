@@ -28,18 +28,83 @@
   z-index: 1000;
 }
 
+.navber-top{
+   position: fixed;
+   top: 0px;
+   left: 0;
+  z-index: 900;
+  width: min(100%, 1750px);
+  height: 45px;
+ 
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 2rem;
+  background: rgba(255, 255, 255, 0.795);
+  border: none;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 
+  border: 1px solid rgba(0, 0, 0, 0.07);
+
+  border-radius: 10px;
+
+  box-shadow:
+    0 10px 35px rgba(0, 0, 0, 0.06),
+    0 2px 8px rgba(0, 0, 0, 0.03);
+
+}
+
+.navber-logos{
+  display: flex;
+  gap: 10px;
+}
+.navber-logos img{
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+} 
+
+.navber-text{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  font-family: "regular-text";
+  font-weight: 500;
+  cursor: pointer;
+  
+  
+}
+
+
+ .navber-sigh-up h5:hover{
+ color: #6b6767;
+  transition: all  0.2s ease-in-out;
+
+}
+ .navber-help h5:hover{
+ color: #6b6767;
+  transition: all  0.2s ease-in-out;
+
+}
+
+.line{
+  height: 15px;
+  width: 1.5px;
+  background-color: #6b6767;
+}
 /* =========================================================
    NAVBAR
 ========================================================= */
 
 .navbar {
   position: fixed;
-  top: 16px;
+  top: 10px;
   left: 50%;
   transform: translateX(-50%);
 
-  width: min(94%, 1440px);
+  width: min(100%, 1750px);
   height: 64px;
 
   display: flex;
@@ -47,7 +112,7 @@
   justify-content: space-between;
 
   padding: 0 22px;
-
+ border: none;
   background: rgba(255, 255, 255, 0.82);
 
   backdrop-filter: blur(20px);
@@ -55,7 +120,7 @@
 
   border: 1px solid rgba(0, 0, 0, 0.07);
 
-  border-radius: 18px;
+  border-radius: 5px;
 
   box-shadow:
     0 10px 35px rgba(0, 0, 0, 0.06),

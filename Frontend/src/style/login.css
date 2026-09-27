@@ -13,6 +13,7 @@
   font-family: "regular-text", Arial, sans-serif;
   color: #111;
   box-sizing: border-box;
+  margin-top: 3.5rem;
 }
 
 .auth-page *,
@@ -101,7 +102,7 @@
 /* LOGO */
 
 .auth-brand > img {
-  width: 44px;
+  width: 49px;
   height: 44px;
 
   object-fit: cover;
@@ -266,6 +267,7 @@
   border-radius: 8px;
 
   font-size: 12px;
+  font-family: "regular-text";
 }
 
 
@@ -725,8 +727,8 @@
   }
 
   .mobile-logo img {
-    width: 42px;
-    height: 42px;
+     
+    height: 45px;
 
     border-radius: 50%;
 

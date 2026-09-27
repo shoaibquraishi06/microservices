@@ -2,6 +2,7 @@ import { useState } from "react";
 import logo from "../assets/logo.jpg";
 import google from "../assets/google.png";
 import { Link, useNavigate } from "react-router-dom";
+import WhitLogo from "../assets/whitelogo.jpg"
 import "../style/register.css";
 import axios from "axios";
 
@@ -74,7 +75,7 @@ export default function Register() {
 
         {/* LEFT BRAND PANEL */}
         <div className="auth-brand">
-          <img src={logo} alt="Brand Logo" />
+          <img src={WhitLogo} alt="Brand Logo" />
 
           <div className="brand-content">
             <span>NIKE STORE</span>

@@ -41,6 +41,10 @@ const Navber = () => {
     closeMenu();
     navigate("/cart");
   };
+  const handlClicksighup = () => {
+    closeMenu();
+    navigate("/login");
+  };
 
   const handleSearchOpen = () => {
     closeMenu();
@@ -53,6 +57,33 @@ const Navber = () => {
 
   return (
     <>
+  
+       {/* <div className="navber-top">
+         <div className="navber-logos">
+        
+          <div className="loggo1">
+            <img src={logo} alt="" srcset="" />
+          </div>
+          <div className="loggo1">
+            <img src={logo} alt="" srcset="" />
+          </div>
+       
+       
+        
+         </div>
+
+       <div className="navber-text">
+         <div className="navber-sigh-up" onClick={handlClicksighup }>
+          <h5>Sigh up</h5>
+         </div>
+         <div className="line"></div>
+         <div className="navber-help">
+          <h5>Help</h5>
+         </div>
+</div> 
+       </div> */}
+
+
       {/* ================= NAVBAR ================= */}
       <header className="header">
         <nav className="navbar">
@@ -60,7 +91,7 @@ const Navber = () => {
           {/* ================= LOGO ================= */}
           <div className="navbar-logo">
             <Link to="/" onClick={closeMenu}>
-              <img src={logo} alt="Brand logo" />
+              <img  loading="lazy" src={logo} alt="Brand logo" />
             </Link>
           </div>
 

@@ -254,6 +254,7 @@ export default function ProductDetails() {
                     onClick={() => setSelectedImage(index)}
                   >
                     <img
+                       loading="lazy"
                       src={image.url}
                       alt="Product color"
                     />

@@ -4,6 +4,7 @@ import google from "../assets/google.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "../feature/authSlice";
+import WhitLogo from "../assets/whitelogo.jpg"
 import axios from "axios";
 import "../style/login.css";
 
@@ -57,7 +58,7 @@ export default function Login() {
 
         {/* LEFT BRAND PANEL */}
         <div className="auth-brand">
-          <img src={logo} alt="Brand Logo" />
+          <img src={WhitLogo} alt="Brand Logo" />
 
           <div className="brand-content">
             <span>NIKE STORE</span>

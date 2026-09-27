@@ -34,7 +34,7 @@ export default function CartDrawer() {
   };
 
   const productPageHandler = () => {
-    navigate("/product");
+    navigate("/products");
   };
 
   /* =========================

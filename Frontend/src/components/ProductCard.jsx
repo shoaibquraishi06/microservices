@@ -84,7 +84,7 @@ export default function ProductCard({ product }) {
 
         <div className="product-img">
           {product.images?.[0]?.url ? (
-            <img
+            <img loading="lazy"
               src={product.images[0].url}
               alt={product.title || "Product"}
             />
