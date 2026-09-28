@@ -149,9 +149,9 @@
 
   border-radius: 50%;
 
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(115, 114, 114, 0.107);
 
-  color: white;
+  color: rgb(16, 16, 16);
 
   font-size: 24px;
 
@@ -325,10 +325,27 @@
   transform: scale(1.03);
 }
 
+/* 
+@media (min-height:400px) and (max-height:900px){
+  .ai-chat-window{
+      height: 350px;
+      width: 280px;
+   }
+   .ai-welcome img {
+    height: 30px;
+    width: 30px;
+   }
+   .ai-welcome h3{
+    font-size: 0.8rem;
+   }
+   .ai-welcome p{
+    font-size: 0.8rem;
+   }
+} */
 
 @media (min-width:600px) and (max-width:768px){
    .ai-chat-window{
-      height: 320px;
+      height: 420px;
    }
 
 }
