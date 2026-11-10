@@ -36,7 +36,7 @@ async function initSocketServer(httpServer) {
           ];
 
         console.log("🤖 AI RESPONSE:", lastMessage.content);
-
+        logging.log("🤖 AI RESPONSE:", lastMessage.content);
         socket.emit("message", lastMessage.content);
 
       } catch (error) {
@@ -45,7 +45,7 @@ async function initSocketServer(httpServer) {
   console.error("❌ STACK:", error.stack);
         socket.emit(
           "message",
-          "AI assistant me error aa gaya."
+           error.message || "An error occurred while processing your request."
         );
       }
     });

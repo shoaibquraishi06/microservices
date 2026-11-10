@@ -41,6 +41,7 @@ export default function Login() {
       const user = res.data.user;
 
       dispatch(loginSuccess(user));
+      alert("login successfully")
 
       navigate("/account");
     } catch (err) {
