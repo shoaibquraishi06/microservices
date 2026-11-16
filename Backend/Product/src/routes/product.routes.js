@@ -1,6 +1,6 @@
 const express = require('express');
 const multer = require('multer');
-const  createAuthMiddleware  = require('../middleware//auth.middleware')
+const  createAuthMiddleware  = require('../middleware/auth.middleware')
 const productController= require('../controller/product.controller')
 const { createProductRules, } = require('../validators/product.validator')
 const Product = require('../models/product.model');
@@ -11,7 +11,7 @@ const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
 
 router.post('/',
-	createAuthMiddleware(['admin', 'seller']),
+	createAuthMiddleware(['seller']),
 	upload.array('image', 5),
 	createProductRules,
 	productController.createProduct

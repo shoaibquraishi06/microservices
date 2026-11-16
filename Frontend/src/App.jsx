@@ -13,6 +13,7 @@ import Contact from './components/Contact';
 //  -----auth pages
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
 import ProductGrid from './components/ProductGrid';
 import ProductctDetails from './components/ProductDetail';
 
@@ -69,6 +70,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/account" element={<Account />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/cart" element={<CartDrawer />} />
           <Route path="/products" element={<Products />} />
           <Route path="/product/:id" element={<ProductDetails />} />

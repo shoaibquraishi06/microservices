@@ -22,12 +22,12 @@ async function createProduct(req, res) {
 
         const product = await productModel.create({ title, description, price, seller, images });
 
-             await publishToQueue("PRODUCT_SELLER_DASHBOARD.PRODUCT_CREATED", product);
-        await publishToQueue("PRODUCT_NOTIFICATION.PRODUCT_CREATED", {
-            email: req.user.email,
-            productId: product._id,
-            sellerId: seller
-        });
+        //      await publishToQueue("PRODUCT_SELLER_DASHBOARD.PRODUCT_CREATED", product);
+        // await publishToQueue("PRODUCT_NOTIFICATION.PRODUCT_CREATED", {
+        //     email: req.user.email,
+        //     productId: product._id,
+        //     sellerId: seller
+        // });
       
          
 
@@ -37,8 +37,10 @@ async function createProduct(req, res) {
         });
     } catch (err) {
         console.error('Create product error', err);
-        return res.status(500).json({ message: 'Internal server error' });
+        return res.status(500).json({ message: 'Internal server error', error: err.message });
     }
+
+    
 }
 
 

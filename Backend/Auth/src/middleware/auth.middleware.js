@@ -33,7 +33,8 @@ async function authMiddleware(req, res, next) {
     );
 
     // 5. User attach
-    req.user = decoded;
+     req.user = decoded;
+    
 
     console.log("✅ AUTH USER:", req.user);
 
@@ -52,6 +53,4 @@ async function authMiddleware(req, res, next) {
   }
 }
 
-module.exports = {
-  authMiddleware,
-};
+module.exports = authMiddleware

@@ -2,6 +2,8 @@ const express = require('express');
 const validators = require('../middleware/validator.middleware');
 const authController =require('../controller/auth.controller')
 const authMiddleware = require('../middleware/auth.middleware');
+const createAuthMiddleware = require('../middleware/role.middleware');
+
 const router = express.Router();
 
 // POST /auth/register
@@ -10,9 +12,9 @@ router.post('/register', validators.registerUserValidations, authController.regi
 // POST /auth/login
 router.post('/login', validators.loginValidations, authController.loginUser);
 
-router.get('/me', authMiddleware.authMiddleware, authController.getCurrentUser);
+router.get('/me', createAuthMiddleware(['user', 'seller', 'admin']), authController.getCurrentUser);
 
-router.post('/logout', authMiddleware.authMiddleware, authController.logoutUser);
+router.post('/logout', createAuthMiddleware(['user', 'seller', 'admin']), authController.logoutUser);
 
 // router.get('/getUserAddress', authMiddleware.authMiddleware, authController.getUserAddress);
 

@@ -1,8 +1,13 @@
+const jwt = require('jsonwebtoken');
 function createAuthMiddleware(roles = [ "user" ]) {
 
     return function authMiddleware(req, res, next) {
-        const token = req.cookies?.token || req.headers?.authorization?.split(' ')[ 1 ];
+           console.log("AUTH MIDDLEWARE HIT");
 
+    console.log("COOKIE:", req.cookies);
+        const token = req.cookies?.token || req.headers?.authorization?.split(' ')[ 1 ];
+  
+           
         if (!token) {
             return res.status(401).json({
                 message: 'Unauthorized: No token provided',
@@ -11,6 +16,7 @@ function createAuthMiddleware(roles = [ "user" ]) {
 
         try {
             const decoded = jwt.verify(token, process.env.JWT_SECRET)
+             console.log("JWT VERIFIED:", decoded);
 
             if (!roles.includes(decoded.role)) {
                 return res.status(403).json({
@@ -22,8 +28,10 @@ function createAuthMiddleware(roles = [ "user" ]) {
             next();
         }
         catch (err) {
+            console.log("JWT ERROR:", err.message);
+            
             return res.status(401).json({
-                message: 'Unauthorized: Invalid token',
+                message: 'Unauthorized: Invalid token', error: err.message,
             });
         }
 
@@ -31,4 +39,4 @@ function createAuthMiddleware(roles = [ "user" ]) {
 
 }
 
-module.exports =  {createAuthMiddleware };
+module.exports =  { createAuthMiddleware };

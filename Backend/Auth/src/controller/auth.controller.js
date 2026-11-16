@@ -73,58 +73,133 @@ async function registerUser(req, res) {
 
 }
 
+
 async function loginUser(req, res) {
   try {
-    // support either 'identifier' (email or username) or explicit username/email fields
-    const { identifier, username, email, password } = req.body; // frontend may send { identifier, password }
+    const {
+      identifier,
+      username,
+      email,
+      password,
+      role: selectedRole
+    } = req.body;
+
+    // 1. Get email or username
     const idValue = identifier || username || email;
 
-    // find user by email or username and include password field (password is select:false in model)
-    const user = await userModel.findOne({
-      $or: [{ email: idValue }, { username: idValue }],
-    }).select('+password');
-
-    if (!user) {
-      return res.status(401).json({ message: 'Invalid credentials' });
+    if (!idValue || !password || !selectedRole) {
+      return res.status(400).json({
+        success: false,
+        message: "Email, password and role are required"
+      });
     }
 
-   const isMatch = await bcrypt.compare(password, user.password);
-if (!isMatch) {
-    return res.status(401).json({ message: 'Invalid credentials' });
-}
+    // 2. Validate selected role
+    if (!["user", "seller"].includes(selectedRole)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid account role"
+      });
+    }
+   
 
+    // 3. Find user in database
+    const user = await userModel.findOne({
+      $or: [
+        { email: idValue },
+        { username: idValue }
+      ]
+    }).select("+password");
+    
+//  console.log("REQUEST BODY:", req.body);
+// console.log("SELECTED ROLE:", selectedRole);
+// console.log("DATABASE ROLE:", user.role);
+// console.log(
+//   "ROLE MATCH:",
+//   user.role === selectedRole
+// );
 
-    const token = jwt.sign(
-      { id: user._id, username: user.username, email: user.email, role: user.role },
-      process.env.JWT_SECRET,
-      { expiresIn: '1d' }
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid credentials"
+      });
+    }
+
+    // 4. Verify password
+    const isMatch = await bcrypt.compare(
+      password,
+      user.password
     );
 
-    // console.log("auth-token",token);
-    
+    if (!isMatch) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid credentials"
+      });
+    }
 
-    res.cookie('token', token, {
+    // 5. IMPORTANT: Compare selected role with DB role
+    if (user.role !== selectedRole) {
+      return res.status(403).json({
+        success: false,
+        message: `This account is registered as ${user.role}. Please select ${user.role} to login.`
+      });
+    }
+
+   console.log("DATABASE ROLE:", user.role);
+
+    // 6. Generate JWT using DATABASE role
+    const token = jwt.sign(
+      {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        role: user.role
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" }
+    );
+
+    res.cookie("token", token, {
        httpOnly: true,
-    secure: false,
-    sameSite: "lax",
-    maxAge: 24 * 60 * 60 * 1000,
+  secure: false,
+  sameSite: "lax",
+  path: "/",
+  maxAge: 24 * 60 * 60 * 1000
     });
 
+    // 7. Send response
     return res.status(200).json({
-      message: 'login successful',
+      success: true,
+      message: "Login successful",
       token,
       user: {
         id: user._id,
         username: user.username,
         email: user.email,
-        role: user.role,
-      },
+        role: user.role
+      }
     });
+
   } catch (error) {
-    console.error('Error in login user:', error);
-    return res.status(500).json({ message: 'Internal server error' });
+    console.error("Login Error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error"
+    });
   }
+  // console.log("🔥 NEW LOGIN FUNCTION HIT");
+
+  // return res.status(418).json({
+  //   success: false,
+  //   message: "NEW LOGIN FUNCTION IS WORKING"
+  // });
+
+
 }
+
 
 
 async function getCurrentUser(req, res) {

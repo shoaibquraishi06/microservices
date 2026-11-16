@@ -24,7 +24,7 @@ const registerUserValidations = [
   .withMessage('Password must be at least 6 characters long'),
  
   body("role")
-  .optional()
+ 
   .isIn(['user', 'seller'])
   .withMessage('Role must be either "user" or "seller"'),
 
@@ -54,11 +54,8 @@ const loginValidations = [
         responseWithValidationErrors(req, res, next);
     },
 
-
     
 ];
-
-
 const addressValidation = [
   
     body('street')

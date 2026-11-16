@@ -8,17 +8,23 @@ async function getMetrics(req, res) {
     try {
         const seller = req.user;
 
-        // Get all products for this seller
-        const products = await productModel.find({ seller: seller._id });
-        const productIds = products.map(p => p._id);
+        //   console.log("🔥 GET METRICS CONTROLLER HIT");
+        //  console.log("SELLER USER:", req.user);
+        // // Get all products for this seller
+        const products = await productModel.find({ seller: seller.id });
+        const productIds = products.map(p => p.id);
+        //   console.log("SELLER USER:", productIds);
+        //   console.log(`getMetrics controller is working for seller: ${seller.id}`);
+          
 
-        // Get all orders containing seller's products
+
+        // // Get all orders containing seller's products
         const orders = await orderModel.find({
             'items.product': { $in: productIds },
             status: { $in: [ "CONFIRMED", "SHIPPED", "DELIVERED" ] }
         });
 
-        // Sales: total number of items sold
+        // // Sales: total number of items sold
         let sales = 0;
         let revenue = 0;
         const productSales = {};
@@ -33,7 +39,7 @@ async function getMetrics(req, res) {
             });
         });
 
-        // Top products by quantity sold
+        // // Top products by quantity sold
         const topProducts = Object.entries(productSales)
             .sort((a, b) => b[ 1 ] - a[ 1 ])
             .slice(0, 5)
@@ -54,7 +60,13 @@ async function getMetrics(req, res) {
             message: "Internal Server Error"
         });
     }
-}
+//      console.log("🔥 GET METRICS CONTROLLER HIT");
+//   console.log("SELLER USER:", req.user);
+            // topProducts
+       
+   
+    }
+
 
 async function getOrders(req, res) {
     try {
